@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KM Fitness — Admin Panel</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <link rel="icon" type="image/png" href="Logo_Mark.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --pink:#E8457A;--pink-soft:#F472B6;
+      --blue:#3B82F6;--blue-light:#DBEAFE;
+      --dark:#0F172A;--dark-card:#1E293B;--dark-border:#334155;
+      --text:#E2E8F0;--muted:#94A3B8;--white:#FFFFFF;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--dark);color:var(--text);font-family:'Montserrat',sans-serif;min-height:100vh;}
+
+    /* ── LOGIN OVERLAY ── */
+    #login-screen{
+      position:fixed;inset:0;z-index:9999;
+      background:var(--dark);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .login-card{
+      background:var(--dark-card);border:1px solid var(--dark-border);
+      border-radius:12px;padding:48px 40px;width:360px;text-align:center;
+      box-shadow:0 24px 60px rgba(0,0,0,.5);
+    }
+    .login-logo{height:60px;margin-bottom:24px;filter:drop-shadow(0 0 12px rgba(232,69,122,.4));}
+    .login-card h2{font-size:20px;font-weight:700;margin-bottom:6px;color:var(--white);}
+    .login-card p{font-size:12px;color:var(--muted);margin-bottom:32px;letter-spacing:1px;}
+    .login-card input{
+      width:100%;background:rgba(255,255,255,.05);border:1px solid var(--dark-border);
+      border-radius:6px;color:var(--text);font-family:'Montserrat',sans-serif;
+      font-size:14px;padding:14px 18px;outline:none;text-align:center;
+      letter-spacing:3px;transition:border-color .25s;margin-bottom:16px;
+    }
+    .login-card input:focus{border-color:var(--pink);}
+    .login-card input::placeholder{letter-spacing:1px;color:var(--muted);}
+    .login-btn{
+      width:100%;background:var(--pink);color:var(--white);border:none;cursor:pointer;
+      font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;
+      text-transform:uppercase;padding:14px;border-radius:6px;transition:all .3s;
+    }
+    .login-btn:hover{background:var(--pink-soft);}
+    .login-error{color:#F87171;font-size:12px;margin-top:12px;display:none;}
+    .back-link{display:block;margin-top:20px;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;}
+    .back-link:hover{color:var(--pink);}
+
+    /* ── ADMIN SHELL ── */
+    #admin-shell{display:none;}
+
+    .admin-nav{
+      background:var(--dark-card);border-bottom:1px solid var(--dark-border);
+      padding:14px 32px;display:flex;align-items:center;justify-content:space-between;
+      position:sticky;top:0;z-index:100;
+    }
+    .admin-nav-left{display:flex;align-items:center;gap:14px;}
+    .admin-nav img{height:36px;filter:drop-shadow(0 0 8px rgba(232,69,122,.3));}
+    .admin-title{font-weight:700;font-size:14px;color:var(--white);}
+    .admin-title span{color:var(--pink);}
+    .admin-badge{background:rgba(232,69,122,.15);border:1px solid rgba(232,69,122,.3);color:var(--pink);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:100px;}
+    .logout-btn{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--dark-border);cursor:pointer;padding:8px 16px;border-radius:4px;transition:all .3s;font-family:'Montserrat',sans-serif;}
+    .logout-btn:hover{border-color:var(--pink);color:var(--pink);}
+
+    /* ── SIDEBAR + CONTENT ── */
+    .admin-layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 64px);}
+    .sidebar{background:var(--dark-card);border-right:1px solid var(--dark-border);padding:24px 0;}
+    .sidebar-section{padding:0 16px;margin-bottom:8px;}
+    .sidebar-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding:0 8px;margin-bottom:6px;}
+    .sidebar-btn{
+      display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+      background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;
+      font-size:12px;font-weight:600;color:var(--muted);padding:10px 12px;border-radius:6px;
+      transition:all .25s;letter-spacing:.5px;
+    }
+    .sidebar-btn:hover{background:rgba(255,255,255,.05);color:var(--text);}
+    .sidebar-btn.active{background:rgba(232,69,122,.12);color:var(--pink);}
+    .sidebar-btn .icon{font-size:16px;width:20px;text-align:center;}
+    .sidebar-divider{height:1px;background:var(--dark-border);margin:14px 16px;}
+
+    /* ── PANELS ── */
+    .content{padding:40px;}
+    .panel{display:none;}
+    .panel.active{display:block;}
+
+    .panel-header{margin-bottom:32px;}
+    .panel-header h1{font-size:26px;font-weight:900;color:var(--white);margin-bottom:6px;}
+    .panel-header p{font-size:13px;color:var(--muted);line-height:1.6;}
+
+    /* Cards */
+    .card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;padding:28px;margin-bottom:24px;}
+    .card-title{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+
+    /* Form fields */
+    .field{margin-bottom:18px;}
+    .field label{display:block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+    .field input,.field textarea,.field select{
+      width:100%;background:rgba(255,255,255,.04);border:1px solid var(--dark-border);
+      border-radius:6px;color:var(--text);font-family:'Montserrat',sans-serif;
+      font-size:13px;padding:12px 16px;outline:none;transition:border-color .25s;
+      appearance:none;resize:vertical;
+    }
+    .field input::placeholder,.field textarea::placeholder{color:var(--muted);}
+    .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(232,69,122,.1);}
+    .field textarea{min-height:120px;line-height:1.7;}
+    .field-hint{font-size:11px;color:var(--muted);margin-top:6px;font-style:italic;}
+
+    /* Two cols */
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+    /* Photo upload */
+    .photo-upload-area{
+      border:2px dashed var(--dark-border);border-radius:8px;padding:40px 20px;
+      text-align:center;cursor:pointer;transition:border-color .3s;position:relative;
+    }
+    .photo-upload-area:hover{border-color:var(--pink);}
+    .photo-upload-area input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .photo-upload-area .upload-icon{font-size:40px;margin-bottom:10px;}
+    .photo-upload-area p{font-size:13px;color:var(--muted);}
+    .photo-preview{
+      margin-top:16px;display:none;
+      border-radius:6px;overflow:hidden;max-height:200px;text-align:center;
+    }
+    .photo-preview img{max-height:200px;border-radius:6px;border:1px solid var(--dark-border);}
+
+    /* Save button */
+    .save-btn{
+      background:var(--pink);color:var(--white);border:none;cursor:pointer;
+      font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;
+      letter-spacing:2.5px;text-transform:uppercase;padding:14px 32px;
+      border-radius:6px;transition:all .3s;display:inline-flex;align-items:center;gap:8px;
+    }
+    .save-btn:hover{background:var(--pink-soft);transform:translateY(-1px);}
+    .save-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+    .save-toast{
+      display:inline-block;margin-left:16px;font-size:12px;font-weight:600;
+      color:#4ADE80;opacity:0;transition:opacity .4s;
+    }
+    .save-toast.show{opacity:1;}
+
+    /* Preview live link */
+    .preview-link{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+      color:var(--blue);text-decoration:none;padding:8px 16px;
+      border:1px solid rgba(59,130,246,.3);border-radius:4px;transition:all .3s;
+      margin-left:12px;
+    }
+    .preview-link:hover{border-color:var(--blue);background:rgba(59,130,246,.06);}
+
+    /* Stats on dashboard */
+    .dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px;}
+    .dash-stat{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;padding:24px;text-align:center;}
+    .dash-stat-icon{font-size:28px;margin-bottom:8px;}
+    .dash-stat-val{font-size:28px;font-weight:900;color:var(--white);line-height:1;}
+    .dash-stat-val span{color:var(--pink);}
+    .dash-stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+
+    .dash-tip{background:rgba(232,69,122,.08);border:1px solid rgba(232,69,122,.2);border-radius:8px;padding:20px 24px;margin-bottom:24px;display:flex;gap:14px;align-items:flex-start;}
+    .dash-tip-icon{font-size:20px;flex-shrink:0;}
+    .dash-tip-text{font-size:13px;color:var(--muted);line-height:1.65;}
+    .dash-tip-text strong{color:var(--text);}
+
+    .quick-links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+    .quick-link{background:rgba(255,255,255,.03);border:1px solid var(--dark-border);border-radius:8px;padding:20px;cursor:pointer;transition:all .3s;text-align:center;text-decoration:none;}
+    .quick-link:hover{border-color:var(--pink);background:rgba(232,69,122,.06);}
+    .quick-link .ql-icon{font-size:24px;margin-bottom:8px;}
+    .quick-link .ql-label{font-size:12px;font-weight:600;color:var(--text);}
+    .quick-link .ql-sub{font-size:10px;color:var(--muted);margin-top:3px;}
+
+    /* Password change */
+    .pw-note{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:20px;}
+
+    /* Responsive */
+    @media(max-width:768px){
+      .admin-layout{grid-template-columns:1fr;}
+      .sidebar{display:none;}
+      .content{padding:20px;}
+      .dash-grid{grid-template-columns:1fr 1fr;}
+      .quick-links{grid-template-columns:1fr 1fr;}
+      .field-row{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     LOGIN SCREEN
+═══════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-card">
+    <img src="Vertical_Logo.png" alt="KM Fitness" class="login-logo"/>
+    <h2>Admin Panel</h2>
+    <p>Enter your password to manage your website</p>
+    <input type="password" id="pw-input" placeholder="Password" onkeydown="if(event.key==='Enter')tryLogin()"/>
+    <button class="login-btn" onclick="tryLogin()">Sign In ✦</button>
+    <div class="login-error" id="login-error">❌ Incorrect password. Try again.</div>
+    <a href="index.html" class="back-link">← Back to website</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     ADMIN SHELL (hidden until login)
+═══════════════════════════════════ -->
+<div id="admin-shell">
+
+  <!-- TOP NAV -->
+  <div class="admin-nav">
+    <div class="admin-nav-left">
+      <img src="Horizontal_Logo.png" alt="KM Fitness"/>
+      <div>
+        <div class="admin-title">KM Fitness <span>Admin</span></div>
+      </div>
+      <div class="admin-badge">Private</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="index.html" target="_blank" class="preview-link">👁 View Site</a>
+      <button class="logout-btn" onclick="logout()">Log Out</button>
+    </div>
+  </div>
+
+  <div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Dashboard</div>
+        <button class="sidebar-btn active" onclick="showPanel('dashboard')">
+          <span class="icon">🏠</span> Overview
+        </button>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Website Content</div>
+        <button class="sidebar-btn" onclick="showPanel('coach')">
+          <span class="icon">👤</span> About Me / Coach
+        </button>
+        <button class="sidebar-btn" onclick="showPanel('videos')">
+          <span class="icon">🎬</span> Videos
+        </button>
+        <button class="sidebar-btn" onclick="showPanel('booking')">
+          <span class="icon">📅</span> Booking Calendar
+        </button>
+        <button class="sidebar-btn" onclick="showPanel('hero')">
+          <span class="icon">✏️</span> Hero Text
+        </button>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Settings</div>
+        <button class="sidebar-btn" onclick="showPanel('password')">
+          <span class="icon">🔒</span> Change Password
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+
+      <!-- ─── DASHBOARD ─── -->
+      <div class="panel active" id="panel-dashboard">
+        <div class="panel-header">
+          <h1>Welcome back, Kyra 👋</h1>
+          <p>Manage your website content from here. Only you can see this panel.</p>
+        </div>
+
+        <div class="dash-grid">
+          <div class="dash-stat"><div class="dash-stat-icon">👤</div><div class="dash-stat-val" id="ds-coach">–</div><div class="dash-stat-label">Coach Profile</div></div>
+          <div class="dash-stat"><div class="dash-stat-icon">🎬</div><div class="dash-stat-val" id="ds-vid">–</div><div class="dash-stat-label">Main Video</div></div>
+          <div class="dash-stat"><div class="dash-stat-icon">📅</div><div class="dash-stat-val" id="ds-cal">–</div><div class="dash-stat-label">Calendar</div></div>
+          <div class="dash-stat"><div class="dash-stat-icon">✏️</div><div class="dash-stat-val" id="ds-hero">–</div><div class="dash-stat-label">Hero Text</div></div>
+        </div>
+
+        <div class="dash-tip">
+          <div class="dash-tip-icon">💡</div>
+          <div class="dash-tip-text"><strong>Quick tip:</strong> Any changes you save here instantly appear on your website for visitors. Use the <em>View Site</em> button above to preview your changes live.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">⚡ Quick Actions</div>
+          <div class="quick-links">
+            <div class="quick-link" onclick="showPanel('coach')">
+              <div class="ql-icon">👤</div>
+              <div class="ql-label">Edit Coach Profile</div>
+              <div class="ql-sub">Name, bio, photo, video</div>
+            </div>
+            <div class="quick-link" onclick="showPanel('videos')">
+              <div class="ql-icon">🎬</div>
+              <div class="ql-label">Update Videos</div>
+              <div class="ql-sub">Main & coach video</div>
+            </div>
+            <div class="quick-link" onclick="showPanel('booking')">
+              <div class="ql-icon">📅</div>
+              <div class="ql-label">Switch Calendar</div>
+              <div class="ql-sub">Google, Calendly, etc.</div>
+            </div>
+            <div class="quick-link" onclick="showPanel('hero')">
+              <div class="ql-icon">✏️</div>
+              <div class="ql-label">Edit Hero Text</div>
+              <div class="ql-sub">Tagline &amp; headline</div>
+            </div>
+            <a href="index.html" target="_blank" class="quick-link">
+              <div class="ql-icon">👁</div>
+              <div class="ql-label">Preview Website</div>
+              <div class="ql-sub">See what visitors see</div>
+            </a>
+            <div class="quick-link" onclick="showPanel('password')">
+              <div class="ql-icon">🔒</div>
+              <div class="ql-label">Change Password</div>
+              <div class="ql-sub">Update admin access</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── COACH PROFILE ─── -->
+      <div class="panel" id="panel-coach">
+        <div class="panel-header">
+          <h1>About Me / Coach Profile</h1>
+          <p>This section appears in the "Meet Your Coach" section on your website. Customers will see exactly what you fill in here.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">📸 Profile Photo</div>
+          <div class="photo-upload-area" id="photo-area">
+            <input type="file" id="photo-input" accept="image/*" onchange="handlePhoto(this)"/>
+            <div class="upload-icon">📷</div>
+            <p>Click to upload your photo<br/><small style="color:var(--muted)">JPG, PNG — recommended square crop</small></p>
+          </div>
+          <div class="photo-preview" id="photo-preview">
+            <img id="photo-preview-img" src="" alt="Preview"/>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">✍️ Your Information</div>
+          <div class="field-row">
+            <div class="field">
+              <label>Your Name</label>
+              <input type="text" id="f-name" placeholder="e.g. Kyra Martindale"/>
+            </div>
+            <div class="field">
+              <label>Title / Specialty</label>
+              <input type="text" id="f-title" placeholder="e.g. Certified Gymnastics Coach"/>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bio / About Me</label>
+            <textarea id="f-bio" rows="6" placeholder="Write a few sentences about your coaching journey, background, philosophy, and what makes you unique as a coach…"></textarea>
+            <div class="field-hint">This appears on your website under "Meet Your Coach". Be personal and welcoming!</div>
+          </div>
+          <div class="field">
+            <label>Certifications &amp; Credentials <small style="font-weight:400;text-transform:none;letter-spacing:0;">(separate with commas)</small></label>
+            <input type="text" id="f-certs" placeholder="e.g. USA Gymnastics Certified, CPR/AED, 10+ Years Experience"/>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🎬 Coaching Video (About Me)</div>
+          <div class="field">
+            <label>YouTube or Vimeo Link</label>
+            <input type="url" id="f-coach-vid" placeholder="https://youtube.com/watch?v=…"/>
+            <div class="field-hint">This video appears in your "Meet the Coach" section. Great for a personal intro or a highlights reel.</div>
+          </div>
+        </div>
+
+        <button class="save-btn" onclick="saveCoach()">💾 Save Coach Profile</button>
+        <span class="save-toast" id="toast-coach">✅ Saved!</span>
+      </div>
+
+      <!-- ─── VIDEOS ─── -->
+      <div class="panel" id="panel-videos">
+        <div class="panel-header">
+          <h1>Videos</h1>
+          <p>Manage the videos shown on your website. Supports YouTube and Vimeo links.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🎬 Main "Watch" Video</div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:18px;">This is the large featured video in the "See KM Fitness In Action" section.</p>
+          <div class="field">
+            <label>YouTube or Vimeo Link</label>
+            <input type="url" id="f-main-vid" placeholder="https://youtube.com/watch?v=… or https://vimeo.com/…"/>
+          </div>
+          <button class="save-btn" onclick="saveMainVid()">💾 Save Main Video</button>
+          <span class="save-toast" id="toast-main-vid">✅ Saved!</span>
+        </div>
+
+        <div class="card">
+          <div class="card-title">👤 Coach Profile Video</div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:18px;">This appears in your "Meet the Coach" section alongside your photo and bio.</p>
+          <div class="field">
+            <label>YouTube or Vimeo Link</label>
+            <input type="url" id="f-cv2" placeholder="https://youtube.com/watch?v=…"/>
+          </div>
+          <button class="save-btn" onclick="saveCoachVid2()">💾 Save Coach Video</button>
+          <span class="save-toast" id="toast-cv2">✅ Saved!</span>
+        </div>
+
+        <div class="card" style="background:rgba(59,130,246,.05);border-color:rgba(59,130,246,.2);">
+          <div class="card-title" style="color:var(--blue);">💡 Supported Video Links</div>
+          <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px;">
+            <li>YouTube: <code>https://youtube.com/watch?v=VIDEO_ID</code></li>
+            <li>YouTube Short: <code>https://youtu.be/VIDEO_ID</code></li>
+            <li>YouTube Shorts: <code>https://youtube.com/shorts/VIDEO_ID</code></li>
+            <li>Vimeo: <code>https://vimeo.com/VIDEO_ID</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ─── BOOKING CALENDAR ─── -->
+      <div class="panel" id="panel-booking">
+        <div class="panel-header">
+          <h1>Booking Calendar</h1>
+          <p>Switch your booking calendar anytime. Supports Google Calendar, Calendly, Acuity, and any booking link.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">📅 Booking Link</div>
+          <div class="field">
+            <label>Current Booking URL</label>
+            <input type="url" id="f-cal" placeholder="https://calendar.app.google/… or https://calendly.com/…" value="https://calendar.app.google/jjBL5JpYhD1RSURFA"/>
+            <div class="field-hint">Paste any calendar or scheduling link. Calendly links will embed directly on the page. Google Calendar and other links open in a new tab via a button.</div>
+          </div>
+          <button class="save-btn" onclick="saveCal()">💾 Save Calendar Link</button>
+          <span class="save-toast" id="toast-cal">✅ Saved!</span>
+        </div>
+
+        <div class="card" style="background:rgba(59,130,246,.05);border-color:rgba(59,130,246,.2);">
+          <div class="card-title" style="color:var(--blue);">🔄 Compatible Booking Platforms</div>
+          <ul style="font-size:13px;color:var(--muted);line-height:2.2;padding-left:16px;">
+            <li>✅ <strong style="color:var(--text)">Calendly</strong> — embeds directly on page</li>
+            <li>✅ <strong style="color:var(--text)">Google Calendar</strong> — opens booking link in new tab</li>
+            <li>✅ <strong style="color:var(--text)">Acuity Scheduling</strong> — embeds or opens link</li>
+            <li>✅ <strong style="color:var(--text)">SimplyBook.me</strong> — opens booking link in new tab</li>
+            <li>✅ <strong style="color:var(--text)">Any URL</strong> — always works as a direct link button</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ─── HERO TEXT ─── -->
+      <div class="panel" id="panel-hero">
+        <div class="panel-header">
+          <h1>Hero Text</h1>
+          <p>Edit the tagline that appears below "Build Confidence." on your homepage hero section.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">✏️ Hero Tagline</div>
+          <div class="field">
+            <label>Tagline</label>
+            <textarea id="f-tagline" rows="3" placeholder="Fun, foundational, and fierce — coaching gymnasts of every age from their very first cartwheel to the competition floor."></textarea>
+            <div class="field-hint">This text appears under the main headline. Keep it short and inspiring — 1-2 sentences.</div>
+          </div>
+          <button class="save-btn" onclick="saveHero()">💾 Save Hero Text</button>
+          <span class="save-toast" id="toast-hero">✅ Saved!</span>
+        </div>
+      </div>
+
+      <!-- ─── PASSWORD ─── -->
+      <div class="panel" id="panel-password">
+        <div class="panel-header">
+          <h1>Change Password</h1>
+          <p>Update the password you use to access this admin panel.</p>
+        </div>
+
+        <div class="card" style="max-width:480px;">
+          <div class="card-title">🔒 Update Password</div>
+          <p class="pw-note">Your password is stored locally in your browser. Choose something memorable but hard to guess.</p>
+          <div class="field">
+            <label>Current Password</label>
+            <input type="password" id="pw-current" placeholder="Current password"/>
+          </div>
+          <div class="field">
+            <label>New Password</label>
+            <input type="password" id="pw-new" placeholder="New password (min 6 characters)"/>
+          </div>
+          <div class="field">
+            <label>Confirm New Password</label>
+            <input type="password" id="pw-confirm" placeholder="Repeat new password"/>
+          </div>
+          <button class="save-btn" onclick="changePassword()">🔒 Update Password</button>
+          <span class="save-toast" id="toast-pw">✅ Password updated!</span>
+          <p id="pw-error" style="color:#F87171;font-size:12px;margin-top:10px;display:none;"></p>
+        </div>
+      </div>
+
+    </div><!-- end content -->
+  </div><!-- end admin-layout -->
+</div><!-- end admin-shell -->
+
+<script>
+/* ═══════════════════════════════════
+   AUTH
+═══════════════════════════════════ */
+const DEFAULT_PW = 'KMfitness2026'; /* DEFAULT — change in admin panel */
+
+function getPassword(){ return localStorage.getItem('km_admin_pw') || DEFAULT_PW; }
+
+function tryLogin(){
+  const val = document.getElementById('pw-input').value;
+  if(val === getPassword()){
+    sessionStorage.setItem('km_authed','1');
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('admin-shell').style.display='block';
+    loadAllFields();
+    updateDash();
+  } else {
+    document.getElementById('login-error').style.display='block';
+    document.getElementById('pw-input').value='';
+    document.getElementById('pw-input').style.borderColor='#F87171';
+    setTimeout(()=>{ document.getElementById('pw-input').style.borderColor=''; },1500);
+  }
+}
+
+function logout(){
+  sessionStorage.removeItem('km_authed');
+  location.reload();
+}
+
+/* Auto-login if already authed this session */
+if(sessionStorage.getItem('km_authed')==='1'){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('admin-shell').style.display='block';
+}
+
+/* ═══════════════════════════════════
+   SIDEBAR NAVIGATION
+═══════════════════════════════════ */
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  /* highlight sidebar button */
+  document.querySelectorAll('.sidebar-btn').forEach(b=>{
+    if(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+id+"'")){b.classList.add('active');}
+  });
+}
+
+/* ═══════════════════════════════════
+   DATA HELPERS
+═══════════════════════════════════ */
+function getData(){ try{ return JSON.parse(localStorage.getItem('km_admin')||'{}'); }catch(e){ return {}; } }
+function setData(d){ localStorage.setItem('km_admin',JSON.stringify(d)); }
+
+function parseVid(u){
+  if(!u)return'';u=u.trim();let id='';
+  if(u.includes('youtube.com/watch')){try{id=new URL(u).searchParams.get('v');}catch(e){}if(id)return'https://www.youtube.com/embed/'+id;}
+  if(u.includes('youtu.be/')){id=u.split('youtu.be/')[1].split('?')[0];if(id)return'https://www.youtube.com/embed/'+id;}
+  if(u.includes('youtube.com/shorts/')){id=u.split('shorts/')[1].split('?')[0];if(id)return'https://www.youtube.com/embed/'+id;}
+  if(u.includes('vimeo.com/')){id=u.split('vimeo.com/')[1].split('?')[0];if(id)return'https://player.vimeo.com/video/'+id;}
+  return'';
+}
+
+function toast(id){
+  const el=document.getElementById('toast-'+id);
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2800);
+}
+
+/* ═══════════════════════════════════
+   LOAD ALL FIELDS
+═══════════════════════════════════ */
+function loadAllFields(){
+  const d=getData();
+  if(d.coachName)  document.getElementById('f-name').value=d.coachName;
+  if(d.coachTitle) document.getElementById('f-title').value=d.coachTitle;
+  if(d.coachBio)   document.getElementById('f-bio').value=d.coachBio;
+  if(d.coachCerts) document.getElementById('f-certs').value=d.coachCerts;
+  if(d.coachPhoto){ document.getElementById('photo-preview').style.display='block'; document.getElementById('photo-preview-img').src=d.coachPhoto; }
+  if(d.coachVid)   document.getElementById('f-coach-vid').value=d.coachVid;
+  if(d.mainVid)    document.getElementById('f-main-vid').value=d.mainVid;
+  if(d.coachVid2)  document.getElementById('f-cv2').value=d.coachVid2;
+  if(d.calUrl)     document.getElementById('f-cal').value=d.calUrl;
+  if(d.tagline)    document.getElementById('f-tagline').value=d.tagline;
+}
+
+/* ═══════════════════════════════════
+   DASHBOARD STATUS
+═══════════════════════════════════ */
+function updateDash(){
+  const d=getData();
+  document.getElementById('ds-coach').innerHTML = d.coachName ? `<span>✅</span>` : '❌';
+  document.getElementById('ds-vid').innerHTML   = d.mainVid   ? `<span>✅</span>` : '❌';
+  document.getElementById('ds-cal').innerHTML   = d.calUrl    ? `<span>✅</span>` : '❌';
+  document.getElementById('ds-hero').innerHTML  = d.tagline   ? `<span>✅</span>` : '❌';
+}
+
+/* ═══════════════════════════════════
+   SAVE FUNCTIONS
+═══════════════════════════════════ */
+function saveCoach(){
+  const d=getData();
+  d.coachName  = document.getElementById('f-name').value.trim();
+  d.coachTitle = document.getElementById('f-title').value.trim();
+  d.coachBio   = document.getElementById('f-bio').value.trim();
+  d.coachCerts = document.getElementById('f-certs').value.trim();
+  const vid = document.getElementById('f-coach-vid').value.trim();
+  if(vid) d.coachVid = parseVid(vid)||vid;
+  setData(d); toast('coach'); updateDash();
+}
+
+function saveMainVid(){
+  const d=getData();
+  const raw=document.getElementById('f-main-vid').value.trim();
+  d.mainVid=parseVid(raw)||'';
+  setData(d); toast('main-vid'); updateDash();
+}
+
+function saveCoachVid2(){
+  const d=getData();
+  const raw=document.getElementById('f-cv2').value.trim();
+  /* also update coachVid used in coach section */
+  d.coachVid=parseVid(raw)||'';
+  setData(d); toast('cv2');
+}
+
+function saveCal(){
+  const d=getData();
+  d.calUrl=document.getElementById('f-cal').value.trim();
+  setData(d); toast('cal'); updateDash();
+}
+
+function saveHero(){
+  const d=getData();
+  d.tagline=document.getElementById('f-tagline').value.trim();
+  setData(d); toast('hero'); updateDash();
+}
+
+/* ═══════════════════════════════════
+   PHOTO UPLOAD
+═══════════════════════════════════ */
+function handlePhoto(input){
+  if(!input.files||!input.files[0])return;
+  const r=new FileReader();
+  r.onload=e=>{
+    document.getElementById('photo-preview').style.display='block';
+    document.getElementById('photo-preview-img').src=e.target.result;
+    const d=getData(); d.coachPhoto=e.target.result; setData(d);
+    toast('coach');
+  };
+  r.readAsDataURL(input.files[0]);
+}
+
+/* ═══════════════════════════════════
+   CHANGE PASSWORD
+═══════════════════════════════════ */
+function changePassword(){
+  const cur=document.getElementById('pw-current').value;
+  const nw=document.getElementById('pw-new').value;
+  const cf=document.getElementById('pw-confirm').value;
+  const errEl=document.getElementById('pw-error');
+  errEl.style.display='none';
+
+  if(cur!==getPassword()){errEl.textContent='❌ Current password is incorrect.';errEl.style.display='block';return;}
+  if(nw.length<6){errEl.textContent='❌ New password must be at least 6 characters.';errEl.style.display='block';return;}
+  if(nw!==cf){errEl.textContent='❌ Passwords do not match.';errEl.style.display='block';return;}
+
+  localStorage.setItem('km_admin_pw',nw);
+  document.getElementById('pw-current').value='';
+  document.getElementById('pw-new').value='';
+  document.getElementById('pw-confirm').value='';
+  toast('pw');
+}
+
+/* ═══════════════════════════════════
+   INIT
+═══════════════════════════════════ */
+if(sessionStorage.getItem('km_authed')==='1'){
+  loadAllFields(); updateDash();
+}
+</script>
+</body>
+</html>
