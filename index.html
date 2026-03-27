@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KM Fitness Coach | Youth Gymnastics & Private Coaching</title>
   <meta name="description" content="KM Fitness Coach — Expert gymnastics coaching for all ages. Private 1-on-1 sessions, group classes, and competitive training."/>
-  <!-- Favicon = Logo Mark icon -->
   <link rel="icon" type="image/png" href="Logo_Mark.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet"/>
   <style>
     :root{
       --pink:#E8457A;--pink-soft:#F472B6;--pink-pale:#FCE7F3;
-      --purple:#7C3AED;--purple-mid:#9333EA;--purple-light:#C084FC;
       --blue:#3B82F6;--blue-mid:#60A5FA;--blue-light:#DBEAFE;
       --bg:#F0F7FF;--bg-mid:#E4EFFC;--bg-card:#FFFFFF;
       --text-dark:#1E3A5F;--text-body:#3B5A80;--text-muted:#7BA0C4;--white:#FFFFFF;
@@ -19,47 +17,37 @@
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
     body{background:var(--bg);color:var(--text-dark);font-family:'Montserrat',sans-serif;overflow-x:hidden;}
-    ::-webkit-scrollbar{width:4px;}
-    ::-webkit-scrollbar-track{background:var(--bg);}
-    ::-webkit-scrollbar-thumb{background:var(--pink);border-radius:2px;}
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--pink);border-radius:2px;}
 
-    /* ── NAV ── */
+    /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:12px 48px;background:rgba(240,247,255,0.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(59,130,246,0.12);box-shadow:0 2px 20px rgba(59,130,246,0.07);}
-    .nav-logo{display:flex;align-items:center;text-decoration:none;}
-    /* Horizontal logo in nav */
-    .nav-logo img{height:48px;filter:drop-shadow(0 2px 6px rgba(232,69,122,0.25));}
+    .nav-logo img{height:48px;filter:drop-shadow(0 2px 6px rgba(232,69,122,0.25));display:block;}
     .nav-links{display:flex;gap:24px;list-style:none;align-items:center;}
     .nav-links a{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .25s;}
     .nav-links a:hover{color:var(--pink);}
-    .nav-book{background:var(--pink)!important;color:var(--white)!important;padding:10px 22px;border-radius:2px;transition:background .25s!important;}
+    .nav-book{background:var(--pink)!important;color:var(--white)!important;padding:10px 22px;border-radius:2px;}
     .nav-book:hover{background:var(--pink-soft)!important;}
 
-    /* ── HERO ── */
+    /* HERO */
     .hero{min-height:100vh;display:flex;align-items:center;padding:110px 48px 80px;position:relative;overflow:hidden;}
-    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 75% at 85% 45%,rgba(232,69,122,0.13) 0%,transparent 60%),radial-gradient(ellipse 55% 65% at 15% 75%,rgba(59,130,246,0.15) 0%,transparent 58%),radial-gradient(ellipse 40% 50% at 50% 10%,rgba(96,165,250,0.1) 0%,transparent 55%),linear-gradient(160deg,#EFF6FF 0%,#DBEAFE 55%,#F5F0FA 100%);}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 75% at 85% 45%,rgba(232,69,122,0.13) 0%,transparent 60%),radial-gradient(ellipse 55% 65% at 15% 75%,rgba(59,130,246,0.15) 0%,transparent 58%),linear-gradient(160deg,#EFF6FF 0%,#DBEAFE 55%,#F5F0FA 100%);}
     .hero::after{content:'';position:absolute;top:-80px;right:-80px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(244,114,182,0.12) 0%,transparent 70%);pointer-events:none;}
-    .hero-bg-text{position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-weight:900;font-size:clamp(180px,26vw,360px);line-height:1;color:rgba(59,130,246,0.05);letter-spacing:-10px;pointer-events:none;user-select:none;}
+    .hero-bg{position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-weight:900;font-size:clamp(180px,26vw,360px);line-height:1;color:rgba(59,130,246,0.05);letter-spacing:-10px;pointer-events:none;user-select:none;}
     .hero-inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-
     .hero-pill{display:inline-flex;align-items:center;gap:10px;background:rgba(232,69,122,0.08);border:1px solid rgba(232,69,122,0.25);border-radius:100px;padding:8px 20px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:24px;animation:fadeUp .6s .1s both;}
     .hero-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 8px rgba(232,69,122,.6);animation:pulse 1.8s infinite;}
     @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-
-    .hero h1{font-weight:900;font-size:clamp(48px,6.5vw,96px);line-height:.92;letter-spacing:-2px;color:var(--text-dark);margin-bottom:8px;animation:fadeUp .6s .2s both;}
+    .hero h1{font-weight:900;font-size:clamp(48px,6.5vw,96px);line-height:.92;letter-spacing:-2px;color:var(--text-dark);animation:fadeUp .6s .2s both;}
     .hero h1 .grad{display:block;background:linear-gradient(90deg,var(--pink),var(--blue-mid));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .hero-desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2vw,22px);color:var(--text-body);max-width:500px;line-height:1.7;margin:24px 0 40px;animation:fadeUp .6s .35s both;}
     .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp .6s .5s both;}
-
     .btn{display:inline-block;text-decoration:none;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:16px 38px;cursor:pointer;border:none;transition:all .3s;}
     .btn-primary{background:var(--pink);color:var(--white);}
     .btn-primary:hover{background:var(--pink-soft);transform:translateY(-2px);box-shadow:0 12px 32px rgba(232,69,122,.3);}
     .btn-ghost{border:1.5px solid rgba(59,130,246,.3);color:var(--blue);background:transparent;}
     .btn-ghost:hover{border-color:var(--pink);color:var(--pink);}
-
-    /* Vertical logo in hero right */
     .hero-logo-wrap{display:flex;align-items:center;justify-content:center;animation:fadeUp .6s .3s both;}
-    .hero-logo-wrap img{width:min(380px,90%);filter:drop-shadow(0 0 50px rgba(232,69,122,.25)) drop-shadow(0 0 100px rgba(59,130,246,.1));}
-
+    .hero-logo-wrap img{width:min(380px,90%);filter:drop-shadow(0 0 50px rgba(232,69,122,.25));}
     .hero-stats{display:flex;margin-top:60px;border:1px solid rgba(59,130,246,.15);border-radius:6px;overflow:hidden;animation:fadeUp .6s .65s both;max-width:600px;box-shadow:0 4px 24px rgba(59,130,246,.08);}
     .h-stat{flex:1;padding:20px 18px;border-right:1px solid rgba(59,130,246,.12);background:rgba(255,255,255,.72);}
     .h-stat:last-child{border-right:none;}
@@ -68,13 +56,13 @@
     .h-stat-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);}
     @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
-    /* ── TICKER ── */
+    /* TICKER */
     .ticker{background:linear-gradient(90deg,var(--pink) 0%,#C2185B 50%,var(--pink) 100%);padding:13px 0;overflow:hidden;white-space:nowrap;}
     .ticker-inner{display:inline-block;animation:tickMove 24s linear infinite;font-weight:700;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.92);}
     @keyframes tickMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
     .tsep{margin:0 18px;opacity:.4;}
 
-    /* ── SECTION BASICS ── */
+    /* SECTIONS */
     .section{padding:96px 48px;max-width:1160px;margin:0 auto;}
     .sfull{padding:96px 48px;background:var(--bg-mid);}
     .sfull-inner{max-width:1160px;margin:0 auto;}
@@ -82,62 +70,56 @@
     h2{font-weight:900;font-size:clamp(28px,4vw,48px);color:var(--text-dark);line-height:1.05;margin-bottom:18px;}
     h2 em{color:var(--blue);font-style:normal;}
 
-    /* ── ABOUT 1 ── */
+    /* ABOUT */
     .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
-    .about-img-box{background:linear-gradient(135deg,var(--blue-light) 0%,var(--pink-pale) 100%);border:1px solid rgba(59,130,246,.15);aspect-ratio:1;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(59,130,246,.12);max-width:360px;margin:0 auto;}
-    /* Logo mark (icon only) in circular about frame */
+    .about-img-box{background:linear-gradient(135deg,var(--blue-light),var(--pink-pale));border:1px solid rgba(59,130,246,.15);aspect-ratio:1;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(59,130,246,.12);max-width:340px;margin:0 auto;}
     .about-img-box img{width:85%;filter:drop-shadow(0 0 20px rgba(232,69,122,.3));}
     .about-body{font-size:15px;line-height:1.85;color:var(--text-body);margin-bottom:16px;}
     .checklist{list-style:none;margin:24px 0 32px;display:flex;flex-direction:column;gap:11px;}
     .checklist li{display:flex;align-items:center;gap:14px;font-size:14px;font-weight:600;color:var(--text-dark);}
     .checklist li::before{content:'✓';width:26px;height:26px;background:rgba(232,69,122,.08);border:1px solid rgba(232,69,122,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--pink);flex-shrink:0;text-align:center;line-height:26px;}
 
-    /* ── ABOUT ME (dynamic from admin) ── */
-    .aboutme-section{padding:96px 48px;background:var(--bg);}
-    .aboutme-inner{max-width:1160px;margin:0 auto;}
-    .coach-profile-grid{display:grid;grid-template-columns:320px 1fr;gap:60px;align-items:start;margin-top:48px;}
-    .coach-photo-wrap{display:flex;flex-direction:column;align-items:center;gap:20px;}
-    .coach-photo-circle{width:280px;height:280px;border-radius:50%;overflow:hidden;border:3px solid rgba(232,69,122,.3);box-shadow:0 12px 40px rgba(232,69,122,.15);background:linear-gradient(135deg,var(--blue-light),var(--pink-pale));display:flex;align-items:center;justify-content:center;}
-    .coach-photo-circle img{width:100%;height:100%;object-fit:cover;display:none;}
-    .coach-photo-circle img.show{display:block;}
-    .coach-photo-placeholder{font-size:60px;color:var(--text-muted);}
-    .coach-vid-frame{width:100%;aspect-ratio:16/9;border:1px solid rgba(59,130,246,.12);border-radius:6px;overflow:hidden;background:var(--bg-mid);position:relative;}
-    .coach-vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
-    .coach-vid-frame .no-vid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--text-muted);font-size:13px;}
-    .coach-vid-frame .no-vid span{font-size:36px;}
-    .coach-info{display:flex;flex-direction:column;gap:16px;}
-    .coach-name{font-weight:900;font-size:clamp(28px,4vw,44px);color:var(--text-dark);line-height:1.1;}
-    .coach-title-disp{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);}
-    .coach-bio-disp{font-size:15px;line-height:1.85;color:var(--text-body);}
-    .coach-certs-wrap{display:flex;flex-wrap:wrap;gap:8px;}
-    .cert-pill{background:var(--blue-light);border:1px solid rgba(59,130,246,.2);border-radius:100px;padding:5px 15px;font-size:11px;font-weight:600;color:var(--blue);}
-    .coach-empty{text-align:center;padding:60px 40px;color:var(--text-muted);font-size:14px;font-style:italic;}
+    /* COACH PROFILE */
+    .coach-section{padding:96px 48px;background:var(--bg);}
+    .coach-inner{max-width:1160px;margin:0 auto;}
+    .coach-grid{display:grid;grid-template-columns:320px 1fr;gap:60px;align-items:start;margin-top:48px;}
+    .coach-photo-circle{width:280px;height:280px;border-radius:50%;overflow:hidden;border:3px solid rgba(232,69,122,.3);box-shadow:0 12px 40px rgba(232,69,122,.15);background:linear-gradient(135deg,var(--blue-light),var(--pink-pale));display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+    .coach-photo-circle img{width:100%;height:100%;object-fit:cover;}
+    .coach-photo-circle .ph-icon{font-size:60px;color:var(--text-muted);}
+    .coach-vid-box{width:100%;aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid rgba(59,130,246,.12);background:var(--bg-mid);position:relative;}
+    .coach-vid-box iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+    .coach-name{font-weight:900;font-size:clamp(26px,3.5vw,42px);color:var(--text-dark);line-height:1.1;margin-bottom:6px;}
+    .coach-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:18px;}
+    .coach-bio{font-size:15px;line-height:1.85;color:var(--text-body);margin-bottom:20px;}
+    .coach-certs{display:flex;flex-wrap:wrap;gap:8px;}
+    .cert-pill{background:var(--blue-light);border:1px solid rgba(59,130,246,.2);border-radius:100px;padding:5px 14px;font-size:11px;font-weight:600;color:var(--blue);}
+    .coach-empty{text-align:center;padding:60px 20px;color:var(--text-muted);font-size:14px;font-style:italic;}
 
-    /* ── SERVICES ── */
-    .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
-    .svc-card{background:var(--white);border:1px solid rgba(59,130,246,.1);padding:44px 30px;border-radius:6px;box-shadow:0 4px 20px rgba(59,130,246,.06);transition:all .3s;position:relative;overflow:hidden;}
-    .svc-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(59,130,246,.14);}
-    .svc-card.feat{background:linear-gradient(135deg,var(--pink) 0%,var(--pink-soft) 100%);border-color:transparent;box-shadow:0 12px 40px rgba(232,69,122,.28);}
-    .svc-card.feat:hover{transform:translateY(-6px);}
-    .svc-card.feat .svc-title,.svc-card.feat .svc-desc,.svc-card.feat .svc-price{color:var(--white)!important;}
-    .svc-card.feat .svc-icon{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.35);}
+    /* PROGRAMS */
+    .programs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+    .prog-card{background:var(--white);border:1px solid rgba(59,130,246,.1);padding:44px 30px;border-radius:6px;box-shadow:0 4px 20px rgba(59,130,246,.06);transition:all .3s;position:relative;overflow:hidden;}
+    .prog-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(59,130,246,.14);}
+    .prog-card.featured{background:linear-gradient(135deg,var(--pink) 0%,var(--pink-soft) 100%);border-color:transparent;box-shadow:0 12px 40px rgba(232,69,122,.28);}
+    .prog-card.featured:hover{transform:translateY(-6px);}
+    .prog-card.featured .prog-title,.prog-card.featured .prog-desc,.prog-card.featured .prog-price{color:var(--white)!important;}
+    .prog-card.featured .prog-icon{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.35);}
     .feat-tag{position:absolute;top:18px;right:18px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:rgba(255,255,255,.25);color:var(--white);padding:4px 10px;border-radius:100px;}
-    .svc-icon{width:52px;height:52px;background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.18);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:26px;border-radius:4px;}
-    .svc-title{font-weight:800;font-size:19px;color:var(--text-dark);margin-bottom:12px;}
-    .svc-desc{font-size:14px;line-height:1.78;color:var(--text-body);}
-    .svc-price{margin-top:26px;font-weight:900;font-size:26px;color:var(--blue);}
+    .prog-icon{width:52px;height:52px;background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.18);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:26px;border-radius:4px;}
+    .prog-title{font-weight:800;font-size:19px;color:var(--text-dark);margin-bottom:12px;}
+    .prog-desc{font-size:14px;line-height:1.78;color:var(--text-body);}
+    .prog-price{margin-top:26px;font-weight:900;font-size:26px;color:var(--blue);}
 
-    /* ── VIDEO ── */
+    /* VIDEO */
     .vid-section{padding:96px 48px;background:var(--bg-mid);}
     .vid-inner{max-width:1160px;margin:0 auto;}
-    .main-vid-box{position:relative;background:var(--white);border:1px solid rgba(59,130,246,.12);border-radius:6px;overflow:hidden;aspect-ratio:16/9;max-width:900px;margin:48px auto 0;box-shadow:0 8px 40px rgba(59,130,246,.1);}
+    .vid-box{position:relative;background:var(--white);border:1px solid rgba(59,130,246,.12);border-radius:6px;overflow:hidden;aspect-ratio:16/9;max-width:900px;margin:48px auto 0;box-shadow:0 8px 40px rgba(59,130,246,.1);}
     .vid-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(232,69,122,.05));}
     .play-ring{width:72px;height:72px;border-radius:50%;border:2px solid rgba(232,69,122,.4);display:flex;align-items:center;justify-content:center;}
     .play-tri{width:0;height:0;border-style:solid;border-width:12px 0 12px 22px;border-color:transparent transparent transparent var(--pink);margin-left:6px;}
     .vid-ph p{font-size:13px;color:var(--text-muted);letter-spacing:1px;}
     #main-iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:none;}
 
-    /* ── AGES ── */
+    /* AGES */
     .age-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px;}
     .age-card{background:var(--white);border:1px solid rgba(59,130,246,.1);padding:32px 20px;border-radius:6px;box-shadow:0 4px 16px rgba(59,130,246,.05);transition:all .3s;position:relative;overflow:hidden;}
     .age-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--pink));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
@@ -148,29 +130,34 @@
     .age-range{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:11px;}
     .age-desc{font-size:13px;line-height:1.7;color:var(--text-body);}
 
-    /* ── TESTIMONIALS ── */
-    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;}
-    .t-card{background:var(--white);border:1px solid rgba(59,130,246,.1);padding:32px 26px;border-radius:6px;box-shadow:0 4px 16px rgba(59,130,246,.05);transition:border-color .3s;}
-    .t-card:hover{border-color:rgba(232,69,122,.2);}
-    .t-stars{color:var(--pink);font-size:14px;letter-spacing:2px;margin-bottom:14px;}
-    .t-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;line-height:1.75;color:var(--text-body);margin-bottom:20px;}
-    .t-author{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);}
-    .t-role{font-size:10px;color:var(--text-muted);margin-top:2px;}
+    /* REVIEWS */
+    .reviews-section{padding:96px 48px;background:var(--bg);}
+    .reviews-inner{max-width:1160px;margin:0 auto;}
+    .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;}
+    .review-card{background:var(--white);border:1px solid rgba(59,130,246,.1);padding:32px 26px;border-radius:6px;box-shadow:0 4px 16px rgba(59,130,246,.05);transition:border-color .3s;display:flex;flex-direction:column;}
+    .review-card:hover{border-color:rgba(232,69,122,.2);}
+    .r-stars{color:var(--pink);font-size:14px;letter-spacing:2px;margin-bottom:14px;}
+    .r-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;line-height:1.75;color:var(--text-body);margin-bottom:20px;flex:1;}
+    .r-author{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);}
+    .r-role{font-size:10px;color:var(--text-muted);margin-top:2px;}
+    .r-reply{background:var(--blue-light);border-left:3px solid var(--blue);padding:10px 14px;border-radius:0 4px 4px 0;margin-top:14px;font-size:12px;line-height:1.65;color:var(--text-body);}
+    .r-reply strong{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);display:block;margin-bottom:3px;}
+    .reviews-empty{text-align:center;padding:60px 20px;color:var(--text-muted);font-size:14px;font-style:italic;}
 
-    /* ── BOOKING ── */
-    .booking-wrap{padding:96px 48px;background:var(--bg);}
+    /* BOOKING */
+    .booking-wrap{padding:96px 48px;background:var(--bg-mid);}
     .booking-inner{max-width:1160px;margin:0 auto;}
-    .cal-frame-wrap{background:var(--white);border:1px solid rgba(59,130,246,.12);border-radius:8px;overflow:hidden;box-shadow:0 8px 40px rgba(59,130,246,.1);min-height:560px;}
-    .cal-ph{min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:48px;background:linear-gradient(135deg,rgba(59,130,246,.04),rgba(232,69,122,.03));}
-    .cal-ph .cal-icon{font-size:56px;}
+    .cal-wrap{background:var(--white);border:1px solid rgba(59,130,246,.12);border-radius:8px;overflow:hidden;box-shadow:0 8px 40px rgba(59,130,246,.1);min-height:520px;}
+    .cal-ph{min-height:480px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:48px;background:linear-gradient(135deg,rgba(59,130,246,.04),rgba(232,69,122,.03));}
+    .cal-ph .cal-icon{font-size:54px;}
     .cal-ph h3{font-size:22px;font-weight:800;color:var(--text-dark);}
-    .cal-ph p{font-size:14px;color:var(--text-muted);text-align:center;max-width:420px;line-height:1.7;}
-    .cal-direct-btn{display:inline-block;text-decoration:none;background:var(--pink);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px 32px;border-radius:2px;margin-top:8px;transition:all .3s;}
+    .cal-ph p{font-size:14px;color:var(--text-muted);text-align:center;max-width:400px;line-height:1.7;}
+    .cal-direct-btn{display:inline-block;text-decoration:none;background:var(--pink);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px 32px;border-radius:2px;transition:all .3s;}
     .cal-direct-btn:hover{background:var(--pink-soft);transform:translateY(-2px);}
     #cal-iframe{width:100%;min-height:700px;border:none;display:none;}
 
-    /* ── CONTACT ── */
-    .contact-wrap{padding:96px 48px;background:var(--bg-mid);}
+    /* CONTACT */
+    .contact-wrap{padding:96px 48px;background:var(--bg);}
     .contact-inner{max-width:1160px;margin:0 auto;}
     .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
     .contact-info p{font-size:15px;line-height:1.8;color:var(--text-body);margin-bottom:32px;}
@@ -179,6 +166,7 @@
     .c-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:3px;}
     .c-val{font-size:14px;font-weight:500;color:var(--text-dark);}
     .c-val a{color:var(--blue);text-decoration:none;}
+    .c-val a:hover{color:var(--pink);}
     .cform{display:flex;flex-direction:column;gap:14px;}
     .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
     .cform input,.cform select,.cform textarea{width:100%;background:var(--white);border:1px solid rgba(59,130,246,.15);border-radius:4px;color:var(--text-dark);font-family:'Montserrat',sans-serif;font-size:13px;padding:13px 16px;outline:none;transition:border-color .25s;appearance:none;}
@@ -188,56 +176,51 @@
     .form-sub{background:var(--pink);color:var(--white);border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:15px 32px;border-radius:2px;transition:all .3s;width:100%;}
     .form-sub:hover{background:var(--pink-soft);transform:translateY(-2px);}
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer{background:var(--text-dark);padding:48px;}
     .footer-inner{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;}
-    /* Horizontal logo in footer (white version via filter) */
     .f-logo img{height:36px;filter:brightness(0) invert(1) opacity(.85);}
     .f-links{display:flex;gap:22px;flex-wrap:wrap;}
     .f-links a{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .25s;}
     .f-links a:hover{color:var(--pink-soft);}
     .f-copy{font-size:10px;color:rgba(255,255,255,.2);}
-
-    /* Admin link — subtle, bottom corner */
-    .admin-link{position:fixed;bottom:20px;right:20px;z-index:500;background:rgba(30,58,95,.85);color:rgba(255,255,255,.5);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;border-radius:100px;text-decoration:none;backdrop-filter:blur(8px);transition:all .3s;border:1px solid rgba(255,255,255,.1);}
-    .admin-link:hover{background:var(--pink);color:var(--white);opacity:1;}
+    .admin-link{position:fixed;bottom:20px;right:20px;z-index:500;background:rgba(30,58,95,.85);color:rgba(255,255,255,.4);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;border-radius:100px;text-decoration:none;backdrop-filter:blur(8px);transition:all .3s;border:1px solid rgba(255,255,255,.1);}
+    .admin-link:hover{background:var(--pink);color:var(--white);}
 
     /* RESPONSIVE */
     @media(max-width:900px){
       nav{padding:12px 20px;}.nav-links{display:none;}
-      .hero,.section,.aboutme-section,.vid-section,.booking-wrap,.contact-wrap{padding-left:20px;padding-right:20px;}
+      .hero,.section,.coach-section,.vid-section,.reviews-section,.booking-wrap,.contact-wrap{padding-left:20px;padding-right:20px;}
       .sfull{padding-left:20px;padding-right:20px;}
-      .hero-inner,.about-grid,.coach-profile-grid,.contact-grid{grid-template-columns:1fr;gap:40px;}
-      .hero-logo-wrap{order:-1;}.svc-grid,.testi-grid{grid-template-columns:1fr;gap:16px;}
-      .age-grid{grid-template-columns:1fr 1fr;}.frow{grid-template-columns:1fr;}
-      .footer-inner{flex-direction:column;align-items:flex-start;}
-      .hero-stats{flex-direction:column;max-width:100%;}
-      .h-stat{border-right:none;border-bottom:1px solid rgba(59,130,246,.12);}
-      .hero-bg-text{display:none;}
+      .hero-inner,.about-grid,.coach-grid,.contact-grid{grid-template-columns:1fr;gap:40px;}
+      .hero-logo-wrap{order:-1;}.programs-grid{grid-template-columns:1fr;gap:16px;}
+      .reviews-grid{grid-template-columns:1fr;gap:16px;}.age-grid{grid-template-columns:1fr 1fr;}
+      .frow{grid-template-columns:1fr;}.footer-inner{flex-direction:column;align-items:flex-start;}
+      .hero-stats{flex-direction:column;max-width:100%;}.h-stat{border-right:none;border-bottom:1px solid rgba(59,130,246,.12);}
+      .hero-bg{display:none;}
     }
   </style>
 </head>
 <body>
 
-<!-- NAV — Horizontal Logo -->
+<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
-    <img src="Horizontal_Logo.png" alt="KM Fitness Coach"/>
-  </a>
+  <a href="#" class="nav-logo"><img src="Horizontal_Logo.png" alt="KM Fitness Coach"/></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#coach">Meet the Coach</a></li>
-    <li><a href="#services">Programs</a></li>
+    <li><a href="#programs">Programs</a></li>
     <li><a href="#video">Watch</a></li>
     <li><a href="#ages">Ages</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#booking" class="nav-book">Book Now</a></li>
   </ul>
 </nav>
 
-<!-- HERO — Vertical Logo on right -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-bg-text">KM</div>
+  <div class="hero-bg">KM</div>
   <div class="hero-inner">
     <div>
       <div class="hero-pill">Youth Gymnastics &amp; Private Coaching</div>
@@ -245,7 +228,7 @@
       <p class="hero-desc" id="hero-tagline">Fun, foundational, and fierce — coaching gymnasts of every age from their very first cartwheel to the competition floor.</p>
       <div class="hero-ctas">
         <a href="#booking" class="btn btn-primary">Book a Free Trial</a>
-        <a href="#services" class="btn btn-ghost">View Programs</a>
+        <a href="#programs" class="btn btn-ghost">View Programs</a>
       </div>
       <div class="hero-stats">
         <div class="h-stat"><div class="h-stat-n">All<span>+</span></div><div class="h-stat-l">Ages Welcome</div></div>
@@ -254,29 +237,22 @@
         <div class="h-stat"><div class="h-stat-n">100<span>%</span></div><div class="h-stat-l">Dedicated</div></div>
       </div>
     </div>
-    <!-- Vertical logo on hero right -->
-    <div class="hero-logo-wrap">
-      <img src="Vertical_Logo.png" alt="KM Fitness Coach"/>
-    </div>
+    <div class="hero-logo-wrap"><img src="Vertical_Logo.png" alt="KM Fitness Coach"/></div>
   </div>
 </section>
 
 <!-- TICKER -->
 <div class="ticker"><span class="ticker-inner">KM FITNESS COACH <span class="tsep">✦</span> YOUTH GYMNASTICS <span class="tsep">✦</span> PRIVATE COACHING <span class="tsep">✦</span> COMPETITIVE TRAINING <span class="tsep">✦</span> FUN &amp; FOUNDATIONAL <span class="tsep">✦</span> ALL AGES WELCOME <span class="tsep">✦</span> TODDLERS TO TEENS <span class="tsep">✦</span> STATE COLLEGE PA <span class="tsep">✦</span>&nbsp;KM FITNESS COACH <span class="tsep">✦</span> YOUTH GYMNASTICS <span class="tsep">✦</span> PRIVATE COACHING <span class="tsep">✦</span> COMPETITIVE TRAINING <span class="tsep">✦</span> FUN &amp; FOUNDATIONAL <span class="tsep">✦</span> ALL AGES WELCOME <span class="tsep">✦</span> TODDLERS TO TEENS <span class="tsep">✦</span> STATE COLLEGE PA <span class="tsep">✦</span>&nbsp;</span></div>
 
-<!-- ABOUT — Logo Mark icon in circle -->
+<!-- ABOUT -->
 <section class="section" id="about">
   <div class="about-grid">
-    <div>
-      <div class="about-img-box">
-        <img src="Logo_Mark.png" alt="KM Fitness Coach Icon"/>
-      </div>
-    </div>
+    <div><div class="about-img-box"><img src="Logo_Mark.png" alt="KM Fitness Icon"/></div></div>
     <div>
       <div class="eyebrow">About KM Fitness Coach</div>
       <h2>More Than Gymnastics — We Build <em>Champions</em></h2>
-      <p class="about-body" id="about-text-1">At KM Fitness Coach, every child — from the tiniest tumbler to the most competitive teen — deserves world-class coaching in a safe, encouraging, and genuinely fun environment.</p>
-      <p class="about-body" id="about-text-2">We combine technical excellence with boundless energy. We develop confidence, discipline, resilience, and a love of movement that lasts a lifetime.</p>
+      <p class="about-body">At KM Fitness Coach, every child — from the tiniest tumbler to the most competitive teen — deserves world-class coaching in a safe, encouraging, and genuinely fun environment.</p>
+      <p class="about-body">We combine technical excellence with boundless energy. We develop confidence, discipline, resilience, and a love of movement that lasts a lifetime.</p>
       <ul class="checklist">
         <li>Certified gymnastics coaching with proven results</li>
         <li>Programs for every level — beginner to elite</li>
@@ -289,27 +265,21 @@
   </div>
 </section>
 
-<!-- MEET THE COACH — populated by admin -->
-<div class="aboutme-section" id="coach">
-  <div class="aboutme-inner">
+<!-- MEET THE COACH -->
+<div class="coach-section" id="coach">
+  <div class="coach-inner">
     <div class="eyebrow">Meet Your Coach</div>
     <h2>About <em>Me</em></h2>
-    <div id="coach-display">
-      <p class="coach-empty">Coach profile coming soon. Check back shortly!</p>
-    </div>
+    <div id="coach-display"><p class="coach-empty">Coach profile coming soon!</p></div>
   </div>
 </div>
 
-<!-- SERVICES -->
-<div class="sfull" id="services">
+<!-- PROGRAMS (dynamic) -->
+<div class="sfull" id="programs">
   <div class="sfull-inner">
     <div class="eyebrow">Programs</div>
     <h2>Coaching That Meets <em>Every Goal</em></h2>
-    <div class="svc-grid">
-      <div class="svc-card"><div class="svc-icon">🤸</div><div class="svc-title">Group Classes</div><p class="svc-desc">Structured, high-energy group sessions where young gymnasts build foundational skills together. Perfect for confidence and coordination.</p><div class="svc-price">From $25/class</div></div>
-      <div class="svc-card feat"><div class="feat-tag">Most Popular</div><div class="svc-icon">⭐</div><div class="svc-title">Private 1-on-1 Coaching</div><p class="svc-desc">Dedicated sessions focused entirely on your athlete. A tailored training plan built around their unique strengths, goals, and timeline.</p><div class="svc-price">From $75/hour</div></div>
-      <div class="svc-card"><div class="svc-icon">🏆</div><div class="svc-title">Competitive Training</div><p class="svc-desc">For serious athletes with competition goals. Polished routines, mental toughness, and full preparation for regional and national events.</p><div class="svc-price">Custom Packages</div></div>
-    </div>
+    <div class="programs-grid" id="programs-grid"></div>
   </div>
 </div>
 
@@ -318,8 +288,8 @@
   <div class="vid-inner">
     <div class="eyebrow">Watch</div>
     <h2>See KM Fitness <em>In Action</em></h2>
-    <div class="main-vid-box" id="main-vid-box">
-      <div class="vid-ph" id="vid-ph"><div class="play-ring"><div class="play-tri"></div></div><p id="vid-ph-text">Video coming soon</p></div>
+    <div class="vid-box">
+      <div class="vid-ph" id="vid-ph"><div class="play-ring"><div class="play-tri"></div></div><p>Video coming soon</p></div>
       <iframe id="main-iframe" allowfullscreen allow="autoplay; encrypted-media"></iframe>
     </div>
   </div>
@@ -339,15 +309,11 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<div class="sfull">
-  <div class="sfull-inner">
-    <div style="text-align:center"><div class="eyebrow" style="text-align:center">Parent Reviews</div><h2 style="text-align:center">What Families Are <em>Saying</em></h2></div>
-    <div class="testi-grid">
-      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-text">My 4-year-old was terrified to try gymnastics. After just three sessions she begs to go every week. The patience and energy here is incredible.</p><div class="t-author">— Ashley R.</div><div class="t-role">Parent of Tiny Tumbler</div></div>
-      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-text">The private coaching sessions are on another level. My son's back walkover went from shaky to competition-ready in under 6 weeks.</p><div class="t-author">— Marcus T.</div><div class="t-role">Parent of Rising Athlete</div></div>
-      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-text">KM genuinely cares about every single kid. Our daughter has grown so much in confidence both in and out of the gym.</p><div class="t-author">— Priya &amp; James K.</div><div class="t-role">Parents of Junior Star</div></div>
-    </div>
+<!-- REVIEWS (dynamic) -->
+<div class="reviews-section" id="reviews">
+  <div class="reviews-inner">
+    <div style="text-align:center"><div class="eyebrow" style="text-align:center">Reviews</div><h2 style="text-align:center">What Families Are <em>Saying</em></h2></div>
+    <div id="reviews-display"></div>
   </div>
 </div>
 
@@ -357,10 +323,10 @@
     <div class="eyebrow">Book a Session</div>
     <h2>Ready to <em>Begin?</em></h2>
     <p style="font-size:15px;color:var(--text-body);line-height:1.7;max-width:580px;margin-bottom:36px;">No commitment, no pressure. Book a free trial and come see if KM Fitness Coach is the right fit for your athlete.</p>
-    <div class="cal-frame-wrap">
+    <div class="cal-wrap">
       <div class="cal-ph" id="cal-ph">
         <div class="cal-icon">📅</div>
-        <h3>Book Your Free Trial Session</h3>
+        <h3>Book Your Free Trial</h3>
         <p>Click below to open our booking calendar and choose a time that works for you.</p>
         <a href="https://calendar.app.google/jjBL5JpYhD1RSURFA" target="_blank" class="cal-direct-btn" id="cal-direct">Open Booking Calendar ✦</a>
       </div>
@@ -370,18 +336,15 @@
   </div>
 </div>
 
-<!-- CONTACT -->
+<!-- CONTACT (dynamic) -->
 <div class="contact-wrap" id="contact">
   <div class="contact-inner">
     <div class="contact-grid">
       <div class="contact-info">
         <div class="eyebrow">Contact</div>
         <h2>Get In <em>Touch</em></h2>
-        <p>Have a question about programs, pricing, or scheduling? We'd love to hear from you.</p>
-        <div class="c-item"><div class="c-icon">🌐</div><div><div class="c-label">Website</div><div class="c-val"><a href="https://kmfitness.coach" target="_blank">www.kmfitness.coach</a></div></div></div>
-        <div class="c-item"><div class="c-icon">📧</div><div><div class="c-label">Email</div><div class="c-val"><a href="mailto:kyramartindale@gmail.com">kyramartindale@gmail.com</a></div></div></div>
-        <div class="c-item"><div class="c-icon">📍</div><div><div class="c-label">Location</div><div class="c-val">State College, PA</div></div></div>
-        <div class="c-item"><div class="c-icon">📅</div><div><div class="c-label">Booking</div><div class="c-val"><a href="#booking">Schedule via calendar ↑</a></div></div></div>
+        <p id="contact-tagline">Have a question about programs, pricing, or scheduling? We'd love to hear from you.</p>
+        <div id="contact-items-display"></div>
       </div>
       <div>
         <div class="eyebrow">Send a Message</div>
@@ -400,79 +363,140 @@
   </div>
 </div>
 
-<!-- FOOTER — Horizontal Logo (white) -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="f-logo"><img src="Horizontal_Logo.png" alt="KM Fitness Coach"/></div>
     <div class="f-links">
-      <a href="#about">About</a><a href="#coach">Meet the Coach</a><a href="#services">Programs</a>
-      <a href="#video">Watch</a><a href="#ages">Ages</a><a href="#booking">Book Now</a><a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#coach">Meet the Coach</a><a href="#programs">Programs</a>
+      <a href="#video">Watch</a><a href="#ages">Ages</a><a href="#reviews">Reviews</a>
+      <a href="#booking">Book Now</a><a href="#contact">Contact</a>
     </div>
     <div class="f-copy">© 2026 KM Fitness Coach · kyramartindale@gmail.com</div>
   </div>
 </footer>
 
-<!-- Subtle admin access link -->
 <a href="admin.html" class="admin-link" title="Admin Panel">⚙ Admin</a>
 
 <script>
-/* Load saved content from localStorage */
-function loadSaved(){
-  try{
-    const d=JSON.parse(localStorage.getItem('km_admin')||'{}');
+function getData(){try{return JSON.parse(localStorage.getItem('km_admin')||'{}');}catch(e){return{};}}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function stars(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
 
-    /* Hero tagline */
-    if(d.tagline) document.getElementById('hero-tagline').textContent=d.tagline;
+const DEFAULT_PROGRAMS=[
+  {id:1,icon:'🤸',title:'Group Classes',desc:'Structured, high-energy group sessions where young gymnasts build foundational skills together. Perfect for confidence and coordination.',price:'From $25/class',featured:false},
+  {id:2,icon:'⭐',title:'Private 1-on-1 Coaching',desc:'Dedicated sessions focused entirely on your athlete. A tailored training plan built around their unique strengths, goals, and timeline.',price:'From $75/hour',featured:true},
+  {id:3,icon:'🏆',title:'Competitive Training',desc:'For serious athletes with competition goals. Polished routines, mental toughness, and full preparation for regional and national events.',price:'Custom Packages',featured:false},
+];
+const DEFAULT_CONTACT=[
+  {id:1,icon:'🌐',label:'Website',value:'www.kmfitness.coach',link:'https://kmfitness.coach'},
+  {id:2,icon:'📧',label:'Email',value:'kyramartindale@gmail.com',link:'mailto:kyramartindale@gmail.com'},
+  {id:3,icon:'📍',label:'Location',value:'State College, PA',link:''},
+  {id:4,icon:'📅',label:'Booking',value:'Schedule via calendar',link:'#booking'},
+];
 
-    /* Calendar */
-    if(d.calUrl){
-      document.getElementById('cal-direct').href=d.calUrl;
-      if(d.calUrl.includes('calendly.com')){
-        document.getElementById('cal-iframe').src=d.calUrl;
-        document.getElementById('cal-iframe').style.display='block';
-        document.getElementById('cal-ph').style.display='none';
-      }
-    }
-
-    /* Main video */
-    if(d.mainVid){
-      document.getElementById('main-iframe').src=d.mainVid;
-      document.getElementById('main-iframe').style.display='block';
-      document.getElementById('vid-ph').style.display='none';
-    }
-
-    /* Coach profile */
-    if(d.coachName||d.coachBio){
-      let html='<div class="coach-profile-grid">';
-      html+='<div class="coach-photo-wrap">';
-      html+='<div class="coach-photo-circle">';
-      if(d.coachPhoto){html+=`<img src="${d.coachPhoto}" class="show" alt="Coach Photo"/>`;}
-      else{html+='<div class="coach-photo-placeholder">👤</div>';}
-      html+='</div>';
-      if(d.coachVid){
-        html+=`<div class="coach-vid-frame"><iframe src="${d.coachVid}" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>`;
-      }
-      html+='</div>';
-      html+='<div class="coach-info">';
-      if(d.coachName) html+=`<div class="coach-name">${d.coachName}</div>`;
-      if(d.coachTitle) html+=`<div class="coach-title-disp">${d.coachTitle}</div>`;
-      if(d.coachBio) html+=`<div class="coach-bio-disp">${d.coachBio.replace(/\n/g,'<br/>')}</div>`;
-      if(d.coachCerts){
-        const certs=d.coachCerts.split(',').map(c=>c.trim()).filter(Boolean);
-        if(certs.length){
-          html+='<div class="coach-certs-wrap">';
-          certs.forEach(c=>{ html+=`<span class="cert-pill">${c}</span>`; });
-          html+='</div>';
-        }
-      }
-      html+='</div></div>';
-      document.getElementById('coach-display').innerHTML=html;
-    }
-  }catch(e){}
+function parseVid(u){
+  if(!u)return'';u=u.trim();let id='';
+  if(u.includes('youtube.com/watch')){try{id=new URL(u).searchParams.get('v');}catch(e){}if(id)return'https://www.youtube.com/embed/'+id;}
+  if(u.includes('youtu.be/')){id=u.split('youtu.be/')[1].split('?')[0];if(id)return'https://www.youtube.com/embed/'+id;}
+  if(u.includes('youtube.com/shorts/')){id=u.split('shorts/')[1].split('?')[0];if(id)return'https://www.youtube.com/embed/'+id;}
+  if(u.includes('vimeo.com/')){id=u.split('vimeo.com/')[1].split('?')[0];if(id)return'https://player.vimeo.com/video/'+id;}
+  return u;
 }
-loadSaved();
 
-function submitForm(e){e.preventDefault();document.getElementById('form-ok').style.display='block';setTimeout(()=>{document.getElementById('form-ok').style.display='none';},5000);}
+window.addEventListener('load', ()=>{
+  const d=getData();
+
+  /* Hero tagline */
+  if(d.tagline) document.getElementById('hero-tagline').textContent=d.tagline;
+
+  /* Calendar */
+  if(d.calUrl){
+    document.getElementById('cal-direct').href=d.calUrl;
+    if(d.calUrl.includes('calendly.com')){
+      document.getElementById('cal-iframe').src=d.calUrl;
+      document.getElementById('cal-iframe').style.display='block';
+      document.getElementById('cal-ph').style.display='none';
+    }
+  }
+
+  /* Main video */
+  if(d.mainVid){
+    document.getElementById('main-iframe').src=d.mainVid;
+    document.getElementById('main-iframe').style.display='block';
+    document.getElementById('vid-ph').style.display='none';
+  }
+
+  /* Coach profile */
+  if(d.coachName||d.coachBio){
+    let html=`<div class="coach-grid"><div style="display:flex;flex-direction:column;align-items:center;gap:20px;">`;
+    html+=`<div class="coach-photo-circle">`;
+    if(d.coachPhoto) html+=`<img src="${d.coachPhoto}" alt="Coach Photo"/>`;
+    else html+=`<div class="ph-icon">👤</div>`;
+    html+=`</div>`;
+    if(d.coachVid) html+=`<div class="coach-vid-box"><iframe src="${d.coachVid}" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>`;
+    html+=`</div><div>`;
+    if(d.coachName) html+=`<div class="coach-name">${esc(d.coachName)}</div>`;
+    if(d.coachTitle) html+=`<div class="coach-title">${esc(d.coachTitle)}</div>`;
+    if(d.coachBio) html+=`<div class="coach-bio">${esc(d.coachBio).replace(/\n/g,'<br/>')}</div>`;
+    if(d.coachCerts){
+      const c=d.coachCerts.split(',').map(x=>x.trim()).filter(Boolean);
+      if(c.length) html+=`<div class="coach-certs">${c.map(x=>`<span class="cert-pill">${esc(x)}</span>`).join('')}</div>`;
+    }
+    html+=`</div></div>`;
+    document.getElementById('coach-display').innerHTML=html;
+  }
+
+  /* Programs */
+  const progs=d.programs&&d.programs.length?d.programs:DEFAULT_PROGRAMS;
+  document.getElementById('programs-grid').innerHTML=progs.map(p=>`
+    <div class="prog-card${p.featured?' featured':''}">
+      ${p.featured?'<div class="feat-tag">Most Popular</div>':''}
+      <div class="prog-icon">${p.icon||'🤸'}</div>
+      <div class="prog-title">${esc(p.title)}</div>
+      <p class="prog-desc">${esc(p.desc||'')}</p>
+      <div class="prog-price">${esc(p.price||'')}</div>
+    </div>
+  `).join('');
+
+  /* Reviews */
+  const reviews=(d.reviews||[]).filter(r=>r.visible!==false);
+  const rDisp=document.getElementById('reviews-display');
+  if(!reviews.length){
+    rDisp.innerHTML='<p class="reviews-empty">Reviews coming soon!</p>';
+  } else {
+    rDisp.innerHTML=`<div class="reviews-grid">${reviews.map(r=>`
+      <div class="review-card">
+        <div class="r-stars">${stars(r.stars||5)}</div>
+        <div class="r-text">"${esc(r.text)}"</div>
+        <div class="r-author">— ${esc(r.name)}</div>
+        <div class="r-role">${esc(r.role||'')}</div>
+        ${r.reply?`<div class="r-reply"><strong>📣 Coach Reply</strong>${esc(r.reply)}</div>`:''}
+      </div>
+    `).join('')}</div>`;
+  }
+
+  /* Contact items */
+  const contacts=d.contacts&&d.contacts.length?d.contacts:DEFAULT_CONTACT;
+  document.getElementById('contact-items-display').innerHTML=contacts.map(c=>`
+    <div class="c-item">
+      <div class="c-icon">${c.icon||'📌'}</div>
+      <div>
+        <div class="c-label">${esc(c.label)}</div>
+        <div class="c-val">${c.link?`<a href="${esc(c.link)}"${c.link.startsWith('http')?'target="_blank"':''}>${esc(c.value)}</a>`:esc(c.value)}</div>
+      </div>
+    </div>
+  `).join('');
+
+  /* Contact tagline */
+  if(d.contactTagline) document.getElementById('contact-tagline').textContent=d.contactTagline;
+});
+
+function submitForm(e){
+  e.preventDefault();
+  document.getElementById('form-ok').style.display='block';
+  setTimeout(()=>{document.getElementById('form-ok').style.display='none';},5000);
+}
 </script>
 </body>
 </html>
