@@ -143,6 +143,28 @@
     .r-reply{background:var(--blue-light);border-left:3px solid var(--blue);padding:10px 14px;border-radius:0 4px 4px 0;margin-top:14px;font-size:12px;line-height:1.65;color:var(--text-body);}
     .r-reply strong{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);display:block;margin-bottom:3px;}
     .reviews-empty{text-align:center;padding:60px 20px;color:var(--text-muted);font-size:14px;font-style:italic;}
+    .submit-review-wrap{margin-top:64px;border-top:1px solid rgba(59,130,246,.1);padding-top:64px;}
+    .submit-review-box{background:var(--white);border:1px solid rgba(59,130,246,.12);border-radius:10px;padding:40px;box-shadow:0 8px 36px rgba(59,130,246,.08);max-width:720px;margin:0 auto;}
+    .sr-header{display:flex;gap:16px;align-items:flex-start;margin-bottom:28px;}
+    .sr-icon{font-size:36px;flex-shrink:0;}
+    .sr-title{font-weight:800;font-size:20px;color:var(--text-dark);margin-bottom:4px;}
+    .sr-sub{font-size:13px;color:var(--text-muted);line-height:1.6;}
+    .sr-form{display:flex;flex-direction:column;gap:16px;}
+    .sr-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .sr-field{display:flex;flex-direction:column;gap:7px;}
+    .sr-field label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);}
+    .req{color:var(--pink);}
+    .sr-field input,.sr-field textarea{background:var(--bg);border:1px solid rgba(59,130,246,.15);border-radius:4px;color:var(--text-dark);font-family:'Montserrat',sans-serif;font-size:13px;padding:12px 15px;outline:none;transition:border-color .25s;resize:vertical;}
+    .sr-field input:focus,.sr-field textarea:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(232,69,122,.08);}
+    .sr-field textarea{min-height:100px;line-height:1.7;}
+    .star-picker{display:flex;align-items:center;gap:4px;}
+    .star-opt{font-size:30px;color:rgba(59,130,246,.2);cursor:pointer;transition:color .15s;line-height:1;user-select:none;}
+    .star-opt.active{color:var(--pink);}
+    .star-label{font-size:12px;color:var(--text-muted);margin-left:8px;font-style:italic;}
+    .sr-submit-btn{background:var(--pink);color:var(--white);border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:14px 32px;border-radius:2px;transition:all .3s;align-self:flex-start;}
+    .sr-submit-btn:hover{background:var(--pink-soft);transform:translateY(-2px);}
+    .sr-note{font-size:11px;color:var(--text-muted);font-style:italic;}
+    .sr-success{text-align:center;padding:32px 20px;}
 
     /* BOOKING */
     .booking-wrap{padding:96px 48px;background:var(--bg-mid);}
@@ -241,8 +263,8 @@
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker"><span class="ticker-inner">KM FITNESS COACH <span class="tsep">✦</span> YOUTH GYMNASTICS <span class="tsep">✦</span> PRIVATE COACHING <span class="tsep">✦</span> COMPETITIVE TRAINING <span class="tsep">✦</span> FUN &amp; FOUNDATIONAL <span class="tsep">✦</span> ALL AGES WELCOME <span class="tsep">✦</span> TODDLERS TO TEENS <span class="tsep">✦</span> STATE COLLEGE PA <span class="tsep">✦</span>&nbsp;KM FITNESS COACH <span class="tsep">✦</span> YOUTH GYMNASTICS <span class="tsep">✦</span> PRIVATE COACHING <span class="tsep">✦</span> COMPETITIVE TRAINING <span class="tsep">✦</span> FUN &amp; FOUNDATIONAL <span class="tsep">✦</span> ALL AGES WELCOME <span class="tsep">✦</span> TODDLERS TO TEENS <span class="tsep">✦</span> STATE COLLEGE PA <span class="tsep">✦</span>&nbsp;</span></div>
+<!-- TICKER (dynamic) -->
+<div class="ticker"><span class="ticker-inner" id="ticker-content">KM FITNESS COACH <span class="tsep">✦</span> YOUTH GYMNASTICS <span class="tsep">✦</span> PRIVATE COACHING <span class="tsep">✦</span> COMPETITIVE TRAINING <span class="tsep">✦</span> FUN &amp; FOUNDATIONAL <span class="tsep">✦</span> ALL AGES WELCOME <span class="tsep">✦</span> TODDLERS TO TEENS <span class="tsep">✦</span> STATE COLLEGE PA <span class="tsep">✦</span>&nbsp;KM FITNESS COACH <span class="tsep">✦</span> YOUTH GYMNASTICS <span class="tsep">✦</span> PRIVATE COACHING <span class="tsep">✦</span> COMPETITIVE TRAINING <span class="tsep">✦</span> FUN &amp; FOUNDATIONAL <span class="tsep">✦</span> ALL AGES WELCOME <span class="tsep">✦</span> TODDLERS TO TEENS <span class="tsep">✦</span> STATE COLLEGE PA <span class="tsep">✦</span>&nbsp;</span></div>
 
 <!-- ABOUT -->
 <section class="section" id="about">
@@ -314,6 +336,44 @@
   <div class="reviews-inner">
     <div style="text-align:center"><div class="eyebrow" style="text-align:center">Reviews</div><h2 style="text-align:center">What Families Are <em>Saying</em></h2></div>
     <div id="reviews-display"></div>
+
+    <!-- CUSTOMER REVIEW SUBMISSION FORM -->
+    <div class="submit-review-wrap">
+      <div class="submit-review-box">
+        <div class="sr-header">
+          <div class="sr-icon">✍️</div>
+          <div>
+            <div class="sr-title">Share Your Experience</div>
+            <div class="sr-sub">Had a great session? We'd love to hear from you! Reviews are reviewed before publishing.</div>
+          </div>
+        </div>
+        <div class="sr-form" id="sr-form">
+          <div class="sr-row">
+            <div class="sr-field"><label>Your Name <span class="req">*</span></label><input type="text" id="sr-name" placeholder="e.g. Sarah M."/></div>
+            <div class="sr-field"><label>Your Role</label><input type="text" id="sr-role" placeholder="e.g. Parent of Junior Star"/></div>
+          </div>
+          <div class="sr-field">
+            <label>Star Rating <span class="req">*</span></label>
+            <div class="star-picker" id="star-picker">
+              <span class="star-opt" data-val="1" onclick="setStar(1)">★</span>
+              <span class="star-opt" data-val="2" onclick="setStar(2)">★</span>
+              <span class="star-opt" data-val="3" onclick="setStar(3)">★</span>
+              <span class="star-opt" data-val="4" onclick="setStar(4)">★</span>
+              <span class="star-opt" data-val="5" onclick="setStar(5)">★</span>
+              <span class="star-label" id="star-label">Click to rate</span>
+            </div>
+          </div>
+          <div class="sr-field"><label>Your Review <span class="req">*</span></label><textarea id="sr-text" rows="4" placeholder="Tell others about your experience with KM Fitness Coach…"></textarea></div>
+          <button class="sr-submit-btn" onclick="submitCustomerReview()">Submit Review ✦</button>
+          <p class="sr-note">⏳ Reviews are moderated before appearing on the site.</p>
+        </div>
+        <div class="sr-success" id="sr-success" style="display:none;">
+          <div style="font-size:48px;margin-bottom:12px;">🎉</div>
+          <div style="font-weight:700;font-size:18px;color:var(--text-dark);margin-bottom:8px;">Thank you for your review!</div>
+          <div style="font-size:14px;color:var(--text-muted);">Your review has been submitted and will appear once approved. We appreciate your feedback!</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -410,6 +470,19 @@ window.addEventListener('load', ()=>{
   /* Hero tagline */
   if(d.tagline) document.getElementById('hero-tagline').textContent=d.tagline;
 
+  /* Dynamic ticker */
+  if(d.tickerWords){
+    const words=d.tickerWords.split('\n').map(w=>w.trim()).filter(Boolean);
+    if(words.length){
+      const half=words.map(w=>`${w} <span class="tsep">✦</span> `).join('');
+      const tc=document.getElementById('ticker-content');if(tc)tc.innerHTML=half+half;
+    }
+  }
+  /* Dynamic logos */
+  if(d.logoHorizontal){document.querySelectorAll('.nav-logo img,.f-logo img').forEach(img=>{img.src=d.logoHorizontal;});}
+  if(d.logoVertical){document.querySelectorAll('.hero-logo-wrap img').forEach(img=>{img.src=d.logoVertical;});}
+  if(d.logoMark){document.querySelectorAll('.about-img-box img').forEach(img=>{img.src=d.logoMark;});}
+
   /* Calendar */
   if(d.calUrl){
     document.getElementById('cal-direct').href=d.calUrl;
@@ -492,9 +565,74 @@ window.addEventListener('load', ()=>{
   if(d.contactTagline) document.getElementById('contact-tagline').textContent=d.contactTagline;
 });
 
+/* Star picker */
+let selectedStar=0;
+function setStar(n){
+  selectedStar=n;
+  const labels=['','Poor','Fair','Good','Great','Excellent!'];
+  document.getElementById('star-label').textContent=labels[n];
+  document.querySelectorAll('.star-opt').forEach(s=>{
+    s.classList.toggle('active',parseInt(s.dataset.val)<=n);
+  });
+}
+function hoverStar(n){
+  document.querySelectorAll('.star-opt').forEach(s=>{
+    const v=parseInt(s.dataset.val);
+    if(v<=n) s.style.color='var(--pink-soft)';
+    else s.style.color='rgba(59,130,246,.2)';
+  });
+}
+function unhoverStar(){
+  document.querySelectorAll('.star-opt').forEach(s=>{
+    const v=parseInt(s.dataset.val);
+    s.style.color=v<=selectedStar?'var(--pink)':'rgba(59,130,246,.2)';
+  });
+}
+
+/* Customer review submission */
+function submitCustomerReview(){
+  const name=document.getElementById('sr-name').value.trim();
+  const role=document.getElementById('sr-role').value.trim();
+  const text=document.getElementById('sr-text').value.trim();
+  if(!name){alert('Please enter your name.');return;}
+  if(!selectedStar){alert('Please select a star rating.');return;}
+  if(!text){alert('Please write your review.');return;}
+  try{
+    const d=JSON.parse(localStorage.getItem('km_admin')||'{}');
+    const pending=d.pendingReviews||[];
+    pending.push({id:Date.now(),name,role,text,stars:selectedStar,submittedAt:new Date().toISOString(),visible:false,pending:true,reply:''});
+    d.pendingReviews=pending;
+    localStorage.setItem('km_admin',JSON.stringify(d));
+  }catch(e){}
+  document.getElementById('sr-form').style.display='none';
+  document.getElementById('sr-success').style.display='block';
+}
+
 function submitForm(e){
   e.preventDefault();
+  const name=document.getElementById('cf-name').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  if(!name&&!email){alert('Please fill in at least your name or email.');return;}
+  try{
+    const d=JSON.parse(localStorage.getItem('km_admin')||'{}');
+    const msgs=d.messages||[];
+    msgs.push({
+      id:Date.now(),ts:Date.now(),read:false,
+      name:name,
+      athleteName:document.getElementById('cf-athlete').value.trim(),
+      email:email,
+      phone:document.getElementById('cf-phone').value.trim(),
+      ageGroup:document.getElementById('cf-age').value,
+      program:document.getElementById('cf-prog').value,
+      message:document.getElementById('cf-msg').value.trim()
+    });
+    d.messages=msgs;
+    localStorage.setItem('km_admin',JSON.stringify(d));
+  }catch(err){}
   document.getElementById('form-ok').style.display='block';
+  document.getElementById('cf-name').value='';document.getElementById('cf-athlete').value='';
+  document.getElementById('cf-email').value='';document.getElementById('cf-phone').value='';
+  document.getElementById('cf-msg').value='';
   setTimeout(()=>{document.getElementById('form-ok').style.display='none';},5000);
 }
 </script>

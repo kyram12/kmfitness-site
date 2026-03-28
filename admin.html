@@ -11,7 +11,7 @@
     :root{
       --pink:#E8457A;--pink-soft:#F472B6;--pink-pale:#FCE7F3;
       --blue:#3B82F6;--blue-light:#DBEAFE;
-      --green:#22C55E;--amber:#F59E0B;--red:#EF4444;
+      --green:#22C55E;--amber:#F59E0B;--red:#EF4444;--purple:#8B5CF6;
       --dark:#0F172A;--dark-card:#1E293B;--dark-card2:#243044;--dark-border:#334155;
       --text:#E2E8F0;--muted:#94A3B8;--white:#FFFFFF;
     }
@@ -21,7 +21,7 @@
     ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--dark);}::-webkit-scrollbar-thumb{background:var(--pink);border-radius:2px;}
     code{font-family:monospace;background:rgba(255,255,255,.08);padding:2px 6px;border-radius:3px;font-size:11px;}
 
-    /* ── LOGIN ── */
+    /* LOGIN */
     #login-screen{position:fixed;inset:0;z-index:9999;background:var(--dark);display:flex;align-items:center;justify-content:center;}
     .login-card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:12px;padding:48px 40px;width:360px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.5);}
     .login-logo{height:60px;margin-bottom:24px;filter:drop-shadow(0 0 12px rgba(232,69,122,.4));}
@@ -36,154 +36,237 @@
     .back-link{display:block;margin-top:20px;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;}
     .back-link:hover{color:var(--pink);}
 
-    /* ── SHELL ── */
+    /* SHELL */
     #admin-shell{display:none;}
-    .admin-nav{background:var(--dark-card);border-bottom:1px solid var(--dark-border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-    .admin-nav-left{display:flex;align-items:center;gap:14px;}
+    .admin-nav{background:var(--dark-card);border-bottom:1px solid var(--dark-border);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+    .admin-nav-left{display:flex;align-items:center;gap:12px;}
     .admin-nav img{height:36px;filter:drop-shadow(0 0 8px rgba(232,69,122,.3));}
     .admin-title{font-weight:700;font-size:14px;color:var(--white);}
     .admin-title span{color:var(--pink);}
     .admin-badge{background:rgba(232,69,122,.15);border:1px solid rgba(232,69,122,.3);color:var(--pink);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:100px;}
-    .logout-btn{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--dark-border);cursor:pointer;padding:8px 16px;border-radius:4px;transition:all .3s;font-family:'Montserrat',sans-serif;}
+    .logout-btn{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--dark-border);cursor:pointer;padding:8px 14px;border-radius:4px;transition:all .3s;font-family:'Montserrat',sans-serif;}
     .logout-btn:hover{border-color:var(--pink);color:var(--pink);}
-    .preview-link{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue);text-decoration:none;padding:8px 16px;border:1px solid rgba(59,130,246,.3);border-radius:4px;transition:all .3s;margin-right:8px;}
+    .preview-link{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue);text-decoration:none;padding:8px 14px;border:1px solid rgba(59,130,246,.3);border-radius:4px;transition:all .3s;margin-right:8px;}
     .preview-link:hover{border-color:var(--blue);background:rgba(59,130,246,.06);}
 
-    /* ── LAYOUT ── */
+    /* LAYOUT */
     .admin-layout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 64px);}
-    .sidebar{background:var(--dark-card);border-right:1px solid var(--dark-border);padding:24px 0;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;}
-    .sidebar-section{padding:0 12px;margin-bottom:6px;}
-    .sidebar-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding:0 8px;margin-bottom:6px;margin-top:6px;}
-    .sidebar-btn{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;color:var(--muted);padding:9px 10px;border-radius:6px;transition:all .25s;letter-spacing:.3px;}
+    .sidebar{background:var(--dark-card);border-right:1px solid var(--dark-border);padding:20px 0;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;}
+    .sidebar-section{padding:0 12px;margin-bottom:4px;}
+    .sidebar-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding:0 8px;margin-bottom:5px;margin-top:8px;}
+    .sidebar-btn{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;color:var(--muted);padding:8px 10px;border-radius:6px;transition:all .25s;letter-spacing:.3px;}
     .sidebar-btn:hover{background:rgba(255,255,255,.05);color:var(--text);}
     .sidebar-btn.active{background:rgba(232,69,122,.12);color:var(--pink);}
-    .sidebar-btn .ico{font-size:15px;width:20px;text-align:center;flex-shrink:0;}
-    .sidebar-divider{height:1px;background:var(--dark-border);margin:10px 12px;}
-    .sidebar-count{margin-left:auto;background:var(--pink);color:var(--white);font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;}
+    .sidebar-btn .ico{font-size:14px;width:18px;text-align:center;flex-shrink:0;}
+    .sidebar-divider{height:1px;background:var(--dark-border);margin:8px 12px;}
+    .sidebar-count{margin-left:auto;background:var(--pink);color:var(--white);font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;flex-shrink:0;}
+    .sidebar-count.amber{background:var(--amber);}
+    .sidebar-count.green{background:var(--green);}
 
-    /* ── CONTENT ── */
-    .content{padding:36px;}
+    /* CONTENT */
+    .content{padding:32px;}
     .panel{display:none;}
     .panel.active{display:block;}
-    .panel-header{margin-bottom:28px;}
-    .panel-header h1{font-size:24px;font-weight:900;color:var(--white);margin-bottom:6px;}
+    .panel-header{margin-bottom:24px;}
+    .panel-header h1{font-size:22px;font-weight:900;color:var(--white);margin-bottom:5px;}
     .panel-header p{font-size:13px;color:var(--muted);line-height:1.6;}
 
-    /* ── CARDS ── */
-    .card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;padding:24px;margin-bottom:20px;}
-    .card-title{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-    .card-info{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:16px 20px;margin-bottom:20px;}
+    /* CARDS */
+    .card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;padding:22px;margin-bottom:18px;}
+    .card-title{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+    .card-info{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:14px 18px;margin-bottom:18px;}
     .card-info p{font-size:12px;color:var(--muted);line-height:1.7;}
     .card-info strong{color:var(--text);}
+    .card-warn{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:14px 18px;margin-bottom:18px;}
+    .card-warn p{font-size:12px;color:var(--amber);line-height:1.7;}
 
-    /* ── FIELDS ── */
-    .field{margin-bottom:16px;}
-    .field label{display:block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:7px;}
-    .field input,.field textarea,.field select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--dark-border);border-radius:6px;color:var(--text);font-family:'Montserrat',sans-serif;font-size:13px;padding:11px 15px;outline:none;transition:border-color .25s;appearance:none;resize:vertical;}
+    /* FIELDS */
+    .field{margin-bottom:14px;}
+    .field label{display:block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:6px;}
+    .field input,.field textarea,.field select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--dark-border);border-radius:6px;color:var(--text);font-family:'Montserrat',sans-serif;font-size:13px;padding:10px 14px;outline:none;transition:border-color .25s;appearance:none;resize:vertical;}
     .field input::placeholder,.field textarea::placeholder{color:var(--muted);}
     .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(232,69,122,.1);}
-    .field textarea{min-height:100px;line-height:1.7;}
+    .field textarea{min-height:90px;line-height:1.7;}
     .field-hint{font-size:11px;color:var(--muted);margin-top:5px;font-style:italic;}
-    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-    .field-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .field-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
 
-    /* ── BUTTONS ── */
-    .save-btn{background:var(--pink);color:var(--white);border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:12px 28px;border-radius:6px;transition:all .3s;display:inline-flex;align-items:center;gap:8px;}
+    /* BUTTONS */
+    .save-btn{background:var(--pink);color:var(--white);border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:11px 24px;border-radius:6px;transition:all .3s;display:inline-flex;align-items:center;gap:7px;}
     .save-btn:hover{background:var(--pink-soft);transform:translateY(-1px);}
-    .add-btn{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);cursor:pointer;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:10px 22px;border-radius:6px;transition:all .3s;display:inline-flex;align-items:center;gap:8px;}
+    .add-btn{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:10px 20px;border-radius:6px;transition:all .3s;display:inline-flex;align-items:center;gap:7px;}
     .add-btn:hover{background:rgba(34,197,94,.2);}
-    .del-btn{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.25);cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;border-radius:4px;transition:all .3s;display:inline-flex;align-items:center;gap:6px;}
+    .del-btn{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.25);cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:7px 13px;border-radius:4px;transition:all .3s;display:inline-flex;align-items:center;gap:5px;}
     .del-btn:hover{background:rgba(239,68,68,.2);}
-    .edit-inline-btn{background:rgba(59,130,246,.1);color:var(--blue);border:1px solid rgba(59,130,246,.25);cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;border-radius:4px;transition:all .3s;}
-    .edit-inline-btn:hover{background:rgba(59,130,246,.2);}
-    .save-toast{display:inline-flex;align-items:center;gap:4px;margin-left:14px;font-size:12px;font-weight:600;color:var(--green);opacity:0;transition:opacity .4s;}
+    .approve-btn{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:7px 13px;border-radius:4px;transition:all .3s;}
+    .approve-btn:hover{background:rgba(34,197,94,.2);}
+    .edit-btn{background:rgba(59,130,246,.1);color:var(--blue);border:1px solid rgba(59,130,246,.25);cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:7px 13px;border-radius:4px;transition:all .3s;}
+    .edit-btn:hover{background:rgba(59,130,246,.2);}
+    .save-toast{display:inline-flex;align-items:center;gap:4px;margin-left:12px;font-size:11px;font-weight:600;color:var(--green);opacity:0;transition:opacity .4s;}
     .save-toast.show{opacity:1;}
 
-    /* ── DASHBOARD ── */
-    .dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
-    .dash-stat{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;padding:20px;text-align:center;}
-    .dash-stat-icon{font-size:26px;margin-bottom:6px;}
-    .dash-stat-val{font-size:26px;font-weight:900;color:var(--white);line-height:1;}
-    .dash-stat-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
-    .dash-tip{background:rgba(232,69,122,.08);border:1px solid rgba(232,69,122,.2);border-radius:8px;padding:16px 20px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start;}
-    .dash-tip p{font-size:13px;color:var(--muted);line-height:1.65;}
+    /* BADGES */
+    .badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;border-radius:100px;}
+    .badge-green{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);}
+    .badge-red{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.25);}
+    .badge-amber{background:rgba(245,158,11,.12);color:var(--amber);border:1px solid rgba(245,158,11,.3);}
+    .badge-blue{background:rgba(59,130,246,.1);color:var(--blue);border:1px solid rgba(59,130,246,.25);}
+    .badge-purple{background:rgba(139,92,246,.12);color:var(--purple);border:1px solid rgba(139,92,246,.3);}
+
+    /* DASHBOARD */
+    .dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+    .dash-stat{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;padding:18px;text-align:center;}
+    .dash-stat-icon{font-size:24px;margin-bottom:5px;}
+    .dash-stat-val{font-size:24px;font-weight:900;color:var(--white);line-height:1;}
+    .dash-stat-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:3px;}
+    .dash-tip{background:rgba(232,69,122,.08);border:1px solid rgba(232,69,122,.2);border-radius:8px;padding:14px 18px;margin-bottom:18px;display:flex;gap:10px;}
+    .dash-tip p{font-size:12px;color:var(--muted);line-height:1.65;}
     .dash-tip strong{color:var(--text);}
-    .quick-links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-    .ql{background:rgba(255,255,255,.03);border:1px solid var(--dark-border);border-radius:8px;padding:18px;cursor:pointer;transition:all .3s;text-align:center;border:none;font-family:'Montserrat',sans-serif;color:var(--text);width:100%;}
-    .ql:hover{border:1px solid var(--pink);background:rgba(232,69,122,.06);}
-    .ql-icon{font-size:22px;margin-bottom:7px;}
-    .ql-label{font-size:12px;font-weight:700;color:var(--text);}
-    .ql-sub{font-size:10px;color:var(--muted);margin-top:3px;}
+    .quick-links{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+    .ql{background:rgba(255,255,255,.03);border:1px solid var(--dark-border);border-radius:8px;padding:16px;cursor:pointer;transition:all .3s;text-align:center;font-family:'Montserrat',sans-serif;color:var(--text);width:100%;}
+    .ql:hover{border-color:var(--pink);background:rgba(232,69,122,.06);}
+    .ql-icon{font-size:20px;margin-bottom:6px;}
+    .ql-label{font-size:11px;font-weight:700;color:var(--text);}
+    .ql-sub{font-size:10px;color:var(--muted);margin-top:2px;}
 
-    /* ── REVIEWS ── */
-    .review-list{display:flex;flex-direction:column;gap:16px;margin-bottom:20px;}
-    .review-item{background:var(--dark-card2);border:1px solid var(--dark-border);border-radius:8px;padding:20px;position:relative;}
-    .review-item-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px;}
-    .review-item-meta{display:flex;flex-direction:column;gap:3px;}
-    .review-author-name{font-weight:700;font-size:14px;color:var(--white);}
-    .review-author-role{font-size:11px;color:var(--muted);}
-    .review-stars{color:#F59E0B;font-size:14px;letter-spacing:2px;}
-    .review-text{font-size:14px;line-height:1.75;color:var(--text);margin-bottom:12px;font-style:italic;}
-    .review-reply{background:rgba(59,130,246,.06);border-left:3px solid var(--blue);padding:12px 16px;border-radius:0 6px 6px 0;font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px;}
-    .review-reply strong{color:var(--pink);font-size:10px;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:4px;}
-    .review-actions{display:flex;gap:8px;flex-wrap:wrap;}
-    .review-edit-form{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--dark-border);}
+    /* REVIEW ITEMS */
+    .review-item{background:var(--dark-card2);border:1px solid var(--dark-border);border-radius:8px;padding:18px;margin-bottom:12px;}
+    .review-item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+    .review-meta .name{font-weight:700;font-size:14px;color:var(--white);}
+    .review-meta .role{font-size:11px;color:var(--muted);}
+    .review-stars-disp{color:var(--amber);font-size:13px;letter-spacing:2px;}
+    .review-text-disp{font-size:13px;line-height:1.7;color:var(--text);font-style:italic;margin-bottom:10px;}
+    .review-reply-disp{background:rgba(59,130,246,.06);border-left:3px solid var(--blue);padding:10px 14px;border-radius:0 4px 4px 0;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px;}
+    .review-reply-disp strong{color:var(--pink);font-size:9px;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:3px;}
+    .review-actions{display:flex;gap:7px;flex-wrap:wrap;}
+    .review-edit-form{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--dark-border);}
     .review-edit-form.open{display:block;}
-    .reply-area{background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.2);border-radius:6px;padding:16px;margin-top:14px;}
-    .reply-area label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:block;}
-    .reply-area textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--dark-border);border-radius:4px;color:var(--text);font-family:'Montserrat',sans-serif;font-size:13px;padding:10px 14px;outline:none;resize:vertical;min-height:80px;transition:border-color .25s;}
-    .reply-area textarea:focus{border-color:var(--blue);}
-    .reply-actions{display:flex;gap:8px;margin-top:10px;}
-    .reply-save-btn{background:var(--blue);color:var(--white);border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 18px;border-radius:4px;transition:all .3s;}
+    .reply-box{background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.2);border-radius:6px;padding:14px;margin-top:12px;display:none;}
+    .reply-box.open{display:block;}
+    .reply-box label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:block;}
+    .reply-box textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--dark-border);border-radius:4px;color:var(--text);font-family:'Montserrat',sans-serif;font-size:13px;padding:10px 13px;outline:none;resize:vertical;min-height:70px;transition:border-color .25s;}
+    .reply-box textarea:focus{border-color:var(--blue);}
+    .reply-box-btns{display:flex;gap:7px;margin-top:8px;}
+    .reply-save-btn{background:var(--blue);color:var(--white);border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;border-radius:4px;transition:all .3s;}
     .reply-save-btn:hover{background:#2563EB;}
-    .status-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 9px;border-radius:100px;}
-    .badge-visible{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);}
-    .badge-hidden{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.25);}
 
-    /* ── PROGRAMS ── */
-    .program-list{display:flex;flex-direction:column;gap:14px;margin-bottom:20px;}
-    .program-item{background:var(--dark-card2);border:1px solid var(--dark-border);border-radius:8px;padding:18px 20px;}
-    .program-item-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;}
-    .program-item-title{font-weight:700;font-size:15px;color:var(--white);}
-    .program-item-price{font-weight:700;font-size:13px;color:var(--pink);}
-    .program-item-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:10px;}
-    .program-edit-form{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--dark-border);}
+    /* PROGRAM ITEMS */
+    .program-item{background:var(--dark-card2);border:1px solid var(--dark-border);border-radius:8px;padding:16px 18px;margin-bottom:10px;}
+    .program-item-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+    .program-item-title{font-weight:700;font-size:14px;color:var(--white);}
+    .program-item-price{font-weight:700;font-size:12px;color:var(--pink);}
+    .program-desc-disp{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:8px;}
+    .program-edit-form{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--dark-border);}
     .program-edit-form.open{display:block;}
-    .featured-toggle{display:flex;align-items:center;gap:10px;margin-top:8px;}
-    .toggle-switch{position:relative;width:44px;height:24px;flex-shrink:0;}
-    .toggle-switch input{opacity:0;width:0;height:0;position:absolute;}
-    .toggle-slider{position:absolute;inset:0;background:var(--dark-border);border-radius:12px;cursor:pointer;transition:.3s;}
-    .toggle-slider::before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;background:var(--white);border-radius:50%;transition:.3s;}
-    .toggle-switch input:checked+.toggle-slider{background:var(--pink);}
-    .toggle-switch input:checked+.toggle-slider::before{transform:translateX(20px);}
-    .toggle-label{font-size:12px;font-weight:600;color:var(--muted);}
 
-    /* ── CONTACT ── */
-    .contact-item-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;}
-    .contact-item-row{background:var(--dark-card2);border:1px solid var(--dark-border);border-radius:8px;padding:16px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-    .contact-item-icon-select{font-size:22px;width:36px;text-align:center;flex-shrink:0;}
-    .contact-item-text{flex:1;min-width:200px;}
-    .contact-item-label-disp{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);}
-    .contact-item-val-disp{font-size:14px;color:var(--white);margin-top:2px;}
-    .contact-item-edit{display:none;width:100%;margin-top:12px;padding-top:12px;border-top:1px solid var(--dark-border);}
-    .contact-item-edit.open{display:block;}
+    /* CONTACT ITEMS */
+    .contact-row{background:var(--dark-card2);border:1px solid var(--dark-border);border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+    .c-row-icon{font-size:20px;flex-shrink:0;width:32px;text-align:center;}
+    .c-row-text{flex:1;min-width:180px;}
+    .c-row-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);}
+    .c-row-val{font-size:13px;color:var(--white);margin-top:2px;}
+    .contact-edit-form{display:none;width:100%;margin-top:10px;padding-top:10px;border-top:1px solid var(--dark-border);}
+    .contact-edit-form.open{display:block;}
 
-    /* photo upload */
-    .photo-upload-area{border:2px dashed var(--dark-border);border-radius:8px;padding:32px 20px;text-align:center;cursor:pointer;transition:border-color .3s;position:relative;}
+    /* LOGO UPLOADER */
+    .logo-upload-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .logo-slot{background:var(--dark-card2);border:1px solid var(--dark-border);border-radius:8px;padding:20px;text-align:center;}
+    .logo-slot-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+    .logo-slot-use{font-size:10px;color:var(--muted);margin-bottom:14px;line-height:1.5;}
+    .logo-preview-wrap{height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:1px dashed var(--dark-border);border-radius:6px;padding:8px;}
+    .logo-preview-wrap img{max-height:70px;max-width:100%;object-fit:contain;filter:drop-shadow(0 0 6px rgba(232,69,122,.2));}
+    .logo-upload-btn{position:relative;overflow:hidden;display:inline-block;width:100%;}
+    .logo-upload-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;}
+    .logo-upload-btn-inner{background:rgba(232,69,122,.1);border:1px solid rgba(232,69,122,.25);color:var(--pink);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 16px;border-radius:4px;cursor:pointer;transition:all .3s;display:block;text-align:center;}
+    .logo-upload-btn:hover .logo-upload-btn-inner{background:rgba(232,69,122,.2);}
+    .logo-restore-btn{background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;color:var(--muted);text-decoration:underline;margin-top:8px;display:block;width:100%;text-align:center;}
+    .logo-restore-btn:hover{color:var(--text);}
+
+    /* TICKER EDITOR */
+    .ticker-words-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+    .ticker-word-row{display:flex;align-items:center;gap:8px;}
+    .ticker-word-row input{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--dark-border);border-radius:4px;color:var(--text);font-family:'Montserrat',sans-serif;font-size:12px;padding:8px 12px;outline:none;transition:border-color .25s;}
+    .ticker-word-row input:focus{border-color:var(--pink);}
+
+    /* VIDEO UPLOADER */
+    .vid-upload-area{border:2px dashed var(--dark-border);border-radius:8px;padding:36px 20px;text-align:center;cursor:pointer;transition:all .3s;position:relative;}
+    .vid-upload-area:hover{border-color:var(--pink);background:rgba(232,69,122,.04);}
+    .vid-upload-area input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .vid-upload-icon{font-size:40px;margin-bottom:10px;}
+    .vid-upload-area p{font-size:13px;color:var(--muted);}
+    .vid-upload-area small{font-size:11px;color:var(--muted);opacity:.7;}
+    .vid-preview{margin-top:14px;display:none;}
+    .vid-preview video{width:100%;border-radius:6px;border:1px solid var(--dark-border);}
+    .vid-filename{font-size:11px;color:var(--green);margin-top:6px;font-weight:600;}
+
+    /* MESSAGES INBOX */
+    .msg-filters{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+    .msg-filter-btn{background:rgba(255,255,255,.04);border:1px solid var(--dark-border);color:var(--muted);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:7px 14px;border-radius:4px;cursor:pointer;transition:all .3s;}
+    .msg-filter-btn.active{background:rgba(232,69,122,.12);border-color:rgba(232,69,122,.35);color:var(--pink);}
+    .msg-item{background:var(--dark-card2);border:1px solid var(--dark-border);border-radius:8px;padding:16px 18px;margin-bottom:10px;cursor:pointer;transition:border-color .3s;}
+    .msg-item:hover{border-color:rgba(59,130,246,.35);}
+    .msg-item.unread{border-color:rgba(232,69,122,.3);}
+    .msg-item-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+    .msg-item-name{font-weight:700;font-size:14px;color:var(--white);}
+    .msg-item-meta{font-size:11px;color:var(--muted);}
+    .msg-item-preview{font-size:13px;color:var(--muted);line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .msg-detail{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--dark-border);}
+    .msg-detail.open{display:block;}
+    .msg-detail-field{margin-bottom:10px;}
+    .msg-detail-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:3px;}
+    .msg-detail-val{font-size:13px;color:var(--text);line-height:1.6;}
+    .msg-empty{text-align:center;padding:48px 20px;color:var(--muted);font-size:13px;font-style:italic;}
+
+    /* ANALYTICS */
+    .analytics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+    .analytics-stat{background:var(--dark-card2);border:1px solid var(--dark-border);border-radius:8px;padding:18px;}
+    .analytics-stat-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+    .analytics-stat-val{font-size:28px;font-weight:900;color:var(--white);line-height:1;}
+    .analytics-stat-sub{font-size:11px;color:var(--muted);margin-top:4px;}
+    .report-settings{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;align-items:center;}
+    .report-freq-btn{background:rgba(255,255,255,.04);border:1px solid var(--dark-border);color:var(--muted);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:8px 16px;border-radius:4px;cursor:pointer;transition:all .3s;}
+    .report-freq-btn.active{background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.4);color:var(--blue);}
+    .report-status{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--dark-card2);border:1px solid var(--dark-border);border-radius:6px;margin-bottom:16px;}
+    .report-status .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+    .dot-green{background:var(--green);box-shadow:0 0 8px rgba(34,197,94,.5);}
+    .dot-red{background:var(--red);}
+    .dot-amber{background:var(--amber);}
+    .toggle-row{display:flex;align-items:center;gap:12px;}
+    .tog{position:relative;width:44px;height:24px;flex-shrink:0;}
+    .tog input{opacity:0;width:0;height:0;position:absolute;}
+    .tog-slider{position:absolute;inset:0;background:var(--dark-border);border-radius:12px;cursor:pointer;transition:.3s;}
+    .tog-slider::before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;background:var(--white);border-radius:50%;transition:.3s;}
+    .tog input:checked+.tog-slider{background:var(--pink);}
+    .tog input:checked+.tog-slider::before{transform:translateX(20px);}
+    .tog-label{font-size:12px;font-weight:600;color:var(--muted);}
+    .report-preview{background:var(--dark-card2);border:1px solid var(--dark-border);border-radius:8px;padding:20px;font-family:monospace;font-size:12px;color:var(--text);line-height:1.9;white-space:pre-wrap;max-height:320px;overflow-y:auto;}
+    .custom-date-range{display:none;gap:12px;}
+    .custom-date-range.show{display:flex;}
+    .custom-date-range input{background:rgba(255,255,255,.04);border:1px solid var(--dark-border);border-radius:4px;color:var(--text);font-family:'Montserrat',sans-serif;font-size:12px;padding:9px 12px;outline:none;}
+    .custom-date-range input:focus{border-color:var(--pink);}
+
+    /* PHOTO UPLOADER */
+    .photo-upload-area{border:2px dashed var(--dark-border);border-radius:8px;padding:28px 20px;text-align:center;cursor:pointer;transition:border-color .3s;position:relative;}
     .photo-upload-area:hover{border-color:var(--pink);}
     .photo-upload-area input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-    .photo-upload-area .upload-icon{font-size:36px;margin-bottom:8px;}
+    .photo-upload-area .upload-icon{font-size:32px;margin-bottom:8px;}
     .photo-upload-area p{font-size:13px;color:var(--muted);}
-    .photo-preview{margin-top:14px;display:none;text-align:center;}
-    .photo-preview img{max-height:180px;border-radius:6px;border:1px solid var(--dark-border);}
+    .photo-preview{margin-top:12px;display:none;text-align:center;}
+    .photo-preview img{max-height:160px;border-radius:6px;border:1px solid var(--dark-border);}
+    .pw-note{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px;}
 
-    /* password */
-    .pw-note{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:18px;}
+    /* TABS within a panel */
+    .tab-bar{display:flex;gap:2px;margin-bottom:20px;border-bottom:1px solid var(--dark-border);padding-bottom:0;}
+    .tab-btn{background:none;border:none;color:var(--muted);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:10px 18px;cursor:pointer;border-bottom:2px solid transparent;transition:all .25s;margin-bottom:-1px;}
+    .tab-btn.active{color:var(--pink);border-bottom-color:var(--pink);}
+    .tab-content{display:none;}
+    .tab-content.active{display:block;}
 
     @media(max-width:768px){
-      .admin-layout{grid-template-columns:1fr;}.sidebar{display:none;}.content{padding:20px;}
+      .admin-layout{grid-template-columns:1fr;}.sidebar{display:none;}.content{padding:18px;}
       .dash-grid{grid-template-columns:1fr 1fr;}.quick-links{grid-template-columns:1fr 1fr;}
-      .field-row,.field-row3{grid-template-columns:1fr;}
+      .field-row,.field-row3{grid-template-columns:1fr;}.logo-upload-grid{grid-template-columns:1fr;}
+      .analytics-grid{grid-template-columns:1fr 1fr;}
     }
   </style>
 </head>
@@ -192,7 +275,7 @@
 <!-- LOGIN -->
 <div id="login-screen">
   <div class="login-card">
-    <img src="Vertical_Logo.png" alt="KM Fitness" class="login-logo"/>
+    <img src="Vertical_Logo.png" alt="KM Fitness" class="login-logo" id="login-logo-img"/>
     <h2>Admin Panel</h2>
     <p>Enter your password to manage your website</p>
     <input type="password" id="pw-input" placeholder="Password" onkeydown="if(event.key==='Enter')tryLogin()"/>
@@ -204,10 +287,9 @@
 
 <!-- ADMIN SHELL -->
 <div id="admin-shell">
-
   <div class="admin-nav">
     <div class="admin-nav-left">
-      <img src="Horizontal_Logo.png" alt="KM Fitness"/>
+      <img src="Horizontal_Logo.png" alt="KM Fitness" id="admin-nav-logo"/>
       <div class="admin-title">KM Fitness <span>Admin</span></div>
       <div class="admin-badge">Private</div>
     </div>
@@ -229,12 +311,20 @@
       <div class="sidebar-section">
         <div class="sidebar-label">Website Content</div>
         <button class="sidebar-btn" onclick="showPanel('coach')"><span class="ico">👤</span>About Me / Coach</button>
-        <button class="sidebar-btn" onclick="showPanel('reviews')"><span class="ico">⭐</span>Customer Reviews <span class="sidebar-count" id="review-count">0</span></button>
+        <button class="sidebar-btn" onclick="showPanel('reviews')"><span class="ico">⭐</span>Reviews <span class="sidebar-count" id="sb-reviews">0</span></button>
+        <button class="sidebar-btn" onclick="showPanel('pending')"><span class="ico">🕐</span>Pending Reviews <span class="sidebar-count amber" id="sb-pending">0</span></button>
         <button class="sidebar-btn" onclick="showPanel('programs')"><span class="ico">🤸</span>Programs</button>
         <button class="sidebar-btn" onclick="showPanel('contact')"><span class="ico">📬</span>Contact Info</button>
         <button class="sidebar-btn" onclick="showPanel('videos')"><span class="ico">🎬</span>Videos</button>
         <button class="sidebar-btn" onclick="showPanel('booking')"><span class="ico">📅</span>Booking Calendar</button>
-        <button class="sidebar-btn" onclick="showPanel('hero')"><span class="ico">✏️</span>Hero Text</button>
+        <button class="sidebar-btn" onclick="showPanel('hero')"><span class="ico">✏️</span>Hero &amp; Ticker Text</button>
+        <button class="sidebar-btn" onclick="showPanel('logos')"><span class="ico">🎨</span>Logos &amp; Branding</button>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Data &amp; Reports</div>
+        <button class="sidebar-btn" onclick="showPanel('messages')"><span class="ico">💌</span>Messages <span class="sidebar-count green" id="sb-msgs">0</span></button>
+        <button class="sidebar-btn" onclick="showPanel('analytics')"><span class="ico">📊</span>Analytics &amp; Reports</button>
       </div>
       <div class="sidebar-divider"></div>
       <div class="sidebar-section">
@@ -243,270 +333,357 @@
       </div>
     </div>
 
-    <!-- CONTENT -->
+    <!-- MAIN CONTENT AREA -->
     <div class="content">
 
       <!-- ═══ DASHBOARD ═══ -->
       <div class="panel active" id="panel-dashboard">
-        <div class="panel-header">
-          <h1>Welcome back, Kyra 👋</h1>
-          <p>Manage all website content from here. Only you can see this panel — customers never have access.</p>
-        </div>
+        <div class="panel-header"><h1>Welcome back, Kyra 👋</h1><p>Manage your entire website from here. Customers cannot see or access this panel.</p></div>
         <div class="dash-grid">
-          <div class="dash-stat"><div class="dash-stat-icon">👤</div><div class="dash-stat-val" id="ds-coach">–</div><div class="dash-stat-label">Coach Profile</div></div>
-          <div class="dash-stat"><div class="dash-stat-icon">⭐</div><div class="dash-stat-val" id="ds-reviews">0</div><div class="dash-stat-label">Reviews</div></div>
+          <div class="dash-stat"><div class="dash-stat-icon">⭐</div><div class="dash-stat-val" id="ds-reviews">0</div><div class="dash-stat-label">Live Reviews</div></div>
+          <div class="dash-stat"><div class="dash-stat-icon">🕐</div><div class="dash-stat-val" id="ds-pending">0</div><div class="dash-stat-label">Pending Reviews</div></div>
+          <div class="dash-stat"><div class="dash-stat-icon">💌</div><div class="dash-stat-val" id="ds-msgs">0</div><div class="dash-stat-label">Messages</div></div>
           <div class="dash-stat"><div class="dash-stat-icon">🤸</div><div class="dash-stat-val" id="ds-programs">0</div><div class="dash-stat-label">Programs</div></div>
-          <div class="dash-stat"><div class="dash-stat-icon">📅</div><div class="dash-stat-val" id="ds-cal">–</div><div class="dash-stat-label">Calendar</div></div>
         </div>
-        <div class="dash-tip"><span style="font-size:20px">💡</span><p><strong>Tip:</strong> Changes you save here appear on your website instantly. Click <em>View Site</em> above to preview live.</p></div>
+        <div class="dash-tip"><span style="font-size:18px">💡</span><p><strong>Tip:</strong> Any changes you save here instantly appear on your website. Use <em>View Site</em> to preview live. Your default password is <strong>KMfitness2026</strong> — change it in Settings.</p></div>
         <div class="card">
           <div class="card-title">⚡ Quick Actions</div>
           <div class="quick-links">
-            <button class="ql" onclick="showPanel('coach')"><div class="ql-icon">👤</div><div class="ql-label">Edit Coach Profile</div><div class="ql-sub">Name, bio, photo, video</div></button>
-            <button class="ql" onclick="showPanel('reviews')"><div class="ql-icon">⭐</div><div class="ql-label">Manage Reviews</div><div class="ql-sub">Add, edit, reply, delete</div></button>
-            <button class="ql" onclick="showPanel('programs')"><div class="ql-icon">🤸</div><div class="ql-label">Edit Programs</div><div class="ql-sub">Add, edit, delete</div></button>
-            <button class="ql" onclick="showPanel('contact')"><div class="ql-icon">📬</div><div class="ql-label">Contact Info</div><div class="ql-sub">Email, phone, location</div></button>
-            <button class="ql" onclick="showPanel('booking')"><div class="ql-icon">📅</div><div class="ql-label">Switch Calendar</div><div class="ql-sub">Google, Calendly, etc.</div></button>
-            <button class="ql" onclick="showPanel('videos')"><div class="ql-icon">🎬</div><div class="ql-label">Update Videos</div><div class="ql-sub">Featured & coach video</div></button>
+            <button class="ql" onclick="showPanel('pending')"><div class="ql-icon">🕐</div><div class="ql-label">Pending Reviews</div><div class="ql-sub">Approve or delete customer submissions</div></button>
+            <button class="ql" onclick="showPanel('messages')"><div class="ql-icon">💌</div><div class="ql-label">Messages Inbox</div><div class="ql-sub">View customer messages</div></button>
+            <button class="ql" onclick="showPanel('reviews')"><div class="ql-icon">⭐</div><div class="ql-label">Manage Reviews</div><div class="ql-sub">Edit, reply, show/hide</div></button>
+            <button class="ql" onclick="showPanel('logos')"><div class="ql-icon">🎨</div><div class="ql-label">Update Logos</div><div class="ql-sub">Upload new brand assets</div></button>
+            <button class="ql" onclick="showPanel('analytics')"><div class="ql-icon">📊</div><div class="ql-label">Analytics Report</div><div class="ql-sub">Download weekly summary</div></button>
+            <button class="ql" onclick="showPanel('programs')"><div class="ql-icon">🤸</div><div class="ql-label">Edit Programs</div><div class="ql-sub">Add, edit, remove</div></button>
           </div>
         </div>
       </div>
 
       <!-- ═══ COACH ═══ -->
       <div class="panel" id="panel-coach">
-        <div class="panel-header">
-          <h1>About Me / Coach Profile</h1>
-          <p>This appears in the "Meet Your Coach" section. Customers will see exactly what you fill in here.</p>
-        </div>
+        <div class="panel-header"><h1>About Me / Coach Profile</h1><p>This appears in the "Meet Your Coach" section. Customers see exactly what you fill in here.</p></div>
         <div class="card">
           <div class="card-title">📸 Profile Photo</div>
-          <div class="photo-upload-area" id="photo-area">
-            <input type="file" id="photo-input" accept="image/*" onchange="handlePhoto(this)"/>
-            <div class="upload-icon">📷</div>
-            <p>Click to upload your photo<br/><small style="color:var(--muted)">JPG, PNG — square crop recommended</small></p>
-          </div>
+          <div class="photo-upload-area"><input type="file" id="photo-input" accept="image/*" onchange="handlePhoto(this)"/><div class="upload-icon">📷</div><p>Click to upload your photo<br/><small style="color:var(--muted)">JPG, PNG — square crop recommended</small></p></div>
           <div class="photo-preview" id="photo-preview"><img id="photo-preview-img" src="" alt="Preview"/></div>
         </div>
         <div class="card">
           <div class="card-title">✍️ Your Information</div>
-          <div class="field-row">
-            <div class="field"><label>Your Name</label><input type="text" id="f-name" placeholder="e.g. Kyra Martindale"/></div>
-            <div class="field"><label>Title / Specialty</label><input type="text" id="f-title" placeholder="e.g. Certified Gymnastics Coach"/></div>
-          </div>
-          <div class="field"><label>Bio / About Me</label><textarea id="f-bio" rows="6" placeholder="Write a few sentences about your coaching journey, background, philosophy, and what makes you unique…"></textarea></div>
+          <div class="field-row"><div class="field"><label>Your Name</label><input type="text" id="f-name" placeholder="e.g. Kyra Martindale"/></div><div class="field"><label>Title / Specialty</label><input type="text" id="f-title" placeholder="e.g. Certified Gymnastics Coach"/></div></div>
+          <div class="field"><label>Bio / About Me</label><textarea id="f-bio" rows="6" placeholder="Write a few sentences about your coaching journey, background, and philosophy..."></textarea></div>
           <div class="field"><label>Certifications (comma-separated)</label><input type="text" id="f-certs" placeholder="e.g. USA Gymnastics Certified, CPR/AED, 10+ Years Experience"/></div>
         </div>
-        <div class="card">
-          <div class="card-title">🎬 Coach Video</div>
-          <div class="field"><label>YouTube or Vimeo Link</label><input type="url" id="f-coach-vid" placeholder="https://youtube.com/watch?v=…"/><div class="field-hint">Appears in your "Meet the Coach" section alongside your photo.</div></div>
-        </div>
+        <div class="card"><div class="card-title">🎬 Coach Video</div><div class="field"><label>YouTube or Vimeo Link</label><input type="url" id="f-coach-vid" placeholder="https://youtube.com/watch?v=…"/><div class="field-hint">Appears in "Meet the Coach" alongside your photo.</div></div></div>
         <button class="save-btn" onclick="saveCoach()">💾 Save Coach Profile</button>
         <span class="save-toast" id="toast-coach">✅ Saved!</span>
       </div>
 
-      <!-- ═══ REVIEWS ═══ -->
+      <!-- ═══ REVIEWS (live) ═══ -->
       <div class="panel" id="panel-reviews">
-        <div class="panel-header">
-          <h1>Customer Reviews</h1>
-          <p>Add, edit, reply to, hide, or delete reviews. Only visible reviews appear on your website.</p>
-        </div>
-
-        <div class="card-info">
-          <p>💬 <strong>How it works:</strong> Add a review below. Toggle reviews on/off to show or hide them from customers. Use the Reply button to add your response — it appears under the review on the website.</p>
-        </div>
-
-        <!-- Add new review -->
+        <div class="panel-header"><h1>Customer Reviews</h1><p>Manage all published reviews. Add your own, edit, reply, show/hide, or delete.</p></div>
+        <div class="card-info"><p>💬 <strong>Tip:</strong> Reviews you add here go live immediately. Customer-submitted reviews appear in <strong>Pending Reviews</strong> for your approval first. Use Show/Hide to temporarily remove a review without deleting it.</p></div>
         <div class="card">
           <div class="card-title">➕ Add New Review</div>
-          <div class="field-row">
-            <div class="field"><label>Customer Name</label><input type="text" id="nr-name" placeholder="e.g. Sarah M."/></div>
-            <div class="field"><label>Their Role / Description</label><input type="text" id="nr-role" placeholder="e.g. Parent of Junior Star"/></div>
-          </div>
-          <div class="field">
-            <label>Star Rating</label>
-            <select id="nr-stars">
-              <option value="5">★★★★★ — 5 Stars</option>
-              <option value="4">★★★★☆ — 4 Stars</option>
-              <option value="3">★★★☆☆ — 3 Stars</option>
-              <option value="2">★★☆☆☆ — 2 Stars</option>
-              <option value="1">★☆☆☆☆ — 1 Star</option>
-            </select>
-          </div>
-          <div class="field"><label>Review Text</label><textarea id="nr-text" rows="4" placeholder="The customer's review…"></textarea></div>
+          <div class="field-row"><div class="field"><label>Customer Name</label><input type="text" id="nr-name" placeholder="e.g. Sarah M."/></div><div class="field"><label>Their Role</label><input type="text" id="nr-role" placeholder="e.g. Parent of Junior Star"/></div></div>
+          <div class="field"><label>Star Rating</label><select id="nr-stars"><option value="5">★★★★★ — 5 Stars</option><option value="4">★★★★☆ — 4 Stars</option><option value="3">★★★☆☆ — 3 Stars</option><option value="2">★★☆☆☆ — 2 Stars</option><option value="1">★☆☆☆☆ — 1 Star</option></select></div>
+          <div class="field"><label>Review Text</label><textarea id="nr-text" rows="3" placeholder="The customer's review text..."></textarea></div>
           <button class="add-btn" onclick="addReview()">➕ Add Review</button>
-          <span class="save-toast" id="toast-add-review">✅ Review added!</span>
+          <span class="save-toast" id="toast-add-review">✅ Added!</span>
         </div>
-
-        <!-- Review list -->
         <div class="card">
-          <div class="card-title">📋 All Reviews <span style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;" id="review-total-label"></span></div>
-          <div class="review-list" id="review-list">
-            <p style="color:var(--muted);font-size:13px;font-style:italic;">No reviews yet. Add one above!</p>
-          </div>
-          <button class="save-btn" onclick="saveReviews()">💾 Save All Reviews</button>
-          <span class="save-toast" id="toast-reviews">✅ Reviews saved!</span>
+          <div class="card-title">📋 All Published Reviews <span id="rv-count-label" style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;margin-left:6px;"></span></div>
+          <div id="review-list"><p style="color:var(--muted);font-size:13px;font-style:italic;">No reviews yet.</p></div>
+          <button class="save-btn" style="margin-top:4px;" onclick="toast('reviews')">💾 Save All</button>
+          <span class="save-toast" id="toast-reviews">✅ Saved!</span>
         </div>
+      </div>
+
+      <!-- ═══ PENDING REVIEWS ═══ -->
+      <div class="panel" id="panel-pending">
+        <div class="panel-header"><h1>Pending Reviews</h1><p>These were submitted by customers on your website. Approve to publish them, or delete if offensive/inappropriate.</p></div>
+        <div class="card-warn"><p>⚠️ <strong>Moderation queue:</strong> None of these reviews are visible to the public yet. Review each one and either <strong>Approve</strong> (adds to live reviews) or <strong>Delete</strong> (removes permanently).</p></div>
+        <div id="pending-list"><p class="msg-empty">No pending reviews — you're all caught up! 🎉</p></div>
       </div>
 
       <!-- ═══ PROGRAMS ═══ -->
       <div class="panel" id="panel-programs">
-        <div class="panel-header">
-          <h1>Programs</h1>
-          <p>Add, edit, or delete the coaching programs shown on your website. Mark one as "Featured" to highlight it.</p>
-        </div>
-
-        <div class="card-info">
-          <p>🤸 <strong>How it works:</strong> Each program shows an icon, title, description, and price. Mark one as "Featured" to give it the pink highlight card. Drag to reorder (save after reordering).</p>
-        </div>
-
-        <!-- Add new program -->
+        <div class="panel-header"><h1>Programs</h1><p>Add, edit, or remove coaching programs. Mark one as "Featured" for the pink highlight card.</p></div>
         <div class="card">
           <div class="card-title">➕ Add New Program</div>
-          <div class="field-row">
-            <div class="field"><label>Program Name</label><input type="text" id="np-title" placeholder="e.g. Group Classes"/></div>
-            <div class="field"><label>Price / Rate</label><input type="text" id="np-price" placeholder="e.g. From $25/class"/></div>
-          </div>
-          <div class="field-row">
-            <div class="field"><label>Icon (emoji)</label><input type="text" id="np-icon" placeholder="🤸" maxlength="4" style="font-size:20px;text-align:center;"/></div>
-            <div class="field">
-              <label>Mark as Featured?</label>
-              <select id="np-featured"><option value="0">No — standard card</option><option value="1">Yes — pink highlight card</option></select>
-            </div>
-          </div>
+          <div class="field-row"><div class="field"><label>Program Name</label><input type="text" id="np-title" placeholder="e.g. Group Classes"/></div><div class="field"><label>Price / Rate</label><input type="text" id="np-price" placeholder="e.g. From $25/class"/></div></div>
+          <div class="field-row"><div class="field"><label>Icon (emoji)</label><input type="text" id="np-icon" placeholder="🤸" maxlength="4" style="font-size:18px;text-align:center;"/></div><div class="field"><label>Featured?</label><select id="np-featured"><option value="0">No — standard card</option><option value="1">Yes — pink highlight</option></select></div></div>
           <div class="field"><label>Description</label><textarea id="np-desc" rows="3" placeholder="What does this program include? Who is it for?"></textarea></div>
           <button class="add-btn" onclick="addProgram()">➕ Add Program</button>
-          <span class="save-toast" id="toast-add-prog">✅ Program added!</span>
+          <span class="save-toast" id="toast-add-prog">✅ Added!</span>
         </div>
-
-        <!-- Program list -->
         <div class="card">
           <div class="card-title">📋 Current Programs</div>
-          <div class="program-list" id="program-list">
-            <p style="color:var(--muted);font-size:13px;font-style:italic;">No custom programs yet. Add one above or your defaults will show.</p>
-          </div>
-          <button class="save-btn" onclick="savePrograms()">💾 Save Programs</button>
-          <span class="save-toast" id="toast-programs">✅ Programs saved!</span>
+          <div id="program-list"><p style="color:var(--muted);font-size:13px;font-style:italic;">No custom programs yet — defaults will show.</p></div>
+          <button class="save-btn" style="margin-top:4px;" onclick="savePrograms()">💾 Save Programs</button>
+          <span class="save-toast" id="toast-programs">✅ Saved!</span>
         </div>
       </div>
 
       <!-- ═══ CONTACT INFO ═══ -->
       <div class="panel" id="panel-contact">
-        <div class="panel-header">
-          <h1>Contact Information</h1>
-          <p>Edit the contact details shown in the "Get In Touch" section. Update if ownership or contact info changes.</p>
-        </div>
-
-        <div class="card-info">
-          <p>📬 <strong>How it works:</strong> Each item has a label, value, and icon. Click Edit to change any item. Add new items or delete ones you don't need.</p>
-        </div>
-
-        <!-- Add contact item -->
+        <div class="panel-header"><h1>Contact Information</h1><p>Edit the "Get In Touch" section. Update anytime ownership or contact details change.</p></div>
         <div class="card">
           <div class="card-title">➕ Add Contact Item</div>
-          <div class="field-row3">
-            <div class="field"><label>Icon (emoji)</label><input type="text" id="nc-icon" placeholder="📧" maxlength="4" style="font-size:18px;text-align:center;"/></div>
-            <div class="field"><label>Label</label><input type="text" id="nc-label" placeholder="e.g. Email"/></div>
-            <div class="field"><label>Value / Text</label><input type="text" id="nc-val" placeholder="e.g. kyramartindale@gmail.com"/></div>
-          </div>
-          <div class="field"><label>Link (optional)</label><input type="text" id="nc-link" placeholder="e.g. mailto:kyramartindale@gmail.com or https://…"/><div class="field-hint">Leave blank if not clickable. Use <code>mailto:email@example.com</code> for email links.</div></div>
+          <div class="field-row3"><div class="field"><label>Icon</label><input type="text" id="nc-icon" placeholder="📧" maxlength="4" style="font-size:16px;text-align:center;"/></div><div class="field"><label>Label</label><input type="text" id="nc-label" placeholder="e.g. Email"/></div><div class="field"><label>Value / Text</label><input type="text" id="nc-val" placeholder="e.g. kyramartindale@gmail.com"/></div></div>
+          <div class="field"><label>Link (optional)</label><input type="text" id="nc-link" placeholder="e.g. mailto:email@example.com or https://…"/><div class="field-hint">Leave blank if not clickable. Use <code>mailto:email@example.com</code> for emails.</div></div>
           <button class="add-btn" onclick="addContactItem()">➕ Add Item</button>
           <span class="save-toast" id="toast-add-contact">✅ Added!</span>
         </div>
-
-        <!-- Contact list -->
         <div class="card">
           <div class="card-title">📋 Current Contact Items</div>
-          <div class="contact-item-list" id="contact-item-list">
-            <p style="color:var(--muted);font-size:13px;font-style:italic;">Loading…</p>
-          </div>
-          <button class="save-btn" onclick="saveContactItems()">💾 Save Contact Info</button>
+          <div id="contact-item-list"><p style="color:var(--muted);font-size:13px;">Loading...</p></div>
+          <button class="save-btn" style="margin-top:4px;" onclick="saveContactItems()">💾 Save Contact Info</button>
           <span class="save-toast" id="toast-contact">✅ Saved!</span>
         </div>
-
-        <!-- Section heading editor -->
         <div class="card">
-          <div class="card-title">✏️ Section Intro Text</div>
-          <div class="field"><label>Contact Section Tagline</label><textarea id="f-contact-tagline" rows="3" placeholder="Have a question about programs, pricing, or scheduling? We'd love to hear from you."></textarea></div>
-          <button class="save-btn" onclick="saveContactTagline()">💾 Save Text</button>
+          <div class="card-title">✏️ Contact Section Tagline</div>
+          <div class="field"><label>Intro paragraph</label><textarea id="f-contact-tagline" rows="3" placeholder="Have a question about programs, pricing, or scheduling? We'd love to hear from you."></textarea></div>
+          <button class="save-btn" onclick="saveContactTagline()">💾 Save</button>
           <span class="save-toast" id="toast-ctag">✅ Saved!</span>
         </div>
       </div>
 
       <!-- ═══ VIDEOS ═══ -->
       <div class="panel" id="panel-videos">
-        <div class="panel-header">
-          <h1>Videos</h1>
-          <p>Manage the videos on your website. Paste YouTube or Vimeo links.</p>
+        <div class="panel-header"><h1>Videos</h1><p>Upload video files directly OR paste links from YouTube, Vimeo, or Instagram. All formats supported.</p></div>
+
+        <!-- Tab bar -->
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchVidTab('link')">🔗 Paste Link</button>
+          <button class="tab-btn" onclick="switchVidTab('upload')">📁 Upload File</button>
         </div>
-        <div class="card">
-          <div class="card-title">🎬 Main Featured Video</div>
-          <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">The large video in the "See KM Fitness In Action" section.</p>
-          <div class="field"><label>YouTube or Vimeo Link</label><input type="url" id="f-main-vid" placeholder="https://youtube.com/watch?v=…"/></div>
-          <button class="save-btn" onclick="saveMainVid()">💾 Save Video</button>
-          <span class="save-toast" id="toast-main-vid">✅ Saved!</span>
+
+        <!-- Link tab -->
+        <div class="tab-content active" id="vtab-link">
+          <div class="card">
+            <div class="card-title">🎬 Main Featured Video — Link</div>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Large video in the "See KM Fitness In Action" section.</p>
+            <div class="field"><label>Video Link</label><input type="url" id="f-main-vid" placeholder="YouTube, Vimeo, or Instagram Reel link…"/><div class="field-hint">YouTube · Vimeo · Instagram Reels (direct embed URL) · Any .mp4 URL</div></div>
+            <button class="save-btn" onclick="saveMainVid()">💾 Save</button>
+            <span class="save-toast" id="toast-main-vid">✅ Saved!</span>
+          </div>
+          <div class="card">
+            <div class="card-title">👤 Coach Profile Video — Link</div>
+            <div class="field"><label>Video Link</label><input type="url" id="f-coach-vid2" placeholder="YouTube, Vimeo, or Instagram Reel link…"/></div>
+            <button class="save-btn" onclick="saveCoachVid2()">💾 Save</button>
+            <span class="save-toast" id="toast-cv2">✅ Saved!</span>
+          </div>
+          <div class="card-info">
+            <p>✅ <strong>Supported links:</strong> YouTube (<code>youtube.com/watch?v=ID</code>) · YouTube Shorts (<code>youtu.be/ID</code>) · Vimeo (<code>vimeo.com/ID</code>) · Instagram Reel (use the embed URL from the share menu) · Direct <code>.mp4</code> URLs</p>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-title">👤 Coach Profile Video</div>
-          <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Appears in "Meet the Coach" alongside your photo and bio.</p>
-          <div class="field"><label>YouTube or Vimeo Link</label><input type="url" id="f-coach-vid2" placeholder="https://youtube.com/watch?v=…"/></div>
-          <button class="save-btn" onclick="saveCoachVid2()">💾 Save Video</button>
-          <span class="save-toast" id="toast-cv2">✅ Saved!</span>
-        </div>
-        <div class="card-info">
-          <p>✅ Supported: <strong>YouTube</strong> <code>youtube.com/watch?v=ID</code> · <strong>YouTube Short</strong> <code>youtu.be/ID</code> · <strong>YouTube Shorts</strong> <code>youtube.com/shorts/ID</code> · <strong>Vimeo</strong> <code>vimeo.com/ID</code></p>
+
+        <!-- Upload tab -->
+        <div class="tab-content" id="vtab-upload">
+          <div class="card">
+            <div class="card-title">📁 Upload Main Video File</div>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Upload directly from your device. Supports MP4, MOV, AVI, WebM, and more.</p>
+            <div class="vid-upload-area" id="main-upload-area">
+              <input type="file" id="main-vid-file" accept="video/*,.mov,.mp4,.avi,.webm,.mkv" onchange="handleVidUpload(this,'main')"/>
+              <div class="vid-upload-icon">🎬</div>
+              <p>Click to upload a video file</p>
+              <small>MP4 · MOV · AVI · WebM · MKV — max recommended 100MB</small>
+            </div>
+            <div class="vid-preview" id="main-vid-preview">
+              <video id="main-vid-player" controls></video>
+              <div class="vid-filename" id="main-vid-name"></div>
+            </div>
+            <button class="save-btn" style="margin-top:14px;" onclick="saveUploadedVid('main')">💾 Use This Video</button>
+            <span class="save-toast" id="toast-main-upload">✅ Video set!</span>
+          </div>
+          <div class="card">
+            <div class="card-title">👤 Upload Coach Profile Video File</div>
+            <div class="vid-upload-area">
+              <input type="file" id="coach-vid-file" accept="video/*,.mov,.mp4,.avi,.webm,.mkv" onchange="handleVidUpload(this,'coach')"/>
+              <div class="vid-upload-icon">📹</div>
+              <p>Click to upload a coach video file</p>
+              <small>MP4 · MOV · AVI · WebM · MKV</small>
+            </div>
+            <div class="vid-preview" id="coach-vid-preview">
+              <video id="coach-vid-player" controls></video>
+              <div class="vid-filename" id="coach-vid-name"></div>
+            </div>
+            <button class="save-btn" style="margin-top:14px;" onclick="saveUploadedVid('coach')">💾 Use This Video</button>
+            <span class="save-toast" id="toast-coach-upload">✅ Video set!</span>
+          </div>
+          <div class="card-warn"><p>⚠️ <strong>Note on file uploads:</strong> Uploaded video files are stored in your browser's local storage. For the best experience on GitHub Pages, use YouTube or Vimeo links — they load faster and work for all visitors. File uploads are great for previewing locally.</p></div>
         </div>
       </div>
 
       <!-- ═══ BOOKING ═══ -->
       <div class="panel" id="panel-booking">
-        <div class="panel-header">
-          <h1>Booking Calendar</h1>
-          <p>Switch your booking calendar anytime — Google Calendar, Calendly, Acuity, or any link.</p>
-        </div>
+        <div class="panel-header"><h1>Booking Calendar</h1><p>Switch your booking platform anytime — Google Calendar, Calendly, Acuity, or any booking link.</p></div>
         <div class="card">
           <div class="card-title">📅 Booking Link</div>
-          <div class="field">
-            <label>Current Booking URL</label>
-            <input type="url" id="f-cal" placeholder="https://calendar.app.google/… or https://calendly.com/…" value="https://calendar.app.google/jjBL5JpYhD1RSURFA"/>
-            <div class="field-hint">Calendly links embed directly. Google Calendar and other links open in a new tab.</div>
-          </div>
+          <div class="field"><label>Current Booking URL</label><input type="url" id="f-cal" placeholder="https://calendar.app.google/… or https://calendly.com/…" value="https://calendar.app.google/jjBL5JpYhD1RSURFA"/><div class="field-hint">Calendly links embed inline. Google Calendar and others open in a new tab via a button.</div></div>
           <button class="save-btn" onclick="saveCal()">💾 Save Calendar Link</button>
           <span class="save-toast" id="toast-cal">✅ Saved!</span>
         </div>
-        <div class="card-info">
-          <p>🔄 Compatible: <strong>Calendly</strong> (embeds) · <strong>Google Calendar</strong> (button link) · <strong>Acuity</strong> · <strong>SimplyBook.me</strong> · Any booking URL</p>
+        <div class="card-info"><p>🔄 Compatible: <strong>Calendly</strong> (embeds) · <strong>Google Calendar</strong> (button link) · <strong>Acuity</strong> · <strong>SimplyBook.me</strong> · Any booking URL</p></div>
+      </div>
+
+      <!-- ═══ HERO & TICKER ═══ -->
+      <div class="panel" id="panel-hero">
+        <div class="panel-header"><h1>Hero &amp; Ticker Text</h1><p>Edit the tagline under "Build Confidence." and the scrolling words in the ticker strip.</p></div>
+        <div class="card">
+          <div class="card-title">✏️ Hero Tagline</div>
+          <div class="field"><label>Tagline</label><textarea id="f-tagline" rows="3" placeholder="Fun, foundational, and fierce — coaching gymnasts of every age…"></textarea><div class="field-hint">Appears under the main headline. Keep it short and inspiring.</div></div>
+          <button class="save-btn" onclick="saveHero()">💾 Save Tagline</button>
+          <span class="save-toast" id="toast-hero">✅ Saved!</span>
+        </div>
+        <div class="card">
+          <div class="card-title">🎞️ Ticker Strip Words</div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">These words scroll across the pink strip below the hero. Add, edit, or remove any of them. Separate with Enter (one per line).</p>
+          <div class="field"><label>Words / Phrases (one per line)</label><textarea id="f-ticker" rows="10" placeholder="KM FITNESS COACH&#10;YOUTH GYMNASTICS&#10;PRIVATE COACHING&#10;COMPETITIVE TRAINING&#10;FUN &amp; FOUNDATIONAL&#10;ALL AGES WELCOME&#10;TODDLERS TO TEENS&#10;STATE COLLEGE PA"></textarea></div>
+          <button class="save-btn" onclick="saveTicker()">💾 Save Ticker</button>
+          <span class="save-toast" id="toast-ticker">✅ Saved!</span>
         </div>
       </div>
 
-      <!-- ═══ HERO TEXT ═══ -->
-      <div class="panel" id="panel-hero">
-        <div class="panel-header">
-          <h1>Hero Text</h1>
-          <p>Edit the tagline shown below "Build Confidence." on your homepage.</p>
-        </div>
+      <!-- ═══ LOGOS & BRANDING ═══ -->
+      <div class="panel" id="panel-logos">
+        <div class="panel-header"><h1>Logos &amp; Branding</h1><p>Upload new logos anytime — if your brand changes, just upload here and the site updates everywhere automatically.</p></div>
+        <div class="card-info"><p>🎨 <strong>How logos are used:</strong> <strong>Horizontal Logo</strong> — nav bar &amp; footer. <strong>Vertical Logo</strong> — hero section &amp; admin login. <strong>Logo Mark</strong> — about circle, favicon, and icon uses. Upload new versions below to replace them sitewide.</p></div>
         <div class="card">
-          <div class="card-title">✏️ Hero Tagline</div>
-          <div class="field"><label>Tagline</label><textarea id="f-tagline" rows="3" placeholder="Fun, foundational, and fierce — coaching gymnasts of every age…"></textarea><div class="field-hint">Keep it short and inspiring — 1-2 sentences.</div></div>
-          <button class="save-btn" onclick="saveHero()">💾 Save</button>
-          <span class="save-toast" id="toast-hero">✅ Saved!</span>
+          <div class="card-title">🖼️ Upload New Logos</div>
+          <div class="logo-upload-grid">
+
+            <div class="logo-slot">
+              <div class="logo-slot-label">Horizontal Logo</div>
+              <div class="logo-slot-use">Used in: Navigation bar, Footer</div>
+              <div class="logo-preview-wrap" id="h-logo-preview-wrap"><img id="h-logo-preview" src="Horizontal_Logo.png" alt="Horizontal Logo"/></div>
+              <div class="logo-upload-btn">
+                <input type="file" accept="image/*,.svg,.png,.jpg,.webp" onchange="handleLogoUpload(this,'horizontal')"/>
+                <div class="logo-upload-btn-inner">📁 Upload New</div>
+              </div>
+              <button class="logo-restore-btn" onclick="restoreLogo('horizontal')">↩ Restore original</button>
+            </div>
+
+            <div class="logo-slot">
+              <div class="logo-slot-label">Vertical Logo</div>
+              <div class="logo-slot-use">Used in: Hero section, Admin login screen</div>
+              <div class="logo-preview-wrap" id="v-logo-preview-wrap"><img id="v-logo-preview" src="Vertical_Logo.png" alt="Vertical Logo"/></div>
+              <div class="logo-upload-btn">
+                <input type="file" accept="image/*,.svg,.png,.jpg,.webp" onchange="handleLogoUpload(this,'vertical')"/>
+                <div class="logo-upload-btn-inner">📁 Upload New</div>
+              </div>
+              <button class="logo-restore-btn" onclick="restoreLogo('vertical')">↩ Restore original</button>
+            </div>
+
+            <div class="logo-slot">
+              <div class="logo-slot-label">Logo Mark (Icon)</div>
+              <div class="logo-slot-use">Used in: About circle, Browser tab favicon, Icons</div>
+              <div class="logo-preview-wrap" id="m-logo-preview-wrap"><img id="m-logo-preview" src="Logo_Mark.png" alt="Logo Mark"/></div>
+              <div class="logo-upload-btn">
+                <input type="file" accept="image/*,.svg,.png,.jpg,.webp" onchange="handleLogoUpload(this,'mark')"/>
+                <div class="logo-upload-btn-inner">📁 Upload New</div>
+              </div>
+              <button class="logo-restore-btn" onclick="restoreLogo('mark')">↩ Restore original</button>
+            </div>
+
+          </div>
+          <div style="margin-top:16px;">
+            <button class="save-btn" onclick="saveLogos()">💾 Apply Logo Changes to Site</button>
+            <span class="save-toast" id="toast-logos">✅ Logos updated!</span>
+          </div>
+        </div>
+        <div class="card-warn"><p>⚠️ <strong>File format tip:</strong> PNG with transparent background works best. SVG is ideal for logos (scales perfectly). After saving, refresh your website to see the updated logos in all locations.</p></div>
+      </div>
+
+      <!-- ═══ MESSAGES INBOX ═══ -->
+      <div class="panel" id="panel-messages">
+        <div class="panel-header"><h1>Messages Inbox</h1><p>All messages submitted through the "Get In Touch" contact form appear here.</p></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
+          <div class="msg-filters">
+            <button class="msg-filter-btn active" onclick="filterMsgs('all',this)">All</button>
+            <button class="msg-filter-btn" onclick="filterMsgs('unread',this)">Unread</button>
+            <button class="msg-filter-btn" onclick="filterMsgs('read',this)">Read</button>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="save-btn" style="padding:8px 16px;" onclick="markAllRead()">✅ Mark All Read</button>
+            <button class="del-btn" onclick="clearAllMsgs()">🗑 Clear All</button>
+          </div>
+        </div>
+        <div id="messages-list"><p class="msg-empty">No messages yet. When customers submit the contact form, messages will appear here.</p></div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <button class="save-btn" onclick="exportMessages()">⬇️ Export as CSV</button>
+          <span style="font-size:11px;color:var(--muted);" id="msg-count-label"></span>
+        </div>
+      </div>
+
+      <!-- ═══ ANALYTICS ═══ -->
+      <div class="panel" id="panel-analytics">
+        <div class="panel-header"><h1>Analytics &amp; Reports</h1><p>Track messages, reviews, and website activity. Configure automatic report frequency below.</p></div>
+
+        <!-- Live stats -->
+        <div class="card">
+          <div class="card-title">📊 Current Stats Snapshot</div>
+          <div class="analytics-grid">
+            <div class="analytics-stat"><div class="analytics-stat-label">Total Messages</div><div class="analytics-stat-val" id="an-msgs">0</div><div class="analytics-stat-sub">All time</div></div>
+            <div class="analytics-stat"><div class="analytics-stat-label">Published Reviews</div><div class="analytics-stat-val" id="an-reviews">0</div><div class="analytics-stat-sub">Visible on site</div></div>
+            <div class="analytics-stat"><div class="analytics-stat-label">Pending Reviews</div><div class="analytics-stat-val" id="an-pending">0</div><div class="analytics-stat-sub">Awaiting approval</div></div>
+            <div class="analytics-stat"><div class="analytics-stat-label">Programs Listed</div><div class="analytics-stat-val" id="an-programs">0</div><div class="analytics-stat-sub">On website</div></div>
+            <div class="analytics-stat"><div class="analytics-stat-label">Avg Star Rating</div><div class="analytics-stat-val" id="an-avg-stars">–</div><div class="analytics-stat-sub">From reviews</div></div>
+            <div class="analytics-stat"><div class="analytics-stat-label">Unread Messages</div><div class="analytics-stat-val" id="an-unread">0</div><div class="analytics-stat-sub">Need attention</div></div>
+          </div>
+        </div>
+
+        <!-- Report settings -->
+        <div class="card">
+          <div class="card-title">⚙️ Report Schedule</div>
+          <div class="report-status" id="report-status-bar">
+            <div class="dot dot-green" id="report-dot"></div>
+            <span id="report-status-text" style="font-size:13px;font-weight:600;color:var(--text);">Reports: On — Weekly</span>
+          </div>
+          <div class="toggle-row" style="margin-bottom:16px;">
+            <label class="tog"><input type="checkbox" id="reports-toggle" checked onchange="updateReportStatus()"/><div class="tog-slider"></div></label>
+            <span class="tog-label">Enable automatic reports</span>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Report Frequency:</p>
+          <div class="report-settings">
+            <button class="report-freq-btn" onclick="setFreq('off',this)">Off</button>
+            <button class="report-freq-btn active" onclick="setFreq('weekly',this)">Weekly</button>
+            <button class="report-freq-btn" onclick="setFreq('monthly',this)">Monthly</button>
+            <button class="report-freq-btn" onclick="setFreq('custom',this)">Custom Range</button>
+          </div>
+          <div class="custom-date-range" id="custom-date-range">
+            <div><label style="font-size:10px;color:var(--blue);letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:5px;">From</label><input type="date" id="date-from"/></div>
+            <div><label style="font-size:10px;color:var(--blue);letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:5px;">To</label><input type="date" id="date-to"/></div>
+          </div>
+          <button class="save-btn" style="margin-top:14px;" onclick="saveReportSettings()">💾 Save Settings</button>
+          <span class="save-toast" id="toast-report-set">✅ Settings saved!</span>
+        </div>
+
+        <!-- Report preview + download -->
+        <div class="card">
+          <div class="card-title">📄 Generate Report</div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Preview your report below, then download it as a text file to save or share.</p>
+          <button class="save-btn" style="background:var(--blue);margin-bottom:14px;" onclick="generateReport()">🔄 Generate Report Now</button>
+          <div class="report-preview" id="report-preview">Click "Generate Report Now" to preview your summary report...</div>
+          <div style="margin-top:12px;display:flex;gap:10px;">
+            <button class="save-btn" onclick="downloadReport()">⬇️ Download as .txt</button>
+            <button class="save-btn" style="background:rgba(34,197,94,.2);color:var(--green);border:1px solid rgba(34,197,94,.3);" onclick="downloadReportCSV()">⬇️ Download as CSV</button>
+          </div>
         </div>
       </div>
 
       <!-- ═══ PASSWORD ═══ -->
       <div class="panel" id="panel-password">
-        <div class="panel-header">
-          <h1>Change Password</h1>
-          <p>Update your admin panel password.</p>
-        </div>
+        <div class="panel-header"><h1>Change Password</h1><p>Update your admin panel access password.</p></div>
         <div class="card" style="max-width:440px;">
           <div class="card-title">🔒 Update Password</div>
-          <p class="pw-note">Your password is stored locally. Default is <code>KMfitness2026</code> — change it to something personal.</p>
+          <p class="pw-note">Default password is <code>KMfitness2026</code> — change it to something personal that you'll remember.</p>
           <div class="field"><label>Current Password</label><input type="password" id="pw-current" placeholder="Current password"/></div>
           <div class="field"><label>New Password</label><input type="password" id="pw-new" placeholder="New password (min 6 chars)"/></div>
           <div class="field"><label>Confirm New Password</label><input type="password" id="pw-confirm" placeholder="Repeat new password"/></div>
           <button class="save-btn" onclick="changePassword()">🔒 Update Password</button>
           <span class="save-toast" id="toast-pw">✅ Password updated!</span>
-          <p id="pw-error" style="color:#F87171;font-size:12px;margin-top:10px;display:none;"></p>
+          <p id="pw-error" style="color:#F87171;font-size:12px;margin-top:8px;display:none;"></p>
         </div>
       </div>
 
@@ -515,9 +692,7 @@
 </div><!-- /admin-shell -->
 
 <script>
-/* ══════════════════════════════
-   AUTH
-══════════════════════════════ */
+/* ═══════════════ AUTH ═══════════════ */
 const DEFAULT_PW='KMfitness2026';
 function getPassword(){return localStorage.getItem('km_admin_pw')||DEFAULT_PW;}
 function tryLogin(){
@@ -538,9 +713,7 @@ if(sessionStorage.getItem('km_authed')==='1'){
   document.getElementById('admin-shell').style.display='block';
 }
 
-/* ══════════════════════════════
-   NAV
-══════════════════════════════ */
+/* ═══════════════ NAV ═══════════════ */
 function showPanel(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.sidebar-btn').forEach(b=>b.classList.remove('active'));
@@ -548,11 +721,21 @@ function showPanel(id){
   document.querySelectorAll('.sidebar-btn').forEach(b=>{
     if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+id+"'")){b.classList.add('active');}
   });
+  if(id==='messages')loadMessagesUI();
+  if(id==='analytics')updateAnalytics();
+  if(id==='pending')loadPendingUI();
+  if(id==='reviews')loadReviewsUI();
+  if(id==='programs')loadProgramsUI();
+  if(id==='contact')loadContactUI();
+}
+function switchVidTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('vtab-'+tab).classList.add('active');
+  event.target.classList.add('active');
 }
 
-/* ══════════════════════════════
-   DATA
-══════════════════════════════ */
+/* ═══════════════ DATA ═══════════════ */
 function getData(){try{return JSON.parse(localStorage.getItem('km_admin')||'{}');}catch(e){return{};}}
 function setData(d){localStorage.setItem('km_admin',JSON.stringify(d));}
 function parseVid(u){
@@ -561,59 +744,53 @@ function parseVid(u){
   if(u.includes('youtu.be/')){id=u.split('youtu.be/')[1].split('?')[0];if(id)return'https://www.youtube.com/embed/'+id;}
   if(u.includes('youtube.com/shorts/')){id=u.split('shorts/')[1].split('?')[0];if(id)return'https://www.youtube.com/embed/'+id;}
   if(u.includes('vimeo.com/')){id=u.split('vimeo.com/')[1].split('?')[0];if(id)return'https://player.vimeo.com/video/'+id;}
-  return'';
+  return u;
 }
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function starsStr(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
 function toast(id){const el=document.getElementById('toast-'+id);if(!el)return;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2800);}
-function stars(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
 
-/* ══════════════════════════════
-   INIT
-══════════════════════════════ */
+/* ═══════════════ INIT ═══════════════ */
 function init(){
-  loadCoachFields();
-  loadReviewsUI();
-  loadProgramsUI();
-  loadContactUI();
-  loadMiscFields();
-  updateDash();
+  loadCoachFields();loadReviewsUI();loadPendingUI();loadProgramsUI();
+  loadContactUI();loadMiscFields();loadLogos();loadMessagesUI();
+  updateAnalytics();updateDash();updateReportStatus();
 }
-if(sessionStorage.getItem('km_authed')==='1') init();
+if(sessionStorage.getItem('km_authed')==='1')init();
 
-/* ══════════════════════════════
-   DASHBOARD
-══════════════════════════════ */
+/* ═══════════════ DASHBOARD ═══════════════ */
 function updateDash(){
   const d=getData();
-  document.getElementById('ds-coach').innerHTML=d.coachName?'✅':'❌';
   const rv=(d.reviews||[]).filter(r=>r.visible!==false).length;
+  const pd=(d.pendingReviews||[]).length;
+  const msgs=(d.messages||[]).length;
+  const progs=(d.programs||[]).length;
+  const unread=(d.messages||[]).filter(m=>!m.read).length;
   document.getElementById('ds-reviews').textContent=rv;
-  document.getElementById('ds-programs').textContent=(d.programs||[]).length;
-  document.getElementById('ds-cal').innerHTML=d.calUrl?'✅':'❌';
-  const total=(d.reviews||[]).length;
-  document.getElementById('review-count').textContent=total;
-  document.getElementById('review-total-label').textContent=total+' total, '+rv+' visible';
+  document.getElementById('ds-pending').textContent=pd;
+  document.getElementById('ds-msgs').textContent=msgs;
+  document.getElementById('ds-programs').textContent=progs;
+  document.getElementById('sb-reviews').textContent=rv;
+  document.getElementById('sb-pending').textContent=pd;
+  document.getElementById('sb-msgs').textContent=unread||msgs;
+  const rc=document.getElementById('rv-count-label');if(rc)rc.textContent=`${rv} visible, ${(d.reviews||[]).length} total`;
 }
 
-/* ══════════════════════════════
-   COACH
-══════════════════════════════ */
+/* ═══════════════ COACH ═══════════════ */
 function loadCoachFields(){
   const d=getData();
-  if(d.coachName)  document.getElementById('f-name').value=d.coachName;
-  if(d.coachTitle) document.getElementById('f-title').value=d.coachTitle;
-  if(d.coachBio)   document.getElementById('f-bio').value=d.coachBio;
-  if(d.coachCerts) document.getElementById('f-certs').value=d.coachCerts;
-  if(d.coachVid)   document.getElementById('f-coach-vid').value=d.coachVid;
+  if(d.coachName)document.getElementById('f-name').value=d.coachName;
+  if(d.coachTitle)document.getElementById('f-title').value=d.coachTitle;
+  if(d.coachBio)document.getElementById('f-bio').value=d.coachBio;
+  if(d.coachCerts)document.getElementById('f-certs').value=d.coachCerts;
+  if(d.coachVid)document.getElementById('f-coach-vid').value=d.coachVid;
   if(d.coachPhoto){document.getElementById('photo-preview').style.display='block';document.getElementById('photo-preview-img').src=d.coachPhoto;}
 }
 function handlePhoto(input){
   if(!input.files||!input.files[0])return;
   const r=new FileReader();
-  r.onload=e=>{
-    document.getElementById('photo-preview').style.display='block';
-    document.getElementById('photo-preview-img').src=e.target.result;
-    const d=getData();d.coachPhoto=e.target.result;setData(d);toast('coach');
-  };r.readAsDataURL(input.files[0]);
+  r.onload=e=>{document.getElementById('photo-preview').style.display='block';document.getElementById('photo-preview-img').src=e.target.result;const d=getData();d.coachPhoto=e.target.result;setData(d);toast('coach');};
+  r.readAsDataURL(input.files[0]);
 }
 function saveCoach(){
   const d=getData();
@@ -626,9 +803,7 @@ function saveCoach(){
   setData(d);toast('coach');updateDash();
 }
 
-/* ══════════════════════════════
-   REVIEWS
-══════════════════════════════ */
+/* ═══════════════ REVIEWS ═══════════════ */
 function getReviews(){return getData().reviews||[];}
 function saveReviewsData(rv){const d=getData();d.reviews=rv;setData(d);updateDash();}
 
@@ -636,310 +811,407 @@ function addReview(){
   const name=document.getElementById('nr-name').value.trim();
   const role=document.getElementById('nr-role').value.trim();
   const text=document.getElementById('nr-text').value.trim();
-  const stars_n=parseInt(document.getElementById('nr-stars').value);
+  const s=parseInt(document.getElementById('nr-stars').value);
   if(!name||!text){alert('Please fill in Name and Review Text.');return;}
   const rv=getReviews();
-  rv.push({id:Date.now(),name,role,text,stars:stars_n,visible:true,reply:''});
-  saveReviewsData(rv);
-  document.getElementById('nr-name').value='';
-  document.getElementById('nr-role').value='';
-  document.getElementById('nr-text').value='';
-  document.getElementById('nr-stars').value='5';
-  loadReviewsUI();toast('add-review');
+  rv.push({id:Date.now(),name,role,text,stars:s,visible:true,reply:''});
+  saveReviewsData(rv);loadReviewsUI();
+  document.getElementById('nr-name').value='';document.getElementById('nr-role').value='';document.getElementById('nr-text').value='';
+  toast('add-review');
 }
 
 function loadReviewsUI(){
-  const rv=getReviews();
-  const list=document.getElementById('review-list');
+  const rv=getReviews();const list=document.getElementById('review-list');
   if(!rv.length){list.innerHTML='<p style="color:var(--muted);font-size:13px;font-style:italic;">No reviews yet. Add one above!</p>';return;}
-  list.innerHTML=rv.map((r,i)=>`
-    <div class="review-item" id="ritem-${r.id}">
-      <div class="review-item-header">
-        <div class="review-item-meta">
-          <div class="review-author-name">${esc(r.name)} <span class="status-badge ${r.visible!==false?'badge-visible':'badge-hidden'}">${r.visible!==false?'Visible':'Hidden'}</span></div>
-          <div class="review-author-role">${esc(r.role||'')}</div>
-          <div class="review-stars">${stars(r.stars||5)}</div>
+  list.innerHTML=rv.map(r=>`
+    <div class="review-item">
+      <div class="review-item-top">
+        <div class="review-meta">
+          <div class="name">${esc(r.name)} <span class="badge ${r.visible!==false?'badge-green':'badge-red'}">${r.visible!==false?'Visible':'Hidden'}</span></div>
+          <div class="role">${esc(r.role||'')}</div>
+          <div class="review-stars-disp">${starsStr(r.stars||5)}</div>
         </div>
         <div class="review-actions">
-          <button class="edit-inline-btn" onclick="toggleReviewEdit(${r.id})">✏️ Edit</button>
-          <button class="edit-inline-btn" onclick="toggleReviewReply(${r.id})" style="border-color:rgba(59,130,246,.4);color:var(--blue);">💬 Reply</button>
-          <button class="edit-inline-btn" onclick="toggleReviewVisible(${r.id})" style="border-color:rgba(245,158,11,.4);color:var(--amber);">${r.visible!==false?'👁 Hide':'👁 Show'}</button>
+          <button class="edit-btn" onclick="toggleEl('redit-${r.id}')">✏️ Edit</button>
+          <button class="edit-btn" style="border-color:rgba(59,130,246,.4);color:var(--blue);" onclick="toggleEl('rreply-${r.id}')">💬 Reply</button>
+          <button class="edit-btn" style="border-color:rgba(245,158,11,.4);color:var(--amber);" onclick="toggleVisible(${r.id})">${r.visible!==false?'👁 Hide':'👁 Show'}</button>
           <button class="del-btn" onclick="deleteReview(${r.id})">🗑 Delete</button>
         </div>
       </div>
-      <div class="review-text">"${esc(r.text)}"</div>
-      ${r.reply?`<div class="review-reply"><strong>📣 Your Reply</strong>${esc(r.reply)}</div>`:''}
-
-      <!-- Edit form -->
+      <div class="review-text-disp">"${esc(r.text)}"</div>
+      ${r.reply?`<div class="review-reply-disp"><strong>📣 Your Reply</strong>${esc(r.reply)}</div>`:''}
       <div class="review-edit-form" id="redit-${r.id}">
-        <div class="field-row">
-          <div class="field"><label>Name</label><input type="text" id="re-name-${r.id}" value="${esc(r.name)}"/></div>
-          <div class="field"><label>Role</label><input type="text" id="re-role-${r.id}" value="${esc(r.role||'')}"/></div>
-        </div>
-        <div class="field"><label>Stars</label>
-          <select id="re-stars-${r.id}">
-            <option value="5" ${r.stars==5?'selected':''}>★★★★★ 5</option>
-            <option value="4" ${r.stars==4?'selected':''}>★★★★☆ 4</option>
-            <option value="3" ${r.stars==3?'selected':''}>★★★☆☆ 3</option>
-            <option value="2" ${r.stars==2?'selected':''}>★★☆☆☆ 2</option>
-            <option value="1" ${r.stars==1?'selected':''}>★☆☆☆☆ 1</option>
-          </select>
-        </div>
+        <div class="field-row"><div class="field"><label>Name</label><input type="text" id="re-name-${r.id}" value="${esc(r.name)}"/></div><div class="field"><label>Role</label><input type="text" id="re-role-${r.id}" value="${esc(r.role||'')}"/></div></div>
+        <div class="field"><label>Stars</label><select id="re-stars-${r.id}"><option value="5" ${r.stars==5?'selected':''}>★★★★★</option><option value="4" ${r.stars==4?'selected':''}>★★★★☆</option><option value="3" ${r.stars==3?'selected':''}>★★★☆☆</option><option value="2" ${r.stars==2?'selected':''}>★★☆☆☆</option><option value="1" ${r.stars==1?'selected':''}>★☆☆☆☆</option></select></div>
         <div class="field"><label>Review Text</label><textarea id="re-text-${r.id}" rows="3">${esc(r.text)}</textarea></div>
-        <button class="save-btn" style="padding:9px 20px;font-size:10px;" onclick="saveEditReview(${r.id})">💾 Save Edit</button>
-        <button class="del-btn" style="margin-left:8px;" onclick="toggleReviewEdit(${r.id})">✕ Cancel</button>
+        <button class="save-btn" style="padding:8px 18px;font-size:10px;" onclick="saveEditReview(${r.id})">💾 Save Edit</button>
+        <button class="del-btn" style="margin-left:7px;" onclick="toggleEl('redit-${r.id}')">✕ Cancel</button>
       </div>
-
-      <!-- Reply form -->
-      <div class="reply-area" id="rreply-${r.id}" style="display:none;">
-        <label>📣 Your Reply to this Review</label>
-        <textarea id="rr-text-${r.id}" rows="3" placeholder="Write your reply — this will appear publicly below the review…">${esc(r.reply||'')}</textarea>
-        <div class="reply-actions">
+      <div class="reply-box" id="rreply-${r.id}">
+        <label>📣 Your Reply</label>
+        <textarea id="rr-text-${r.id}" rows="3" placeholder="Write your reply — appears publicly below the review…">${esc(r.reply||'')}</textarea>
+        <div class="reply-box-btns">
           <button class="reply-save-btn" onclick="saveReply(${r.id})">💾 Save Reply</button>
-          <button class="del-btn" onclick="deleteReply(${r.id})">🗑 Remove Reply</button>
-          <button class="del-btn" style="border-color:var(--dark-border);color:var(--muted);" onclick="toggleReviewReply(${r.id})">✕ Cancel</button>
+          <button class="del-btn" onclick="delReply(${r.id})">🗑 Remove Reply</button>
+          <button class="del-btn" style="border-color:var(--dark-border);color:var(--muted);" onclick="toggleEl('rreply-${r.id}')">✕ Close</button>
         </div>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
+  updateDash();
 }
-
-function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-
-function toggleReviewEdit(id){const el=document.getElementById('redit-'+id);el.classList.toggle('open');}
-function toggleReviewReply(id){const el=document.getElementById('rreply-'+id);el.style.display=el.style.display==='none'?'block':'none';}
-
-function toggleReviewVisible(id){
-  const rv=getReviews();const i=rv.findIndex(r=>r.id===id);if(i<0)return;
-  rv[i].visible=rv[i].visible===false?true:false;
-  saveReviewsData(rv);loadReviewsUI();
-}
-function deleteReview(id){
-  if(!confirm('Delete this review?'))return;
-  const rv=getReviews().filter(r=>r.id!==id);
-  saveReviewsData(rv);loadReviewsUI();
-}
+function toggleEl(id){const el=document.getElementById(id);if(!el)return;el.classList.toggle('open');if(el.tagName==='DIV'&&el.style.display!==undefined&&!el.classList.contains('open')&&!el.classList.contains('reply-box')){}
+  if(el.classList.contains('reply-box'))el.style.display=el.style.display==='none'||!el.style.display?'block':'none';}
+function toggleVisible(id){const rv=getReviews();const i=rv.findIndex(r=>r.id===id);if(i<0)return;rv[i].visible=rv[i].visible===false;saveReviewsData(rv);loadReviewsUI();}
+function deleteReview(id){if(!confirm('Delete this review permanently?'))return;saveReviewsData(getReviews().filter(r=>r.id!==id));loadReviewsUI();}
 function saveEditReview(id){
   const rv=getReviews();const i=rv.findIndex(r=>r.id===id);if(i<0)return;
-  rv[i].name=document.getElementById('re-name-'+id).value.trim();
-  rv[i].role=document.getElementById('re-role-'+id).value.trim();
-  rv[i].text=document.getElementById('re-text-'+id).value.trim();
-  rv[i].stars=parseInt(document.getElementById('re-stars-'+id).value);
+  rv[i].name=document.getElementById('re-name-'+id).value.trim();rv[i].role=document.getElementById('re-role-'+id).value.trim();
+  rv[i].text=document.getElementById('re-text-'+id).value.trim();rv[i].stars=parseInt(document.getElementById('re-stars-'+id).value);
   saveReviewsData(rv);loadReviewsUI();toast('reviews');
 }
-function saveReply(id){
-  const rv=getReviews();const i=rv.findIndex(r=>r.id===id);if(i<0)return;
-  rv[i].reply=document.getElementById('rr-text-'+id).value.trim();
-  saveReviewsData(rv);loadReviewsUI();toast('reviews');
-}
-function deleteReply(id){
-  const rv=getReviews();const i=rv.findIndex(r=>r.id===id);if(i<0)return;
-  rv[i].reply='';saveReviewsData(rv);loadReviewsUI();
-}
-function saveReviews(){saveReviewsData(getReviews());toast('reviews');}
+function saveReply(id){const rv=getReviews();const i=rv.findIndex(r=>r.id===id);if(i<0)return;rv[i].reply=document.getElementById('rr-text-'+id).value.trim();saveReviewsData(rv);loadReviewsUI();toast('reviews');}
+function delReply(id){const rv=getReviews();const i=rv.findIndex(r=>r.id===id);if(i<0)return;rv[i].reply='';saveReviewsData(rv);loadReviewsUI();}
 
-/* ══════════════════════════════
-   PROGRAMS
-══════════════════════════════ */
+/* ═══════════════ PENDING REVIEWS ═══════════════ */
+function loadPendingUI(){
+  const d=getData();const pending=d.pendingReviews||[];
+  const list=document.getElementById('pending-list');
+  if(!pending.length){list.innerHTML='<p class="msg-empty">No pending reviews — you\'re all caught up! 🎉</p>';return;}
+  list.innerHTML=pending.map(r=>`
+    <div class="review-item" style="border-color:rgba(245,158,11,.3);">
+      <div class="review-item-top">
+        <div class="review-meta">
+          <div class="name">${esc(r.name)} <span class="badge badge-amber">Pending</span></div>
+          <div class="role">${esc(r.role||'')}</div>
+          <div class="review-stars-disp">${starsStr(r.stars||5)}</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Submitted: ${new Date(r.submittedAt||r.id).toLocaleDateString()}</div>
+        </div>
+        <div class="review-actions">
+          <button class="approve-btn" onclick="approveReview(${r.id})">✅ Approve &amp; Publish</button>
+          <button class="del-btn" onclick="deletePending(${r.id})">🗑 Delete (Offensive/Spam)</button>
+        </div>
+      </div>
+      <div class="review-text-disp">"${esc(r.text)}"</div>
+    </div>`).join('');
+  document.getElementById('sb-pending').textContent=pending.length;
+}
+function approveReview(id){
+  const d=getData();
+  const pending=d.pendingReviews||[];const i=pending.findIndex(r=>r.id===id);if(i<0)return;
+  const r=pending[i];r.visible=true;r.pending=false;
+  const reviews=d.reviews||[];reviews.push(r);
+  d.reviews=reviews;d.pendingReviews=pending.filter(r=>r.id!==id);
+  setData(d);loadPendingUI();loadReviewsUI();updateDash();
+  alert('✅ Review approved and published!');
+}
+function deletePending(id){
+  if(!confirm('Delete this review permanently? This cannot be undone.'))return;
+  const d=getData();d.pendingReviews=(d.pendingReviews||[]).filter(r=>r.id!==id);
+  setData(d);loadPendingUI();updateDash();
+}
+
+/* ═══════════════ PROGRAMS ═══════════════ */
 const DEFAULT_PROGRAMS=[
   {id:1,icon:'🤸',title:'Group Classes',desc:'Structured, high-energy group sessions where young gymnasts build foundational skills together. Perfect for confidence and coordination.',price:'From $25/class',featured:false},
   {id:2,icon:'⭐',title:'Private 1-on-1 Coaching',desc:'Dedicated sessions focused entirely on your athlete. A tailored training plan built around their unique strengths, goals, and timeline.',price:'From $75/hour',featured:true},
   {id:3,icon:'🏆',title:'Competitive Training',desc:'For serious athletes with competition goals. Polished routines, mental toughness, and full preparation for regional and national events.',price:'Custom Packages',featured:false},
 ];
-function getPrograms(){const d=getData();return d.programs&&d.programs.length?d.programs:DEFAULT_PROGRAMS;}
+function getPrograms(){const d=getData();return d.programs&&d.programs.length?d.programs:JSON.parse(JSON.stringify(DEFAULT_PROGRAMS));}
 function saveProgramsData(p){const d=getData();d.programs=p;setData(d);updateDash();}
-
 function addProgram(){
-  const title=document.getElementById('np-title').value.trim();
-  const desc=document.getElementById('np-desc').value.trim();
-  const price=document.getElementById('np-price').value.trim();
-  const icon=document.getElementById('np-icon').value.trim()||'🤸';
+  const title=document.getElementById('np-title').value.trim();const desc=document.getElementById('np-desc').value.trim();
+  const price=document.getElementById('np-price').value.trim();const icon=document.getElementById('np-icon').value.trim()||'🤸';
   const featured=document.getElementById('np-featured').value==='1';
   if(!title){alert('Please enter a program name.');return;}
-  const progs=getPrograms();
-  if(featured)progs.forEach(p=>p.featured=false);
+  const progs=getPrograms();if(featured)progs.forEach(p=>p.featured=false);
   progs.push({id:Date.now(),icon,title,desc,price,featured});
   saveProgramsData(progs);loadProgramsUI();
-  document.getElementById('np-title').value='';document.getElementById('np-desc').value='';
-  document.getElementById('np-price').value='';document.getElementById('np-icon').value='';
+  document.getElementById('np-title').value='';document.getElementById('np-desc').value='';document.getElementById('np-price').value='';document.getElementById('np-icon').value='';
   toast('add-prog');
 }
-
 function loadProgramsUI(){
-  const progs=getPrograms();
-  const list=document.getElementById('program-list');
+  const progs=getPrograms();const list=document.getElementById('program-list');
   if(!progs.length){list.innerHTML='<p style="color:var(--muted);font-size:13px;font-style:italic;">No programs yet.</p>';return;}
-  list.innerHTML=progs.map((p,i)=>`
-    <div class="program-item" id="pitem-${p.id}">
-      <div class="program-item-header">
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span style="font-size:24px;">${p.icon||'🤸'}</span>
-          <div>
-            <div class="program-item-title">${esc(p.title)} ${p.featured?'<span class="status-badge badge-visible" style="margin-left:4px;">⭐ Featured</span>':''}</div>
-            <div class="program-item-price">${esc(p.price||'')}</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:8px;">
-          <button class="edit-inline-btn" onclick="toggleProgEdit(${p.id})">✏️ Edit</button>
-          <button class="del-btn" onclick="deleteProgram(${p.id})">🗑 Delete</button>
-        </div>
+  list.innerHTML=progs.map(p=>`
+    <div class="program-item">
+      <div class="program-item-top">
+        <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:22px;">${p.icon||'🤸'}</span><div><div class="program-item-title">${esc(p.title)}${p.featured?' <span class="badge badge-green">⭐ Featured</span>':''}</div><div class="program-item-price">${esc(p.price||'')}</div></div></div>
+        <div style="display:flex;gap:7px;"><button class="edit-btn" onclick="toggleProgEdit(${p.id})">✏️ Edit</button><button class="del-btn" onclick="deleteProgram(${p.id})">🗑</button></div>
       </div>
-      <div class="program-item-desc">${esc(p.desc||'')}</div>
+      <div class="program-desc-disp">${esc(p.desc||'')}</div>
       <div class="program-edit-form" id="pedit-${p.id}">
-        <div class="field-row">
-          <div class="field"><label>Icon</label><input type="text" id="pe-icon-${p.id}" value="${esc(p.icon||'')}" maxlength="4" style="font-size:18px;text-align:center;"/></div>
-          <div class="field"><label>Name</label><input type="text" id="pe-title-${p.id}" value="${esc(p.title)}"/></div>
-        </div>
+        <div class="field-row"><div class="field"><label>Icon</label><input type="text" id="pe-icon-${p.id}" value="${esc(p.icon||'')}" maxlength="4" style="font-size:16px;text-align:center;"/></div><div class="field"><label>Name</label><input type="text" id="pe-title-${p.id}" value="${esc(p.title)}"/></div></div>
         <div class="field"><label>Description</label><textarea id="pe-desc-${p.id}" rows="3">${esc(p.desc||'')}</textarea></div>
-        <div class="field-row">
-          <div class="field"><label>Price</label><input type="text" id="pe-price-${p.id}" value="${esc(p.price||'')}"/></div>
-          <div class="field"><label>Featured?</label>
-            <select id="pe-feat-${p.id}">
-              <option value="0" ${!p.featured?'selected':''}>No</option>
-              <option value="1" ${p.featured?'selected':''}>Yes — pink highlight</option>
-            </select>
-          </div>
-        </div>
-        <button class="save-btn" style="padding:9px 20px;font-size:10px;" onclick="saveEditProgram(${p.id})">💾 Save</button>
-        <button class="del-btn" style="margin-left:8px;" onclick="toggleProgEdit(${p.id})">✕ Cancel</button>
+        <div class="field-row"><div class="field"><label>Price</label><input type="text" id="pe-price-${p.id}" value="${esc(p.price||'')}"/></div><div class="field"><label>Featured?</label><select id="pe-feat-${p.id}"><option value="0" ${!p.featured?'selected':''}>No</option><option value="1" ${p.featured?'selected':''}>Yes</option></select></div></div>
+        <button class="save-btn" style="padding:8px 18px;font-size:10px;" onclick="saveEditProg(${p.id})">💾 Save</button>
+        <button class="del-btn" style="margin-left:7px;" onclick="toggleProgEdit(${p.id})">✕ Cancel</button>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
-
 function toggleProgEdit(id){document.getElementById('pedit-'+id).classList.toggle('open');}
-function deleteProgram(id){
-  if(!confirm('Delete this program?'))return;
-  saveProgramsData(getPrograms().filter(p=>p.id!==id));loadProgramsUI();
-}
-function saveEditProgram(id){
+function deleteProgram(id){if(!confirm('Delete this program?'))return;saveProgramsData(getPrograms().filter(p=>p.id!==id));loadProgramsUI();}
+function saveEditProg(id){
   const progs=getPrograms();const i=progs.findIndex(p=>p.id===id);if(i<0)return;
-  const featured=document.getElementById('pe-feat-'+id).value==='1';
-  if(featured)progs.forEach(p=>p.featured=false);
-  progs[i].icon=document.getElementById('pe-icon-'+id).value.trim();
-  progs[i].title=document.getElementById('pe-title-'+id).value.trim();
-  progs[i].desc=document.getElementById('pe-desc-'+id).value.trim();
-  progs[i].price=document.getElementById('pe-price-'+id).value.trim();
-  progs[i].featured=featured;
-  saveProgramsData(progs);loadProgramsUI();toast('programs');
+  const featured=document.getElementById('pe-feat-'+id).value==='1';if(featured)progs.forEach(p=>p.featured=false);
+  progs[i].icon=document.getElementById('pe-icon-'+id).value.trim();progs[i].title=document.getElementById('pe-title-'+id).value.trim();
+  progs[i].desc=document.getElementById('pe-desc-'+id).value.trim();progs[i].price=document.getElementById('pe-price-'+id).value.trim();
+  progs[i].featured=featured;saveProgramsData(progs);loadProgramsUI();toast('programs');
 }
 function savePrograms(){saveProgramsData(getPrograms());toast('programs');}
 
-/* ══════════════════════════════
-   CONTACT INFO
-══════════════════════════════ */
-const DEFAULT_CONTACT=[
-  {id:1,icon:'🌐',label:'Website',value:'www.kmfitness.coach',link:'https://kmfitness.coach'},
-  {id:2,icon:'📧',label:'Email',value:'kyramartindale@gmail.com',link:'mailto:kyramartindale@gmail.com'},
-  {id:3,icon:'📍',label:'Location',value:'State College, PA',link:''},
-  {id:4,icon:'📅',label:'Booking',value:'Schedule via calendar',link:'#booking'},
-];
-function getContacts(){const d=getData();return d.contacts&&d.contacts.length?d.contacts:DEFAULT_CONTACT;}
+/* ═══════════════ CONTACT ═══════════════ */
+const DEFAULT_CONTACT=[{id:1,icon:'🌐',label:'Website',value:'www.kmfitness.coach',link:'https://kmfitness.coach'},{id:2,icon:'📧',label:'Email',value:'kyramartindale@gmail.com',link:'mailto:kyramartindale@gmail.com'},{id:3,icon:'📍',label:'Location',value:'State College, PA',link:''},{id:4,icon:'📅',label:'Booking',value:'Schedule via calendar',link:'#booking'}];
+function getContacts(){const d=getData();return d.contacts&&d.contacts.length?d.contacts:JSON.parse(JSON.stringify(DEFAULT_CONTACT));}
 function saveContactsData(c){const d=getData();d.contacts=c;setData(d);}
-
 function addContactItem(){
-  const icon=document.getElementById('nc-icon').value.trim()||'📌';
-  const label=document.getElementById('nc-label').value.trim();
-  const value=document.getElementById('nc-val').value.trim();
-  const link=document.getElementById('nc-link').value.trim();
+  const icon=document.getElementById('nc-icon').value.trim()||'📌';const label=document.getElementById('nc-label').value.trim();const value=document.getElementById('nc-val').value.trim();const link=document.getElementById('nc-link').value.trim();
   if(!label||!value){alert('Please fill in Label and Value.');return;}
-  const c=getContacts();c.push({id:Date.now(),icon,label,value,link});
-  saveContactsData(c);loadContactUI();
-  document.getElementById('nc-icon').value='';document.getElementById('nc-label').value='';
-  document.getElementById('nc-val').value='';document.getElementById('nc-link').value='';
+  const c=getContacts();c.push({id:Date.now(),icon,label,value,link});saveContactsData(c);loadContactUI();
+  document.getElementById('nc-icon').value='';document.getElementById('nc-label').value='';document.getElementById('nc-val').value='';document.getElementById('nc-link').value='';
   toast('add-contact');
 }
 function loadContactUI(){
-  const items=getContacts();
-  const list=document.getElementById('contact-item-list');
-  if(!items.length){list.innerHTML='<p style="color:var(--muted);font-size:13px;">No contact items yet.</p>';return;}
-  list.innerHTML=items.map((c,i)=>`
-    <div class="contact-item-row" id="citem-${c.id}">
-      <div class="contact-item-icon-select">${c.icon||'📌'}</div>
-      <div class="contact-item-text">
-        <div class="contact-item-label-disp">${esc(c.label)}</div>
-        <div class="contact-item-val-disp">${esc(c.value)} ${c.link?'<span style="font-size:10px;color:var(--muted);">('+esc(c.link)+')</span>':''}</div>
-      </div>
-      <div style="display:flex;gap:8px;flex-shrink:0;">
-        <button class="edit-inline-btn" onclick="toggleContactEdit(${c.id})">✏️ Edit</button>
-        <button class="del-btn" onclick="deleteContact(${c.id})">🗑</button>
-      </div>
-      <div class="contact-item-edit" id="cedit-${c.id}">
-        <div class="field-row3">
-          <div class="field"><label>Icon</label><input type="text" id="ce-icon-${c.id}" value="${esc(c.icon||'')}" maxlength="4" style="font-size:16px;text-align:center;"/></div>
-          <div class="field"><label>Label</label><input type="text" id="ce-label-${c.id}" value="${esc(c.label)}"/></div>
-          <div class="field"><label>Value / Text</label><input type="text" id="ce-val-${c.id}" value="${esc(c.value)}"/></div>
-        </div>
+  const items=getContacts();const list=document.getElementById('contact-item-list');
+  list.innerHTML=items.map(c=>`
+    <div class="contact-row" id="citem-${c.id}">
+      <div class="c-row-icon">${c.icon||'📌'}</div>
+      <div class="c-row-text"><div class="c-row-label">${esc(c.label)}</div><div class="c-row-val">${esc(c.value)} ${c.link?'<span style="font-size:10px;color:var(--muted);">('+esc(c.link)+')</span>':''}</div></div>
+      <div style="display:flex;gap:7px;flex-shrink:0;"><button class="edit-btn" onclick="toggleContactEdit(${c.id})">✏️ Edit</button><button class="del-btn" onclick="deleteContact(${c.id})">🗑</button></div>
+      <div class="contact-edit-form" id="cedit-${c.id}">
+        <div class="field-row3"><div class="field"><label>Icon</label><input type="text" id="ce-icon-${c.id}" value="${esc(c.icon||'')}" maxlength="4" style="font-size:14px;text-align:center;"/></div><div class="field"><label>Label</label><input type="text" id="ce-label-${c.id}" value="${esc(c.label)}"/></div><div class="field"><label>Value</label><input type="text" id="ce-val-${c.id}" value="${esc(c.value)}"/></div></div>
         <div class="field"><label>Link (optional)</label><input type="text" id="ce-link-${c.id}" value="${esc(c.link||'')}"/></div>
-        <button class="save-btn" style="padding:9px 18px;font-size:10px;" onclick="saveEditContact(${c.id})">💾 Save</button>
-        <button class="del-btn" style="margin-left:8px;" onclick="toggleContactEdit(${c.id})">✕ Cancel</button>
+        <button class="save-btn" style="padding:8px 16px;font-size:10px;" onclick="saveEditContact(${c.id})">💾 Save</button>
+        <button class="del-btn" style="margin-left:7px;" onclick="toggleContactEdit(${c.id})">✕ Cancel</button>
       </div>
-    </div>
-  `).join('');
-  // Load tagline
-  const d=getData();
-  if(d.contactTagline) document.getElementById('f-contact-tagline').value=d.contactTagline;
+    </div>`).join('');
+  const d=getData();if(d.contactTagline)document.getElementById('f-contact-tagline').value=d.contactTagline;
 }
 function toggleContactEdit(id){document.getElementById('cedit-'+id).classList.toggle('open');}
-function deleteContact(id){
-  if(!confirm('Delete this contact item?'))return;
-  saveContactsData(getContacts().filter(c=>c.id!==id));loadContactUI();
-}
+function deleteContact(id){if(!confirm('Delete this contact item?'))return;saveContactsData(getContacts().filter(c=>c.id!==id));loadContactUI();}
 function saveEditContact(id){
   const c=getContacts();const i=c.findIndex(x=>x.id===id);if(i<0)return;
-  c[i].icon=document.getElementById('ce-icon-'+id).value.trim();
-  c[i].label=document.getElementById('ce-label-'+id).value.trim();
-  c[i].value=document.getElementById('ce-val-'+id).value.trim();
-  c[i].link=document.getElementById('ce-link-'+id).value.trim();
+  c[i].icon=document.getElementById('ce-icon-'+id).value.trim();c[i].label=document.getElementById('ce-label-'+id).value.trim();c[i].value=document.getElementById('ce-val-'+id).value.trim();c[i].link=document.getElementById('ce-link-'+id).value.trim();
   saveContactsData(c);loadContactUI();toast('contact');
 }
 function saveContactItems(){saveContactsData(getContacts());toast('contact');}
-function saveContactTagline(){
-  const d=getData();d.contactTagline=document.getElementById('f-contact-tagline').value.trim();
-  setData(d);toast('ctag');
+function saveContactTagline(){const d=getData();d.contactTagline=document.getElementById('f-contact-tagline').value.trim();setData(d);toast('ctag');}
+
+/* ═══════════════ VIDEOS ═══════════════ */
+function saveMainVid(){const d=getData();d.mainVid=parseVid(document.getElementById('f-main-vid').value.trim())||'';setData(d);toast('main-vid');}
+function saveCoachVid2(){const d=getData();const raw=document.getElementById('f-coach-vid2').value.trim();d.coachVid=parseVid(raw)||raw;setData(d);toast('cv2');}
+let uploadedVids={};
+function handleVidUpload(input,type){
+  if(!input.files||!input.files[0])return;
+  const file=input.files[0];const url=URL.createObjectURL(file);
+  uploadedVids[type]=url;
+  document.getElementById(type+'-vid-preview').style.display='block';
+  document.getElementById(type+'-vid-player').src=url;
+  document.getElementById(type+'-vid-name').textContent='📁 '+file.name+' ('+Math.round(file.size/1024/1024*10)/10+' MB)';
+}
+function saveUploadedVid(type){
+  if(!uploadedVids[type]){alert('Please upload a video file first.');return;}
+  const d=getData();
+  if(type==='main')d.mainVid=uploadedVids[type];
+  else d.coachVid=uploadedVids[type];
+  setData(d);toast(type==='main'?'main-upload':'coach-upload');
 }
 
-/* ══════════════════════════════
-   MISC FIELDS
-══════════════════════════════ */
+/* ═══════════════ MISC FIELDS ═══════════════ */
 function loadMiscFields(){
   const d=getData();
-  if(d.mainVid)  document.getElementById('f-main-vid').value=d.mainVid;
-  if(d.coachVid2||d.coachVid) document.getElementById('f-coach-vid2').value=d.coachVid2||d.coachVid;
-  if(d.calUrl)   document.getElementById('f-cal').value=d.calUrl;
-  if(d.tagline)  document.getElementById('f-tagline').value=d.tagline;
+  if(d.mainVid&&!d.mainVid.startsWith('blob'))document.getElementById('f-main-vid').value=d.mainVid;
+  if(d.coachVid&&!d.coachVid.startsWith('blob'))document.getElementById('f-coach-vid2').value=d.coachVid;
+  if(d.calUrl)document.getElementById('f-cal').value=d.calUrl;
+  if(d.tagline)document.getElementById('f-tagline').value=d.tagline;
+  const ticker=d.tickerWords||(d.tickerItems?d.tickerItems.join('\n'):null);
+  if(ticker)document.getElementById('f-ticker').value=ticker;
 }
-function saveMainVid(){
-  const d=getData();d.mainVid=parseVid(document.getElementById('f-main-vid').value.trim())||'';
-  setData(d);toast('main-vid');
+function saveCal(){const d=getData();d.calUrl=document.getElementById('f-cal').value.trim();setData(d);toast('cal');}
+function saveHero(){const d=getData();d.tagline=document.getElementById('f-tagline').value.trim();setData(d);toast('hero');}
+function saveTicker(){const d=getData();d.tickerWords=document.getElementById('f-ticker').value.trim();setData(d);toast('ticker');}
+
+/* ═══════════════ LOGOS ═══════════════ */
+let logoData={horizontal:null,vertical:null,mark:null};
+function loadLogos(){
+  const d=getData();
+  if(d.logoHorizontal){logoData.horizontal=d.logoHorizontal;document.getElementById('h-logo-preview').src=d.logoHorizontal;}
+  if(d.logoVertical){logoData.vertical=d.logoVertical;document.getElementById('v-logo-preview').src=d.logoVertical;}
+  if(d.logoMark){logoData.mark=d.logoMark;document.getElementById('m-logo-preview').src=d.logoMark;}
 }
-function saveCoachVid2(){
-  const d=getData();const raw=document.getElementById('f-coach-vid2').value.trim();
-  d.coachVid=parseVid(raw)||'';d.coachVid2=d.coachVid;setData(d);toast('cv2');
+function handleLogoUpload(input,type){
+  if(!input.files||!input.files[0])return;
+  const r=new FileReader();
+  r.onload=e=>{
+    logoData[type]=e.target.result;
+    const previewId={horizontal:'h-logo-preview',vertical:'v-logo-preview',mark:'m-logo-preview'}[type];
+    document.getElementById(previewId).src=e.target.result;
+  };r.readAsDataURL(input.files[0]);
 }
-function saveCal(){
-  const d=getData();d.calUrl=document.getElementById('f-cal').value.trim();
-  setData(d);toast('cal');updateDash();
+function saveLogos(){
+  const d=getData();
+  if(logoData.horizontal){d.logoHorizontal=logoData.horizontal;document.getElementById('admin-nav-logo').src=logoData.horizontal;}
+  if(logoData.vertical){d.logoVertical=logoData.vertical;document.getElementById('login-logo-img').src=logoData.vertical;}
+  if(logoData.mark)d.logoMark=logoData.mark;
+  setData(d);toast('logos');
 }
-function saveHero(){
-  const d=getData();d.tagline=document.getElementById('f-tagline').value.trim();
-  setData(d);toast('hero');
+function restoreLogo(type){
+  const originals={horizontal:'Horizontal_Logo.png',vertical:'Vertical_Logo.png',mark:'Logo_Mark.png'};
+  logoData[type]=null;
+  const previewId={horizontal:'h-logo-preview',vertical:'v-logo-preview',mark:'m-logo-preview'}[type];
+  document.getElementById(previewId).src=originals[type];
+  const d=getData();
+  if(type==='horizontal')delete d.logoHorizontal;
+  if(type==='vertical')delete d.logoVertical;
+  if(type==='mark')delete d.logoMark;
+  setData(d);alert('Logo restored to original!');
 }
 
-/* ══════════════════════════════
-   PASSWORD
-══════════════════════════════ */
+/* ═══════════════ MESSAGES ═══════════════ */
+let msgFilter='all';
+function loadMessagesUI(){
+  const d=getData();const msgs=(d.messages||[]);
+  const list=document.getElementById('messages-list');
+  const filtered=msgFilter==='all'?msgs:msgFilter==='unread'?msgs.filter(m=>!m.read):msgs.filter(m=>m.read);
+  const unread=msgs.filter(m=>!m.read).length;
+  const label=document.getElementById('msg-count-label');
+  if(label)label.textContent=msgs.length+' total · '+unread+' unread';
+  document.getElementById('sb-msgs').textContent=unread||msgs.length;
+  if(!filtered.length){list.innerHTML='<p class="msg-empty">No messages yet — '+(msgFilter==='all'?'customers haven\'t written yet.':msgFilter==='unread'?'no unread messages!':'no read messages.')+'</p>';return;}
+  list.innerHTML=[...filtered].reverse().map(m=>`
+    <div class="msg-item ${!m.read?'unread':''}" onclick="openMsg(${m.id})">
+      <div class="msg-item-top">
+        <div>
+          <div class="msg-item-name">${esc(m.name||'Anonymous')} ${!m.read?'<span class="badge badge-amber">New</span>':''}</div>
+          <div class="msg-item-meta">${esc(m.email||'')} · ${esc(m.program||'')} · ${new Date(m.ts||m.id).toLocaleDateString()}</div>
+        </div>
+        <button class="del-btn" onclick="deleteMsg(event,${m.id})">🗑 Delete</button>
+      </div>
+      <div class="msg-item-preview">${esc(m.message||'(no message)')}</div>
+      <div class="msg-detail" id="mdtl-${m.id}">
+        <div class="field-row"><div class="msg-detail-field"><div class="msg-detail-label">Full Name</div><div class="msg-detail-val">${esc(m.name||'—')}</div></div><div class="msg-detail-field"><div class="msg-detail-label">Athlete Name</div><div class="msg-detail-val">${esc(m.athleteName||'—')}</div></div></div>
+        <div class="field-row"><div class="msg-detail-field"><div class="msg-detail-label">Email</div><div class="msg-detail-val"><a href="mailto:${esc(m.email||'')}" style="color:var(--blue);">${esc(m.email||'—')}</a></div></div><div class="msg-detail-field"><div class="msg-detail-label">Phone</div><div class="msg-detail-val">${esc(m.phone||'—')}</div></div></div>
+        <div class="field-row"><div class="msg-detail-field"><div class="msg-detail-label">Age Group</div><div class="msg-detail-val">${esc(m.ageGroup||'—')}</div></div><div class="msg-detail-field"><div class="msg-detail-label">Program Interest</div><div class="msg-detail-val">${esc(m.program||'—')}</div></div></div>
+        <div class="msg-detail-field"><div class="msg-detail-label">Message</div><div class="msg-detail-val">${esc(m.message||'—')}</div></div>
+        <div class="msg-detail-field"><div class="msg-detail-label">Received</div><div class="msg-detail-val">${new Date(m.ts||m.id).toLocaleString()}</div></div>
+      </div>
+    </div>`).join('');
+}
+function openMsg(id){
+  const el=document.getElementById('mdtl-'+id);if(!el)return;
+  el.classList.toggle('open');
+  const d=getData();const msgs=d.messages||[];const i=msgs.findIndex(m=>m.id===id);
+  if(i>=0&&!msgs[i].read){msgs[i].read=true;d.messages=msgs;setData(d);loadMessagesUI();}
+}
+function deleteMsg(e,id){e.stopPropagation();if(!confirm('Delete this message?'))return;const d=getData();d.messages=(d.messages||[]).filter(m=>m.id!==id);setData(d);loadMessagesUI();}
+function filterMsgs(f,btn){msgFilter=f;document.querySelectorAll('.msg-filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');loadMessagesUI();}
+function markAllRead(){const d=getData();(d.messages||[]).forEach(m=>m.read=true);setData(d);loadMessagesUI();}
+function clearAllMsgs(){if(!confirm('Delete ALL messages? This cannot be undone.'))return;const d=getData();d.messages=[];setData(d);loadMessagesUI();}
+function exportMessages(){
+  const d=getData();const msgs=d.messages||[];
+  if(!msgs.length){alert('No messages to export.');return;}
+  const rows=['Name,Athlete,Email,Phone,Age Group,Program,Message,Date'];
+  msgs.forEach(m=>rows.push([m.name,m.athleteName,m.email,m.phone,m.ageGroup,m.program,'"'+(m.message||'').replace(/"/g,"'")+'"',new Date(m.ts||m.id).toLocaleString()].map(v=>v||'').join(',')));
+  const blob=new Blob([rows.join('\n')],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='km_fitness_messages_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+}
+
+/* ═══════════════ ANALYTICS ═══════════════ */
+let reportFreq='weekly';let reportsEnabled=true;
+function updateAnalytics(){
+  const d=getData();
+  const reviews=(d.reviews||[]).filter(r=>r.visible!==false);
+  const pending=(d.pendingReviews||[]).length;
+  const msgs=(d.messages||[]);
+  const unread=msgs.filter(m=>!m.read).length;
+  const progs=(d.programs||[]).length||3;
+  const avg=reviews.length?Math.round(reviews.reduce((s,r)=>s+(r.stars||5),0)/reviews.length*10)/10:0;
+  document.getElementById('an-msgs').textContent=msgs.length;
+  document.getElementById('an-reviews').textContent=reviews.length;
+  document.getElementById('an-pending').textContent=pending;
+  document.getElementById('an-programs').textContent=progs;
+  document.getElementById('an-avg-stars').textContent=avg||'—';
+  document.getElementById('an-unread').textContent=unread;
+}
+function setFreq(f,btn){
+  reportFreq=f;document.querySelectorAll('.report-freq-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  document.getElementById('custom-date-range').classList.toggle('show',f==='custom');
+  updateReportStatus();
+}
+function updateReportStatus(){
+  const tog=document.getElementById('reports-toggle');
+  reportsEnabled=tog&&tog.checked;
+  const dot=document.getElementById('report-dot');const text=document.getElementById('report-status-text');
+  if(!reportsEnabled){if(dot)dot.className='dot dot-red';if(text)text.textContent='Reports: Off';}
+  else{if(dot)dot.className='dot dot-green';if(text)text.textContent='Reports: On — '+reportFreq.charAt(0).toUpperCase()+reportFreq.slice(1);}
+}
+function saveReportSettings(){
+  const d=getData();d.reportFreq=reportFreq;d.reportsEnabled=reportsEnabled;setData(d);toast('report-set');
+}
+function generateReport(){
+  const d=getData();const reviews=(d.reviews||[]).filter(r=>r.visible!==false);
+  const pending=(d.pendingReviews||[]).length;const msgs=(d.messages||[]);
+  const unread=msgs.filter(m=>!m.read).length;const progs=(d.programs||[]).length||3;
+  const avg=reviews.length?(reviews.reduce((s,r)=>s+(r.stars||5),0)/reviews.length).toFixed(1):'N/A';
+  const now=new Date();const dateStr=now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  const recentMsgs=msgs.slice(-5).reverse();
+  let report=`╔══════════════════════════════════════════════╗
+║         KM FITNESS COACH — SITE REPORT        ║
+╚══════════════════════════════════════════════╝
+
+Generated:  ${dateStr}
+Report Type: ${reportFreq.toUpperCase()}
+─────────────────────────────────────────────
+
+📊 OVERVIEW
+  Total Messages Received:   ${msgs.length}
+  Unread Messages:           ${unread}
+  Published Reviews:         ${reviews.length}
+  Pending Reviews:           ${pending}
+  Active Programs:           ${progs}
+  Average Star Rating:       ${avg} / 5.0
+
+─────────────────────────────────────────────
+💌 RECENT MESSAGES (Last 5)`;
+  if(!recentMsgs.length){report+='\n  No messages received yet.';}
+  else{recentMsgs.forEach((m,i)=>{report+=`\n  ${i+1}. ${m.name||'Anonymous'} — ${m.email||'no email'}\n     ${m.program||''} | ${new Date(m.ts||m.id).toLocaleDateString()}\n     "${(m.message||'').slice(0,80)}${(m.message||'').length>80?'...':''}"`;});}
+  report+=`\n\n─────────────────────────────────────────────
+⭐ REVIEWS SUMMARY`;
+  if(!reviews.length){report+='\n  No published reviews yet.';}
+  else{reviews.slice(-5).forEach((r,i)=>{report+=`\n  ${i+1}. ${starsStr(r.stars||5)} — ${r.name||'Anonymous'}\n     "${(r.text||'').slice(0,80)}${(r.text||'').length>80?'...':''}"`;});}
+  report+=`\n\n─────────────────────────────────────────────
+📌 ACTION ITEMS`;
+  const actions=[];
+  if(pending>0)actions.push(`  ⚠️  ${pending} review(s) pending your approval`);
+  if(unread>0)actions.push(`  📬  ${unread} unread message(s) in inbox`);
+  if(!d.coachName)actions.push('  👤  Coach profile not yet set up');
+  if(actions.length===0)actions.push('  ✅  Everything looks great!');
+  report+='\n'+actions.join('\n');
+  report+=`\n\n──────────────────────────────────────────────
+  www.kmfitness.coach · kyramartindale@gmail.com`;
+  document.getElementById('report-preview').textContent=report;
+}
+function downloadReport(){
+  const text=document.getElementById('report-preview').textContent;
+  if(!text||text.includes('Click "Generate')){{generateReport();}}
+  const b=new Blob([document.getElementById('report-preview').textContent],{type:'text/plain'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='kmfitness_report_'+new Date().toISOString().slice(0,10)+'.txt';a.click();
+}
+function downloadReportCSV(){
+  const d=getData();const msgs=d.messages||[];const reviews=(d.reviews||[]).filter(r=>r.visible!==false);
+  let csv='Section,Key,Value\n';
+  csv+=`Summary,Total Messages,${msgs.length}\nSummary,Unread Messages,${msgs.filter(m=>!m.read).length}\nSummary,Published Reviews,${reviews.length}\nSummary,Pending Reviews,${(d.pendingReviews||[]).length}\nSummary,Average Rating,${reviews.length?(reviews.reduce((s,r)=>s+(r.stars||5),0)/reviews.length).toFixed(1):'N/A'}\n`;
+  msgs.forEach(m=>csv+=`Message,${new Date(m.ts||m.id).toLocaleDateString()},"${(m.name||'').replace(/"/g,"'")} — ${(m.email||'').replace(/"/g,"'")}"\n`);
+  reviews.forEach(r=>csv+=`Review,${starsStr(r.stars||5)},"${(r.name||'').replace(/"/g,"'")} — ${(r.text||'').slice(0,60).replace(/"/g,"'")}"\n`);
+  const b=new Blob([csv],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='kmfitness_report_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+}
+
+/* ═══════════════ PASSWORD ═══════════════ */
 function changePassword(){
-  const cur=document.getElementById('pw-current').value;
-  const nw=document.getElementById('pw-new').value;
-  const cf=document.getElementById('pw-confirm').value;
+  const cur=document.getElementById('pw-current').value;const nw=document.getElementById('pw-new').value;const cf=document.getElementById('pw-confirm').value;
   const err=document.getElementById('pw-error');err.style.display='none';
-  if(cur!==getPassword()){err.textContent='❌ Current password is incorrect.';err.style.display='block';return;}
-  if(nw.length<6){err.textContent='❌ New password must be at least 6 characters.';err.style.display='block';return;}
+  if(cur!==getPassword()){err.textContent='❌ Current password incorrect.';err.style.display='block';return;}
+  if(nw.length<6){err.textContent='❌ Min 6 characters.';err.style.display='block';return;}
   if(nw!==cf){err.textContent='❌ Passwords do not match.';err.style.display='block';return;}
-  localStorage.setItem('km_admin_pw',nw);
-  document.getElementById('pw-current').value='';document.getElementById('pw-new').value='';document.getElementById('pw-confirm').value='';
-  toast('pw');
+  localStorage.setItem('km_admin_pw',nw);document.getElementById('pw-current').value='';document.getElementById('pw-new').value='';document.getElementById('pw-confirm').value='';toast('pw');
 }
 </script>
 </body>
